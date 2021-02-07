@@ -1,1 +1,2 @@
 # sangokushi-api-document
+document
