@@ -6,7 +6,7 @@
         <title>主に取り決めること · HonKit</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 3.6.16">
+        <meta name="generator" content="HonKit 3.6.17">
         
         
         
@@ -225,57 +225,19 @@
 という一連のサイクルの中に位置付けることもできる<br></li>
 </ul>
 <pre><code class="lang-uml">@startuml
-title 負傷部位・原因登録画面表示のシーケンス図
+title システムのサイクル
 
-skinparam ParticipantPadding 20
+skinparam ParticipantPadding 10
 skinparam BoxPadding 10
 
-actor &quot;タブレットユーザ&quot; as user
+actor &quot;ユーザー&quot; as user
+actor &quot;ユーザー&quot; as user2
+database &quot;DBMS&quot;
 
-box &quot;Tablet&quot; #LightBlue
-    participant &quot;タブレットアプリ&quot; as pwa
-end box
+    user -&gt; DBMS: 登録
+    DBMS -&gt; (情報): 抽出(観点や文脈)
+    (情報) -&gt; user2
 
-box &quot;AWS&quot; #LightBlue
-    participant &quot;EC2&quot; as ec2
-    participant &quot;RDS&quot; as db
-    database &quot;S3&quot; as s3
-end box
-
-activate user
-    user -&gt; pwa: 負傷部位・原因登録ボタンを押下
-    activate pwa
-        pwa -&gt; ec2: 治療計画情報一覧を取得 &lt;b&gt;*1&lt;/b&gt;
-
-        activate ec2
-            ec2 -&gt; db:　対象テーブルから情報を取得
-            activate db
-                db --&gt; ec2: データ返却
-            deactivate
-            ec2 -&gt; ec2: 取得したデータをレスポンス形式に加工
-            ec2 --&gt; pwa: Response result
-        deactivate
-
-    pwa -&gt; pwa: レスポンスデータを store に保持
-
-    alt レスポンスデータが存在しない場合
-        pwa -&gt; user: デフォルトの負傷部位・原因登録画面を返却
-    else レスポンスデータに modified の値が今月のデータが存在しない場合
-        pwa -&gt; pwa: modified の値が先月のデータの injuries.resultStatus の値が\ncontinuous のデータを抽出
-        pwa --&gt; user: 抽出したデータを負傷部位のレコードに追加した\n負傷部位・原因登録画面を返却
-        pwa -&gt; user: 抽出したデータを負傷部位のレコードに追加した\n負傷部位・原因登録画面を返却
-    else 
-        pwa -&gt; pwa: modified の値が今月のデータの抽出
-        pwa -&gt; s3: 抽出したデータの　bodyImage　のリンクからデータを取得
-        activate s3
-            s3 --&gt; pwa: 画像データの返却
-        deactivate
-        pwa --&gt; user: 抽出したデータを負傷部位のレコードに追加、\n返却画像を追加した負傷部位・原因登録画面を返却
-        pwa -&gt; user: 抽出したデータを負傷部位のレコードに追加、\n返却画像を追加した負傷部位・原因登録画面を返却
-    end
-
-    deactivate pwa
-deactivate user
 @enduml
 </code></pre>
 
@@ -317,7 +279,7 @@ deactivate user
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"主に取り決めること","level":"2.1.1","depth":2,"previous":{"title":"前提要求仕様","level":"2.1","depth":1,"path":"10_requirement/index.md","ref":"10_requirement/index.md","articles":[{"title":"主に取り決めること","level":"2.1.1","depth":2,"path":"10_requirement/studying/toStudy.md","ref":"10_requirement/studying/toStudy.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"10_requirement/studying/toStudy.md","mtime":"2021-02-14T16:53:45.874Z","type":"markdown"},"gitbook":{"version":"3.6.16","time":"2021-02-14T16:53:52.811Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"主に取り決めること","level":"2.1.1","depth":2,"previous":{"title":"前提要求仕様","level":"2.1","depth":1,"path":"10_requirement/index.md","ref":"10_requirement/index.md","articles":[{"title":"主に取り決めること","level":"2.1.1","depth":2,"path":"10_requirement/studying/toStudy.md","ref":"10_requirement/studying/toStudy.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"10_requirement/studying/toStudy.md","mtime":"2021-02-15T14:17:38.795Z","type":"markdown"},"gitbook":{"version":"3.6.17","time":"2021-02-15T14:20:10.123Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -369,6 +331,10 @@ deactivate user
     </script>
     <script src="../../gitbook/gitbook.js"></script>
     <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
     
         
         <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
