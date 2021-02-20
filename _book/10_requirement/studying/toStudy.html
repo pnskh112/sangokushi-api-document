@@ -191,6 +191,13 @@
 <li><a href="#logic-design論理設計">logicDesign論理設計</a></li>
 <li><a href="#Physical-Design論理設計">physicalDesign物理設計</a></li>
 <li><a href="#logic-design論理設計">logicDesign論理設計</a></li>
+<li><a href="#３層スキーマ">Three-tier schema３層スキーマ</a><ul>
+<li><a href="#外部スキーマ">External schema外部スキーマ</a></li>
+<li><a href="#概念スキーマ">Conceptual schema概念スキーマ</a></li>
+<li><a href="#内部スキーマ">Internal schema内部スキーマ</a></li>
+</ul>
+</li>
+<li><a href="#論理設計と物理設計">Logical design and physical design論理設計と物理設計</a></li>
 </ul>
 </li>
 </ul>
@@ -292,12 +299,89 @@ POA：プログラム⇨データ<br>
 <li>2層スキーマは変更に対する柔軟性が低い</li>
 <li>外部スキーマと内部スキーマの間に位置することでスキーマ同士の独立性を高め互いに影響し合わないようにするための
 緩衝材の役割を果たす（データ独立性）</li>
+<li>概念スキーマはデータ独立性を保証するためにある</li>
 </ul>
 <h4 id="内部スキーマ">内部スキーマ</h4>
 <p>概念スキーマで定義された論理データベースを、具体的にどうDBMS内部に格納するかを定義するスキーマ<br>
-テーブルやインデックスの物理的定義を含む。リレーショナルデータベースもコンピュータ上で動く以上は、<br>
-あらゆるデータは最終的に「ファイル」の形で管理され、その「ファイル」で表現される世界
+テーブルやインデックスの物理的定義を含む。リレーショナルデータベースもコンピュータ上で動く以上、あらゆるデータは最終的に「ファイル」の形で管理され、その「ファイル」で表現される世界である。<br>
 内部スキーマの設計を、論理設計との対比で「物理設計」と呼ぶ。</p>
+<h3 id="論理設計と物理設計">論理設計と物理設計</h3>
+<ul>
+<li>論理設計は物理設計に先立つ</li>
+<li>DBMSはユーザーにファイルを極力意識させないようにしているが、設計者はファイルレベルで考えるのが物理設計のポイント</li>
+</ul>
+<h4 id="論理設計">論理設計</h4>
+<ul>
+<li>概念スキーマを定義する設計を、論理設計と呼ぶ</li>
+<li>「論理」の意味は、「物理層の制約にとらわれない」という意味。</li>
+<li>物理層の制約とは、データベースサーバーのCPUパワーや、ストレージのデータ格納場所や、DBMSで使えるデータ型やSQLの構文といった、より具体的で実装レベルの条件のこと。最初にデータベース設計を行う際は、こうした物理層の制約は脇に置いて進める。</li>
+</ul>
+<h5 id="論理設計のステップ">論理設計のステップ</h5>
+<ul>
+<li>entityは日本語で「実体」と訳す</li>
+<li>現実世界に存在するデータの集合体を指す言葉</li>
+<li>具体的には「顧客」や「社員」「店舗」「車」といった、物理的実態を伴ったもの</li>
+<li>「税」や「会社」「注文履歴」のように物理的実体を伴わない、概念としてしか存在しないもの</li>
+<li>RDBMSではこうした現実世界のエンティティを最終的に「テーブル」という物理的単位で格納する</li>
+<li>このタスクの一部は「要件定義」と重なっている。</li>
+<li>どのようなエンティティが必要になるか、という問いは、要するにどういうデータを扱いたいか、という問いの変形である</li>
+</ul>
+<pre><code class="lang-uml">@startuml
+title 論理設計の４つのタスク
+
+start
+partition Initialization {
+:1.エンティティの抽出;
+:2.エンティティの定義;
+:3.正規化;
+:4.ER図の作成;
+}
+stop
+
+@enduml
+</code></pre>
+<h5 id="エンティティの定義">エンティティの定義</h5>
+<ul>
+<li>エンティティを抽出した後は、各エンティティがどのようなデータを保持するかを決める。</li>
+<li>データを「属性（attribute）」という形で保持する。これは「列」と同義</li>
+</ul>
+<h5 id="正規化">正規化</h5>
+<ul>
+<li>正規化（normalization）は、テーブル（entity）について、システムでの利用がスムーズに行えるように整理する作業。</li>
+<li>正規化はCRUDが整合的に行えるように、エンティティのフォーマットを整理することが重要な目的。</li>
+<li>正規化は、データベースの論理設計を理解する鍵と言っても過言ではない</li>
+</ul>
+<h5 id="er図の作成">ER図の作成</h5>
+<ul>
+<li>Entity-Relationship Diagramの略。</li>
+</ul>
+<pre><code class="lang-uml">@startuml
+title ER図の例
+
+entity 会社{
+  * 会社コード
+  --
+  * 会社名
+}
+entity 社員{
+  * 会社コード(FK)
+  * 社員ID
+  --
+  * 社員名
+  * 年齢
+  * 部署コード(FK)
+}
+entity 部署{
+  * 部署コード
+  --
+  * 部署名
+}
+
+会社 ||..|{ 社員
+社員 }o..|| 部署
+
+@enduml
+</code></pre>
 
                                 
                                 </section>
@@ -337,7 +421,7 @@ POA：プログラム⇨データ<br>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"主に取り決めること","level":"2.1.1","depth":2,"previous":{"title":"前提要求仕様","level":"2.1","depth":1,"path":"10_requirement/index.md","ref":"10_requirement/index.md","articles":[{"title":"主に取り決めること","level":"2.1.1","depth":2,"path":"10_requirement/studying/toStudy.md","ref":"10_requirement/studying/toStudy.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"10_requirement/studying/toStudy.md","mtime":"2021-02-15T16:43:37.461Z","type":"markdown"},"gitbook":{"version":"3.6.17","time":"2021-02-15T16:45:33.134Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"主に取り決めること","level":"2.1.1","depth":2,"previous":{"title":"前提要求仕様","level":"2.1","depth":1,"path":"10_requirement/index.md","ref":"10_requirement/index.md","articles":[{"title":"主に取り決めること","level":"2.1.1","depth":2,"path":"10_requirement/studying/toStudy.md","ref":"10_requirement/studying/toStudy.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"10_requirement/studying/toStudy.md","mtime":"2021-02-20T08:34:51.288Z","type":"markdown"},"gitbook":{"version":"3.6.17","time":"2021-02-20T08:51:29.803Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
