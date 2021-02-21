@@ -6,6 +6,12 @@
     * [主に取り決めること](10_requirement/studying/toStudy.md)
 * [アクションアイテム](10_requirement/rq_action_items.md)
 
+## Logical Design
+* [logial design and normalization](10_requirement/studying/logicalDesignAndNormalization/index.md)
+    * [logial design](10_requirement/studying/logicalDesignAndNormalization/locialDesign.md)
+    * [normalization](10_requirement/studying/logicalDesignAndNormalization/normalization.md)
+
+
 ## Detail Design
 * [三国志APIサーバ](30_design/dd/dd_sangokushiApi/index.md)
     * [三国志APIサーバ-データベースレイアウト](30_design/dd/dd_sangokushiApi/dd_entity_layout.md)
