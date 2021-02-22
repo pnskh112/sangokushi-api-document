@@ -3,7 +3,7 @@
 <html lang="" >
     <head>
         <meta charset="UTF-8">
-        <title>normalization · HonKit</title>
+        <title>正規化 · HonKit</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="HonKit 3.6.17">
@@ -56,10 +56,10 @@
     <link rel="shortcut icon" href="../../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="../../../30_design/dd/dd_sangokushiApi/" />
+    <link rel="next" href="../ERdiagram/erDiagram.html" />
     
     
-    <link rel="prev" href="locialDesign.html" />
+    <link rel="prev" href="../toStudy.html" />
     
 
     </head>
@@ -128,6 +128,32 @@
             
                     
                     主に取り決めること
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="2.1.2" data-path="normalization.html">
+            
+                <a href="normalization.html">
+            
+                    
+                    正規化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" data-path="../ERdiagram/erDiagram.html">
+            
+                <a href="../ERdiagram/erDiagram.html">
+            
+                    
+                    ER図
             
                 </a>
             
@@ -319,7 +345,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../.." >normalization</a>
+        <a href="../../.." >正規化</a>
     </h1>
 </div>
 
@@ -731,20 +757,88 @@ X=5と定めれば、Y=10のように、Xに対してYが一つに決まる。�
 <h4 id="第三正規形">第三正規形</h4>
 <p>上記の第二正規化した「社員」テーブル「会社」テーブルで起きる不都合</p>
 <p>第二正規形（再掲）</p>
-<p>社員
-| 会社コード | 社員ID | 社員名 | 年齢  | 部署コード | 部署名 |
-| ----- | ---- | --- | --- | ----- | --- |
-| C001  | 000A | 加藤  | 40  | D01   | 開発  |
-| C001  | 000B | 藤本  | 32  | D02   | 人事  |
-| C001  | 001F | 三島  | 50  | D03   | 営業  |
-| C002  | 000A | 斉藤  | 47  | D03   | 営業  |
-| C002  | 009F | 田島  | 25  | D01   | 開発  |
-| C002  | 010A | 渋谷  | 33  | D04   | 総務  |</p>
-<p>会社
-| 会社コード | 会社名 |
-|-------|-----|
-| C001  | A商事 |
-| C002  | B化学 |</p>
+<p>社員</p>
+<table>
+<thead>
+<tr>
+<th>会社コード</th>
+<th>社員ID</th>
+<th>社員名</th>
+<th>年齢</th>
+<th>部署コード</th>
+<th>部署名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C001</td>
+<td>000A</td>
+<td>加藤</td>
+<td>40</td>
+<td>D01</td>
+<td>開発</td>
+</tr>
+<tr>
+<td>C001</td>
+<td>000B</td>
+<td>藤本</td>
+<td>32</td>
+<td>D02</td>
+<td>人事</td>
+</tr>
+<tr>
+<td>C001</td>
+<td>001F</td>
+<td>三島</td>
+<td>50</td>
+<td>D03</td>
+<td>営業</td>
+</tr>
+<tr>
+<td>C002</td>
+<td>000A</td>
+<td>斉藤</td>
+<td>47</td>
+<td>D03</td>
+<td>営業</td>
+</tr>
+<tr>
+<td>C002</td>
+<td>009F</td>
+<td>田島</td>
+<td>25</td>
+<td>D01</td>
+<td>開発</td>
+</tr>
+<tr>
+<td>C002</td>
+<td>010A</td>
+<td>渋谷</td>
+<td>33</td>
+<td>D04</td>
+<td>総務</td>
+</tr>
+</tbody>
+</table>
+<p>会社</p>
+<table>
+<thead>
+<tr>
+<th>会社コード</th>
+<th>会社名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C001</td>
+<td>A商事</td>
+</tr>
+<tr>
+<td>C002</td>
+<td>B化学</td>
+</tr>
+</tbody>
+</table>
 <p>社員が一人もいない部署を社員テーブルには登録できない。<br>
 社員IDが主キーの一部である以上、そこをNULLのままレコードを登録できない<br>
 このような不都合が発生する理由は、「社員」テーブルの中に、関数従属性が残っているためである。<br>
@@ -753,10 +847,10 @@ X=5と定めれば、Y=10のように、Xに対してYが一つに決まる。�
 <ul>
 <li>推移的関数従属</li>
 </ul>
-<p>{部署コード} -&gt; {部署名}</p>
-<p>{会社コード,社員ID} -&gt; {部署コード}</p>
+<p><code>{部署コード} -&gt; {部署名}</code></p>
+<p><code>{会社コード,社員ID} -&gt; {部署コード}</code></p>
 <p>が成り立つので、よって、</p>
-<p>{会社コード,社員ID} -&gt; {部署コード} -&gt; {部署名}</p>
+<p><code>{会社コード,社員ID} -&gt; {部署コード} -&gt; {部署名}</code></p>
 <p>という２段階の関数従属がある。これを<code>推移的関数従属</code>という。</p>
 <p>第三正規形</p>
 <p>社員</p>
@@ -871,11 +965,379 @@ X=5と定めれば、Y=10のように、Xに対してYが一つに決まる。�
 一人もいない部署を登録できないという問題は解消される。<br></p>
 <h4 id="正規形についてのまとめ">正規形についてのまとめ</h4>
 <ul>
-<li>正規化を行う目的は、何よりも更新（データ登録＝INSERTも含む）時の不都合を防ぐためのもの。
-また、データの冗長性を排除して、人間のオペレーションミスによるデータ不整合を防ぐ目的もある。</li>
-<li>正規化は従属性を見抜くことで可能になる</li>
-<li>正規形はいつでも非正規形に戻せる</li>
+<li>正規化を行う目的は、何よりも更新（データ登録＝INSERTも含む）時の不都合を防ぐためのもの。<br>
+データの冗長性を排除して、人間のオペレーションミスによるデータ不整合を防ぐ目的もある。</li>
+<li>正規化は従属性を見抜くことで可能になる<ul>
+<li>部分関数従属（第二正規形）</li>
+<li>推移的関数従属（第三正規形）
+が存在していれば、まず正規化の対象になる。</li>
 </ul>
+</li>
+<li><p>正規形はいつでも非正規形に戻せる
+正規化によって分割されたテーブルは、いつでも非正規化テーブルに復元することができる。<br>
+正規化が情報を完全に保存する無損失分解だからである。</p>
+</li>
+<li><p>第三正規形までは、原則として行う。</p>
+</li>
+<li>関連エンティティが存在する場合は関連とエンティティが１対１に対応するよう注意する</li>
+</ul>
+<p>正規化を行えば行うほど以下のような利点と欠点がある。</p>
+<ul>
+<li>利点１：データの冗長性が排除され、更新時の不整合を防止できる</li>
+<li>利点２：テーブルの持つ意味が明確になり、開発者が理解しやすい</li>
+<li>欠点：テーブルの数が増えるため、SQL文で結合を多用することになり、パフォーマンスが悪化する。</li>
+</ul>
+<p>非正規形テーブル
+下記の非正規化テーブルの関数従属をまとめ、正規化してみなさい
+支社支店商品（非正規化テーブル）</p>
+<table>
+<thead>
+<tr>
+<th>支社コード</th>
+<th>支社名</th>
+<th>支店コード</th>
+<th>支店名</th>
+<th>商品コード</th>
+<th>商品名</th>
+<th>商品分類コード</th>
+<th>分類名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>001</td>
+<td>東京</td>
+<td>01</td>
+<td>渋谷</td>
+<td>001</td>
+<td>石鹸</td>
+<td>C1</td>
+<td>水洗用品</td>
+</tr>
+<tr>
+<td>001</td>
+<td>東京</td>
+<td>01</td>
+<td>渋谷</td>
+<td>002</td>
+<td>タオル</td>
+<td>C1</td>
+<td>水洗用品</td>
+</tr>
+<tr>
+<td>001</td>
+<td>東京</td>
+<td>01</td>
+<td>渋谷</td>
+<td>003</td>
+<td>歯ブラシ</td>
+<td>C1</td>
+<td>水洗用品</td>
+</tr>
+<tr>
+<td>001</td>
+<td>東京</td>
+<td>02</td>
+<td>八重洲</td>
+<td>002</td>
+<td>タオル</td>
+<td>C1</td>
+<td>水洗用品</td>
+</tr>
+<tr>
+<td>001</td>
+<td>東京</td>
+<td>02</td>
+<td>八重洲</td>
+<td>003</td>
+<td>歯ブラシ</td>
+<td>C1</td>
+<td>水洗用品</td>
+</tr>
+<tr>
+<td>001</td>
+<td>東京</td>
+<td>02</td>
+<td>八重洲</td>
+<td>004</td>
+<td>コップ</td>
+<td>C1</td>
+<td>水洗用品</td>
+</tr>
+<tr>
+<td>001</td>
+<td>東京</td>
+<td>02</td>
+<td>八重洲</td>
+<td>005</td>
+<td>箸</td>
+<td>C2</td>
+<td>食器</td>
+</tr>
+<tr>
+<td>001</td>
+<td>東京</td>
+<td>02</td>
+<td>八重洲</td>
+<td>006</td>
+<td>スプーン</td>
+<td>C2</td>
+<td>食器</td>
+</tr>
+<tr>
+<td>002</td>
+<td>大阪</td>
+<td>01</td>
+<td>堺</td>
+<td>001</td>
+<td>石鹸</td>
+<td>C1</td>
+<td>水洗用品</td>
+</tr>
+<tr>
+<td>002</td>
+<td>大阪</td>
+<td>01</td>
+<td>堺</td>
+<td>002</td>
+<td>タオル</td>
+<td>C1</td>
+<td>水洗用品</td>
+</tr>
+<tr>
+<td>002</td>
+<td>大阪</td>
+<td>02</td>
+<td>豊中</td>
+<td>007</td>
+<td>雑誌</td>
+<td>C3</td>
+<td>書籍</td>
+</tr>
+<tr>
+<td>002</td>
+<td>大阪</td>
+<td>02</td>
+<td>豊中</td>
+<td>008</td>
+<td>爪切り</td>
+<td>C4</td>
+<td>日用雑貨</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>関数従属<ul>
+<li>部分関数従属<br>
+  <code>{支社コード} -&gt; {支社名}</code><br>  <code>{支社コード,支店コード} -&gt; {支店名}</code><br>
+  <code>{支社コード,支店コード,商品コード} -&gt; {商品名,商品分類コード,分類名}</code><br>  <code>{商品コード} -&gt; {商品名,商品分類コード}</code></li>
+<li>推移的関数従属<br>
+  <code>{商品コード} -&gt; {商品分類コード} -&gt; {分類名}</code></li>
+</ul>
+</li>
+</ul>
+<p>支社</p>
+<table>
+<thead>
+<tr>
+<th>支社コード</th>
+<th>支社名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>001</td>
+<td>東京</td>
+</tr>
+<tr>
+<td>002</td>
+<td>大阪</td>
+</tr>
+</tbody>
+</table>
+<p>支店</p>
+<table>
+<thead>
+<tr>
+<th>支社コード</th>
+<th>支店コード</th>
+<th>支店名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>001</td>
+<td>01</td>
+<td>渋谷</td>
+</tr>
+<tr>
+<td>001</td>
+<td>02</td>
+<td>八重洲</td>
+</tr>
+<tr>
+<td>002</td>
+<td>01</td>
+<td>堺</td>
+</tr>
+<tr>
+<td>002</td>
+<td>02</td>
+<td>豊中</td>
+</tr>
+</tbody>
+</table>
+<p>商品</p>
+<table>
+<thead>
+<tr>
+<th>商品コード</th>
+<th>商品名</th>
+<th>商品分類コード</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>001</td>
+<td>石鹸</td>
+<td>C1</td>
+</tr>
+<tr>
+<td>002</td>
+<td>タオル</td>
+<td>C1</td>
+</tr>
+<tr>
+<td>003</td>
+<td>歯ブラシ</td>
+<td>C1</td>
+</tr>
+<tr>
+<td>004</td>
+<td>コップ</td>
+<td>C1</td>
+</tr>
+<tr>
+<td>005</td>
+<td>箸</td>
+<td>C2</td>
+</tr>
+<tr>
+<td>006</td>
+<td>スプーン</td>
+<td>C2</td>
+</tr>
+<tr>
+<td>007</td>
+<td>雑誌</td>
+<td>C3</td>
+</tr>
+<tr>
+<td>008</td>
+<td>爪切り</td>
+<td>C4</td>
+</tr>
+</tbody>
+</table>
+<p>商品分類</p>
+<table>
+<thead>
+<tr>
+<th>商品分類コード</th>
+<th>分類名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C1</td>
+<td>水洗用品</td>
+</tr>
+<tr>
+<td>C2</td>
+<td>食器</td>
+</tr>
+<tr>
+<td>C3</td>
+<td>書籍</td>
+</tr>
+<tr>
+<td>C4</td>
+<td>日用雑貨</td>
+</tr>
+</tbody>
+</table>
+<p>支社支店商品</p>
+<table>
+<thead>
+<tr>
+<th>支社コード</th>
+<th>支店コード</th>
+<th>商品コード</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>001</td>
+<td>01</td>
+<td>001</td>
+</tr>
+<tr>
+<td>001</td>
+<td>01</td>
+<td>002</td>
+</tr>
+<tr>
+<td>001</td>
+<td>01</td>
+<td>003</td>
+</tr>
+<tr>
+<td>001</td>
+<td>02</td>
+<td>002</td>
+</tr>
+<tr>
+<td>001</td>
+<td>02</td>
+<td>003</td>
+</tr>
+<tr>
+<td>001</td>
+<td>02</td>
+<td>004</td>
+</tr>
+<tr>
+<td>001</td>
+<td>02</td>
+<td>005</td>
+</tr>
+<tr>
+<td>001</td>
+<td>02</td>
+<td>006</td>
+</tr>
+<tr>
+<td>002</td>
+<td>01</td>
+<td>001</td>
+</tr>
+<tr>
+<td>002</td>
+<td>01</td>
+<td>002</td>
+</tr>
+<tr>
+<td>002</td>
+<td>02</td>
+<td>007</td>
+</tr>
+<tr>
+<td>002</td>
+<td>02</td>
+<td>008</td>
+</tr>
+</tbody>
+</table>
 
                                 
                                 </section>
@@ -903,12 +1365,12 @@ X=5と定めれば、Y=10のように、Xに対してYが一つに決まる。�
 
             
                 
-                <a href="locialDesign.html" class="navigation navigation-prev " aria-label="Previous page: logial design">
+                <a href="../toStudy.html" class="navigation navigation-prev " aria-label="Previous page: 主に取り決めること">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="../../../30_design/dd/dd_sangokushiApi/" class="navigation navigation-next " aria-label="Next page: 三国志APIサーバ">
+                <a href="../ERdiagram/erDiagram.html" class="navigation navigation-next " aria-label="Next page: ER図">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -919,7 +1381,7 @@ X=5と定めれば、Y=10のように、Xに対してYが一つに決まる。�
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"normalization","level":"3.1.2","depth":2,"next":{"title":"三国志APIサーバ","level":"4.1","depth":1,"path":"30_design/dd/dd_sangokushiApi/index.md","ref":"30_design/dd/dd_sangokushiApi/index.md","articles":[{"title":"三国志APIサーバ-データベースレイアウト","level":"4.1.1","depth":2,"path":"30_design/dd/dd_sangokushiApi/dd_entity_layout.md","ref":"30_design/dd/dd_sangokushiApi/dd_entity_layout.md","articles":[]}]},"previous":{"title":"logial design","level":"3.1.1","depth":2,"path":"10_requirement/studying/logicalDesignAndNormalization/locialDesign.md","ref":"10_requirement/studying/logicalDesignAndNormalization/locialDesign.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"10_requirement/studying/logicalDesignAndNormalization/normalization.md","mtime":"2021-02-20T15:44:02.167Z","type":"markdown"},"gitbook":{"version":"3.6.17","time":"2021-02-20T15:44:19.690Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"正規化","level":"2.1.2","depth":2,"next":{"title":"ER図","level":"2.1.3","depth":2,"path":"10_requirement/studying/ERdiagram/erDiagram.md","ref":"10_requirement/studying/ERdiagram/erDiagram.md","articles":[]},"previous":{"title":"主に取り決めること","level":"2.1.1","depth":2,"path":"10_requirement/studying/toStudy.md","ref":"10_requirement/studying/toStudy.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"10_requirement/studying/logicalDesignAndNormalization/normalization.md","mtime":"2021-02-21T10:10:19.648Z","type":"markdown"},"gitbook":{"version":"3.6.17","time":"2021-02-21T14:20:31.029Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

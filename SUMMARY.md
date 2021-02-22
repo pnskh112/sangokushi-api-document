@@ -4,6 +4,8 @@
 ## Requirement
 * [前提要求仕様](10_requirement/index.md)
     * [主に取り決めること](10_requirement/studying/toStudy.md)
+    * [正規化](10_requirement/studying/logicalDesignAndNormalization/normalization.md)
+    * [ER図](10_requirement/studying/ERdiagram/erDiagram.md)
 * [アクションアイテム](10_requirement/rq_action_items.md)
 
 ## Logical Design
