@@ -3,7 +3,7 @@
 <html lang="" >
     <head>
         <meta charset="UTF-8">
-        <title>logial design · HonKit</title>
+        <title>ER図 · HonKit</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="HonKit 3.6.17">
@@ -56,10 +56,10 @@
     <link rel="shortcut icon" href="../../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="normalization.html" />
+    <link rel="next" href="../../rq_action_items.md" />
     
     
-    <link rel="prev" href="./" />
+    <link rel="prev" href="../logicalDesignAndNormalization/normalization.html" />
     
 
     </head>
@@ -135,9 +135,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.2" data-path="normalization.html">
+        <li class="chapter " data-level="2.1.2" data-path="../logicalDesignAndNormalization/normalization.html">
             
-                <a href="normalization.html">
+                <a href="../logicalDesignAndNormalization/normalization.html">
             
                     
                     正規化
@@ -148,9 +148,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.3" data-path="../ERdiagram/erDiagram.html">
+        <li class="chapter active" data-level="2.1.3" data-path="erDiagram.html">
             
-                <a href="../ERdiagram/erDiagram.html">
+                <a href="erDiagram.html">
             
                     
                     ER図
@@ -186,9 +186,9 @@
         
         
     
-        <li class="chapter " data-level="3.1" data-path="./">
+        <li class="chapter " data-level="3.1" data-path="../logicalDesignAndNormalization/">
             
-                <a href="./">
+                <a href="../logicalDesignAndNormalization/">
             
                     
                     logial design and normalization
@@ -200,9 +200,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="3.1.1" data-path="locialDesign.html">
+        <li class="chapter " data-level="3.1.1" data-path="../logicalDesignAndNormalization/locialDesign.html">
             
-                <a href="locialDesign.html">
+                <a href="../logicalDesignAndNormalization/locialDesign.html">
             
                     
                     logial design
@@ -213,9 +213,9 @@
             
         </li>
     
-        <li class="chapter " data-level="3.1.2" data-path="normalization.html">
+        <li class="chapter " data-level="3.1.2" data-path="../logicalDesignAndNormalization/normalization.html">
             
-                <a href="normalization.html">
+                <a href="../logicalDesignAndNormalization/normalization.html">
             
                     
                     normalization
@@ -345,7 +345,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../.." >logial design</a>
+        <a href="../../.." >ER図</a>
     </h1>
 </div>
 
@@ -360,7 +360,389 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <p>TBD</p>
+                                <!-- TOC -->
+<ul>
+<li><a href="#aboutERdiagram">ER図について</a></li>
+</ul>
+<!-- /TOC -->
+<h2 id="abouterdiagram">aboutERdiagram</h2>
+<ul>
+<li>ER図の書き方には何種類かフォーマットがあるが、主に代表的なIDEF1X（ｱｲﾃﾞﾌﾜﾝｴｯｸｽ）とIE表記法がある。</li>
+<li>リレーショナルデータベースにおけるテーブル間の関係は、基本的に「１対多」の関連に分解する。</li>
+<li>「多対多」を「１対多」に分解するときに必要になるエンティティを「関連実体」と呼ぶ。</li>
+<li>Entity-Relationship Diagram:実体関連図</li>
+</ul>
+<h2 id="第三正規形テーブル同士の関連を見抜く">第三正規形テーブル同士の関連を見抜く</h2>
+<p>社員</p>
+<table>
+<thead>
+<tr>
+<th>会社コード</th>
+<th>社員ID</th>
+<th>社員名</th>
+<th>年齢</th>
+<th>部署コード</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C0001</td>
+<td>000A</td>
+<td>加藤</td>
+<td>40</td>
+<td>D01</td>
+</tr>
+<tr>
+<td>C0001</td>
+<td>000B</td>
+<td>藤本</td>
+<td>32</td>
+<td>D02</td>
+</tr>
+<tr>
+<td>C0001</td>
+<td>001F</td>
+<td>三島</td>
+<td>50</td>
+<td>D03</td>
+</tr>
+<tr>
+<td>C0002</td>
+<td>000A</td>
+<td>斉藤</td>
+<td>47</td>
+<td>D03</td>
+</tr>
+<tr>
+<td>C0002</td>
+<td>009F</td>
+<td>田島</td>
+<td>25</td>
+<td>D01</td>
+</tr>
+<tr>
+<td>C0002</td>
+<td>010A</td>
+<td>渋谷</td>
+<td>33</td>
+<td>D04</td>
+</tr>
+</tbody>
+</table>
+<p>会社</p>
+<table>
+<thead>
+<tr>
+<th>会社コード</th>
+<th>会社名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C0001</td>
+<td>A商事</td>
+</tr>
+<tr>
+<td>C0002</td>
+<td>B化学</td>
+</tr>
+<tr>
+<td>C0003</td>
+<td>C建設</td>
+</tr>
+</tbody>
+</table>
+<p>部署</p>
+<table>
+<thead>
+<tr>
+<th>部署コード</th>
+<th>部署名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>D01</td>
+<td>開発</td>
+</tr>
+<tr>
+<td>D02</td>
+<td>人事</td>
+</tr>
+<tr>
+<td>D03</td>
+<td>営業</td>
+</tr>
+<tr>
+<td>D04</td>
+<td>総務</td>
+</tr>
+</tbody>
+</table>
+<p>テーブル同士の間では、一般に次の３パターンの関連がありうる</p>
+<ul>
+<li>１対１<ul>
+<li>あまり見かけない。２つのテーブルの主キーが一致するケースであり、普通は１つのテーブルにまとめてしまっても問題ない。</li>
+<li>少なくとも正規化の過程でこのような１対１のテーブルが作られることはない</li>
+</ul>
+</li>
+<li>１対多<ul>
+<li>基本的に正規化によって生まれる関連はこのカテゴリに属す。</li>
+</ul>
+</li>
+<li>多対多<ul>
+<li>リレーショナルデータベースのお約束として、この多対多の関連は作ってはならない。</li>
+</ul>
+</li>
+</ul>
+<p>下記の５つのテーブルを、ER図で記述する。
+また、関連エンティティが含まれているので、それがどれかも答える</p>
+<p>支社</p>
+<table>
+<thead>
+<tr>
+<th>支社コード</th>
+<th>支社名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>001</td>
+<td>東京</td>
+</tr>
+<tr>
+<td>002</td>
+<td>大阪</td>
+</tr>
+</tbody>
+</table>
+<p>支店</p>
+<table>
+<thead>
+<tr>
+<th>支社コード</th>
+<th>支店コード</th>
+<th>支店名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>001</td>
+<td>01</td>
+<td>渋谷</td>
+</tr>
+<tr>
+<td>001</td>
+<td>02</td>
+<td>八重洲</td>
+</tr>
+<tr>
+<td>002</td>
+<td>01</td>
+<td>堺</td>
+</tr>
+<tr>
+<td>002</td>
+<td>02</td>
+<td>豊中</td>
+</tr>
+</tbody>
+</table>
+<p>商品</p>
+<table>
+<thead>
+<tr>
+<th>商品コード</th>
+<th>商品名</th>
+<th>商品分類コード</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>001</td>
+<td>石鹸</td>
+<td>C1</td>
+</tr>
+<tr>
+<td>002</td>
+<td>タオル</td>
+<td>C1</td>
+</tr>
+<tr>
+<td>003</td>
+<td>歯ブラシ</td>
+<td>C1</td>
+</tr>
+<tr>
+<td>004</td>
+<td>コップ</td>
+<td>C1</td>
+</tr>
+<tr>
+<td>005</td>
+<td>箸</td>
+<td>C2</td>
+</tr>
+<tr>
+<td>006</td>
+<td>スプーン</td>
+<td>C2</td>
+</tr>
+<tr>
+<td>007</td>
+<td>雑誌</td>
+<td>C3</td>
+</tr>
+<tr>
+<td>008</td>
+<td>爪切り</td>
+<td>C4</td>
+</tr>
+</tbody>
+</table>
+<p>商品分類</p>
+<table>
+<thead>
+<tr>
+<th>商品分類コード</th>
+<th>分類名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C1</td>
+<td>水洗用品</td>
+</tr>
+<tr>
+<td>C2</td>
+<td>食器</td>
+</tr>
+<tr>
+<td>C3</td>
+<td>書籍</td>
+</tr>
+<tr>
+<td>C4</td>
+<td>日用雑貨</td>
+</tr>
+</tbody>
+</table>
+<p>支社支店商品</p>
+<table>
+<thead>
+<tr>
+<th>支社コード</th>
+<th>支店コード</th>
+<th>商品コード</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>001</td>
+<td>01</td>
+<td>001</td>
+</tr>
+<tr>
+<td>001</td>
+<td>01</td>
+<td>002</td>
+</tr>
+<tr>
+<td>001</td>
+<td>01</td>
+<td>003</td>
+</tr>
+<tr>
+<td>001</td>
+<td>02</td>
+<td>002</td>
+</tr>
+<tr>
+<td>001</td>
+<td>02</td>
+<td>003</td>
+</tr>
+<tr>
+<td>001</td>
+<td>02</td>
+<td>004</td>
+</tr>
+<tr>
+<td>001</td>
+<td>02</td>
+<td>005</td>
+</tr>
+<tr>
+<td>001</td>
+<td>02</td>
+<td>006</td>
+</tr>
+<tr>
+<td>002</td>
+<td>01</td>
+<td>001</td>
+</tr>
+<tr>
+<td>002</td>
+<td>01</td>
+<td>002</td>
+</tr>
+<tr>
+<td>002</td>
+<td>02</td>
+<td>007</td>
+</tr>
+<tr>
+<td>002</td>
+<td>02</td>
+<td>008</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="lang-uml">@startuml
+title ER図の例
+
+entity 支社{
+  * 支社コード
+  --
+  * 支社名
+}
+
+entity 支店{
+  * 支社コード
+  * 支店コード
+  --
+  * 支店名
+}
+
+entity 支店商品{
+  * 支社コード
+  * 支店コード
+  * 商品コード
+}
+
+entity 商品{
+  * 商品コード
+  --
+  * 商品名
+  * 商品分類コード
+}
+
+entity 商品分類{
+  * 商品分類コード
+  --
+  * 分類名
+}
+
+
+支社 ||..|{ 支店
+支店 ||..|{ 支店商品
+商品 ||..|{ 支店商品
+商品 }|..|| 商品分類
+
+@enduml
+</code></pre>
+<p>関連エンティティ：「支店商品」エンティティ</p>
 
                                 
                                 </section>
@@ -388,12 +770,12 @@
 
             
                 
-                <a href="./" class="navigation navigation-prev " aria-label="Previous page: logial design and normalization">
+                <a href="../logicalDesignAndNormalization/normalization.html" class="navigation navigation-prev " aria-label="Previous page: 正規化">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="normalization.html" class="navigation navigation-next " aria-label="Next page: normalization">
+                <a href="../../rq_action_items.md" class="navigation navigation-next " aria-label="Next page: アクションアイテム">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -404,7 +786,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"logial design","level":"3.1.1","depth":2,"next":{"title":"normalization","level":"3.1.2","depth":2,"path":"10_requirement/studying/logicalDesignAndNormalization/normalization.md","ref":"10_requirement/studying/logicalDesignAndNormalization/normalization.md","articles":[]},"previous":{"title":"logial design and normalization","level":"3.1","depth":1,"path":"10_requirement/studying/logicalDesignAndNormalization/index.md","ref":"10_requirement/studying/logicalDesignAndNormalization/index.md","articles":[{"title":"logial design","level":"3.1.1","depth":2,"path":"10_requirement/studying/logicalDesignAndNormalization/locialDesign.md","ref":"10_requirement/studying/logicalDesignAndNormalization/locialDesign.md","articles":[]},{"title":"normalization","level":"3.1.2","depth":2,"path":"10_requirement/studying/logicalDesignAndNormalization/normalization.md","ref":"10_requirement/studying/logicalDesignAndNormalization/normalization.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"10_requirement/studying/logicalDesignAndNormalization/locialDesign.md","mtime":"2021-02-21T10:09:48.558Z","type":"markdown"},"gitbook":{"version":"3.6.17","time":"2021-02-21T14:20:31.029Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"ER図","level":"2.1.3","depth":2,"next":{"title":"アクションアイテム","level":"2.2","depth":1,"path":"10_requirement/rq_action_items.md","ref":"10_requirement/rq_action_items.md","articles":[]},"previous":{"title":"正規化","level":"2.1.2","depth":2,"path":"10_requirement/studying/logicalDesignAndNormalization/normalization.md","ref":"10_requirement/studying/logicalDesignAndNormalization/normalization.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"10_requirement/studying/ERdiagram/erDiagram.md","mtime":"2021-02-21T14:02:17.777Z","type":"markdown"},"gitbook":{"version":"3.6.17","time":"2021-02-21T14:20:31.029Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
