@@ -13,6 +13,9 @@
     * [logial design](10_requirement/studying/logicalDesignAndNormalization/locialDesign.md)
     * [normalization](10_requirement/studying/logicalDesignAndNormalization/normalization.md)
 
+## Basic Design
+* [designProcedure](30_design/dd/index.md)
+* [ConceptDesign](30_design/bd/bd_sangokushiApi/bd_sangokushiApi.md)
 
 ## Detail Design
 * [三国志APIサーバ](30_design/dd/dd_sangokushiApi/index.md)
