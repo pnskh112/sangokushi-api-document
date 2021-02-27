@@ -416,6 +416,23 @@
 <li>趣味</li>
 <li>画像</li>
 </ul>
+<h3 id="概念のパズル化">概念のパズル化</h3>
+<ul>
+<li>AのB（所有） ex) 私（A）のパソコン（B）</li>
+<li>AのB（属性） ex) ティッシュ（A）の香り（B）</li>
+<li>AがBする（主述） ex) タクシー（A）が止まる（B）</li>
+<li>BをAする（動詞-目的語） ex) 客（B）を乗せる（A）</li>
+<li>AがあるからBがある（存在理由） ex) 猫（A）がいるから鳴き声（B）がある</li>
+</ul>
+<p>この場合はすべて以下のような箱に入る形に</p>
+<pre><code class="lang-uml">@startuml
+rectangle A {
+    rectangle B {
+    }
+}
+@enduml
+</code></pre>
+<p>パズルに当てはめられない場合は、何か概念（実体entity）足りないことを意味する。</p>
 
                                 
                                 </section>
