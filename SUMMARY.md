@@ -7,7 +7,9 @@
     * [正規化](10_requirement/studying/logicalDesignAndNormalization/normalization.md)
     * [バッドノウハウ](10_requirement/studying/logicalDesignAndNormalization/badKnowHowPattern.md)
     * [マテリアライズドビュー](10_requirement/studying/logicalDesignAndNormalization/materializedView.md)
-    * [ER図](10_requirement/studying/ERdiagram/erDiagram.md)
+    * [ER図](10_requirement/studying/erDiagram/erDiagram.md)
+    * [DDD](10_requirement/studying/dddCleanArchitecture/dddCleanArchitecture.md)
+    * [API設計](10_requirement/studying/apiDesign/apiDesign.md)
 * [アクションアイテム](10_requirement/rq_action_items.md)
 
 ## Logical Design
