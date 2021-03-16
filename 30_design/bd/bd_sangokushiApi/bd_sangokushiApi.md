@@ -164,7 +164,7 @@ entity 名言エピソード{
 
 | Name | Field | Type        | Nullable | Default | Remarks |
 | ---- | ----- | ----------- | -------- | ------- | ------- |
-| 国コード | ID    | varchar(3)  | N/A      | -       |         |
+| 国コード | ID    | varchar(5)  | N/A      | -       |         |
 | 国名   | NAME  | varchar(20) | N/A      | -       |         |
 
 - Constraints
@@ -177,8 +177,8 @@ entity 名言エピソード{
 
 | Name  | Field       | Type          | Nullable | Default | Remarks |
 | ----- | ----------- | ------------- | -------- | ------- | ------- |
-| 武将コード | ID          | varchar(3)    | N/A      | -       |         |
-| 国コード  | KINGDUMS_ID | varchar(3)    | N/A      | -       |         |
+| 武将コード | ID          | varchar(10)    | N/A      | -       |         |
+| 国コード  | KINGDUMS_ID | varchar(5)    | N/A      | -       |         |
 | 武将名   | NAME        | varchar(20)   | N/A      | -       |         |
 | 字名    | AZANA       | varchar(20)   | N/A      | -       |         |
 | 人物像   | personality | varchar(1000) | N/A      | -       |         |
@@ -195,8 +195,8 @@ entity 名言エピソード{
 
 | Name    | Field       | Type        | Nullable | Default | Remarks |
 | ------- | ----------- | ----------- | -------- | ------- | ------- |
-| 時代区分コード | ID          | varchar(5)  | N/A      | -       |         |
-| 国コード    | KINGDUMS_ID | varchar(3)  | N/A      | -       |         |
+| 時代区分コード | ID          | varchar(10)  | N/A      | -       |         |
+| 国コード    | KINGDUMS_ID | varchar(5)  | N/A      | -       |         |
 | 時代区分名   | NAME        | varchar(50) | N/A      | -       |         |
 | 年代      | AGE         | VARCHAR(20) | N/A      | -       |         |
 
@@ -211,10 +211,10 @@ entity 名言エピソード{
 
 | Name    | Field       | Type         | Nullable | Default | Remarks |
 | ------- | ----------- | ------------ | -------- | ------- | ------- |
-| 役職コード   | ID          | varchar(3)   | N/A      | -       |         |
-| 武将コード   | WARLOADS_ID | varchar(20)  | N/A      | -       |         |
-| 国コード    | KINGDUMS_ID | varchar(3)   | N/A      | -       |         |
-| 時代区分コード | PERIODS_ID  | varchar(5)   | N/A      | -       |         |
+| 役職コード   | ID          | varchar(5)   | N/A      | -       |         |
+| 武将コード   | WARLOADS_ID | varchar(10)  | N/A      | -       |         |
+| 国コード    | KINGDUMS_ID | varchar(5)   | N/A      | -       |         |
+| 時代区分コード | PERIODS_ID  | varchar(10)   | N/A      | -       |         |
 | 役職名     | NAME        | varchar(20)  | N/A      | -       |         |
 | 役職説明    | EXPLANATION | varchar(500) | N/A      | -       |         |
 
@@ -231,9 +231,9 @@ entity 名言エピソード{
 
 | Name  | Field       | Type        | Nullable | Default | Remarks |
 | ----- | ----------- | ----------- | -------- | ------- | ------- |
-| 領地コード | id          | varchar(5)  | N/A      | -       |         |
+| 領地コード | ID          | varchar(10)  | N/A      | -       |         |
 | 武将コード | WARLOADS_ID | varchar(20) | N/A      | -       |         |
-| 国コード  | KINGDUMS_ID | varchar(3)  | N/A      | -       |         |
+| 国コード  | KINGDUMS_ID | varchar(5)  | N/A      | -       |         |
 | 領地名   | name        | varchar(20) | N/A      | -       |         |
 
 - Constraints
@@ -248,7 +248,7 @@ entity 名言エピソード{
 
 | Name    | Field       | Type         | Nullable | Default | Remarks |
 | ------- | ----------- | ------------ | -------- | ------- | ------- |
-| 武器兵馬コード | ID          | varchar(5)   | N/A      | -       |         |
+| 武器兵馬コード | ID          | varchar(10)   | N/A      | -       |         |
 | 武将コード   | WARLOADS_ID | varchar(20)  | N/A      | -       |         |
 | 武器兵馬名   | name        | varchar(100) | N/A      | -       |         |
 
@@ -263,9 +263,9 @@ entity 名言エピソード{
 
 | Name  | Field       | Type        | Nullable | Default | Remarks |
 | ----- | ----------- | ----------- | -------- | ------- | ------- |
-| 画像コード | id          | varchar(3)  | N/A      | -       |         |
+| 画像コード | ID          | varchar(5)  | N/A      | -       |         |
 | 武将コード | WARLOADS_ID | varchar(20) | N/A      | -       |         |
-| 画像パス  | name        | varchar(20) | N/A      | -       |         |
+| 画像パス  | PATH        | varchar(100) | N/A      | -       |         |
 
 - Constraints
 
@@ -278,11 +278,11 @@ entity 名言エピソード{
 
 | Name    | Field      | Type        | Nullable | Default | Remarks |
 | ------- | ---------- | ----------- | -------- | ------- | ------- |
-| 戦コード    | id         | varchar(5)  | N/A      | -       |         |
-| 領地コード   | id         | varchar(5)  | N/A      | -       |         |
-| 時代区分コード | PERIODS_ID | varchar(5)  | N/A      | -       |         |
-| 戦名      | name       | varchar(20) | N/A      | -       |         |
-| 概要      | name       | varchar(20) | N/A      | -       |         |
+| 戦コード    | ID         | varchar(10)  | N/A      | -       |         |
+| 領地コード   | ID         | varchar(10)  | N/A      | -       |         |
+| 時代区分コード | PERIODS_ID | varchar(10)  | N/A      | -       |         |
+| 戦名      | NAME       | varchar(20) | N/A      | -       |         |
+| 概要      | OVERVIEW       | varchar(500) | N/A      | -       |         |
 
 - Constraints
 
@@ -296,8 +296,8 @@ entity 名言エピソード{
 
 | Name       | Field       | Type          | Nullable | Default | Remarks |
 | ---------- | ----------- | ------------- | -------- | ------- | ------- |
-| 名言エピソードコード | id          | varchar(3)    | N/A      | -       |         |
-| 戦コード       | id          | varchar(5)    | N/A      | -       |         |
+| 名言エピソードコード | id          | varchar(5)    | N/A      | -       |         |
+| 戦コード       | id          | varchar(10)    | N/A      | -       |         |
 | 武将コード      | WARLOADS_ID | varchar(20)   | N/A      | -       |         |
 | タイトル       | TITLE       | varchar(100)  | N/A      | -       |         |
 | エピソード      | EPISODE     | varchar(1000) | N/A      | -       |         |
