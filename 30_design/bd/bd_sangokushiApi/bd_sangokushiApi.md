@@ -60,7 +60,7 @@ rectangle A {
 
 ```uml
 @startuml
-title ER図の例
+title ER図
 
 entity 時代区分{
   * 時代区分コード
@@ -81,6 +81,7 @@ entity 武将{
   * 国コード<<FK>>
   --
   * 武将名
+  * 字
   * 人物像
   * 趣味
   * 行年・没年
@@ -141,7 +142,7 @@ entity 名言エピソード{
 国 ||..|{ 役職
 国 ||..|{ 領地
 国 ||..|{ 武将
-国 }|..|| 時代区分
+国 ||..|{ 時代区分
 時代区分 ||..|| 役職
 武将 ||..|{ 役職
 武将 ||..|| 画像
@@ -161,64 +162,151 @@ entity 名言エピソード{
 
 - KINGDUMS（国テーブル）
 
-| Name           | Field | Type        | Nullable | Default | Remarks |
-| -------------- | ----- | ----------- | -------- | ------- | ------- |
-| 国コード       | id    | varchar(3)  | N/A      | -       |         |
-| 国名           | name  | varchar(20) | N/A      | -       |         |
+| Name | Field | Type        | Nullable | Default | Remarks |
+| ---- | ----- | ----------- | -------- | ------- | ------- |
+| 国コード | ID    | varchar(3)  | N/A      | -       |         |
+| 国名   | NAME  | varchar(20) | N/A      | -       |         |
+
+- Constraints
+
+| Field | Key     | Extra | Description |
+| ----- | ------- | ----- | ----------- |
+| ID    | PRIMARY | N/A   |             |
 
 - WARLOADS（武将テーブル）
 
-| Name           | Field | Type        | Nullable | Default | Remarks |
-| -------------- | ----- | ----------- | -------- | ------- | ------- |
-| 国コード       | id    | varchar(3)  | N/A      | -       |         |
-| 国名           | name  | varchar(20) | N/A      | -       |         |
+| Name  | Field       | Type          | Nullable | Default | Remarks |
+| ----- | ----------- | ------------- | -------- | ------- | ------- |
+| 武将コード | ID          | varchar(3)    | N/A      | -       |         |
+| 国コード  | KINGDUMS_ID | varchar(3)    | N/A      | -       |         |
+| 武将名   | NAME        | varchar(20)   | N/A      | -       |         |
+| 字名    | AZANA       | varchar(20)   | N/A      | -       |         |
+| 人物像   | personality | varchar(1000) | N/A      | -       |         |
+| 趣味    | interest    | varchar(500)  | N/A      | -       |         |
 
-- KINGDUMS（時代区分テーブル）
+- Constraints
 
-| Name           | Field | Type        | Nullable | Default | Remarks |
-| -------------- | ----- | ----------- | -------- | ------- | ------- |
-| 国コード       | id    | varchar(3)  | N/A      | -       |         |
-| 国名           | name  | varchar(20) | N/A      | -       |         |
+| Field       | Key     | Extra                                       | Description |
+| ----------- | ------- | ------------------------------------------- | ----------- |
+| ID          | PRIMARY | N/A                                         |             |
+| KINGDUMS_ID | FOREIGN | REFERENCES KINGDUMS (ID) ON DELETE SET NULL | 外部キー        |
 
-- KINGDUMS（役職テーブル）
+- PERIODS（時代区分テーブル）
 
-| Name           | Field | Type        | Nullable | Default | Remarks |
-| -------------- | ----- | ----------- | -------- | ------- | ------- |
-| 国コード       | id    | varchar(3)  | N/A      | -       |         |
-| 国名           | name  | varchar(20) | N/A      | -       |         |
+| Name    | Field       | Type        | Nullable | Default | Remarks |
+| ------- | ----------- | ----------- | -------- | ------- | ------- |
+| 時代区分コード | ID          | varchar(5)  | N/A      | -       |         |
+| 国コード    | KINGDUMS_ID | varchar(3)  | N/A      | -       |         |
+| 時代区分名   | NAME        | varchar(50) | N/A      | -       |         |
+| 年代      | AGE         | VARCHAR(20) | N/A      | -       |         |
 
-- KINGDUMS（領地テーブル）
+- Constraints
 
-| Name           | Field | Type        | Nullable | Default | Remarks |
-| -------------- | ----- | ----------- | -------- | ------- | ------- |
-| 国コード       | id    | varchar(3)  | N/A      | -       |         |
-| 国名           | name  | varchar(20) | N/A      | -       |         |
+| Field       | Key     | Extra                                       | Description |
+| ----------- | ------- | ------------------------------------------- | ----------- |
+| ID          | PRIMARY | N/A                                         |             |
+| KINGDUMS_ID | FOREIGN | REFERENCES KINGDUMS (ID) ON DELETE SET NULL | 外部キー        |
 
-- KINGDUMS（武器兵馬テーブル）
+- POSITIONS（役職テーブル）
 
-| Name           | Field | Type        | Nullable | Default | Remarks |
-| -------------- | ----- | ----------- | -------- | ------- | ------- |
-| 国コード       | id    | varchar(3)  | N/A      | -       |         |
-| 国名           | name  | varchar(20) | N/A      | -       |         |
+| Name    | Field       | Type         | Nullable | Default | Remarks |
+| ------- | ----------- | ------------ | -------- | ------- | ------- |
+| 役職コード   | ID          | varchar(3)   | N/A      | -       |         |
+| 武将コード   | WARLOADS_ID | varchar(20)  | N/A      | -       |         |
+| 国コード    | KINGDUMS_ID | varchar(3)   | N/A      | -       |         |
+| 時代区分コード | PERIODS_ID  | varchar(5)   | N/A      | -       |         |
+| 役職名     | NAME        | varchar(20)  | N/A      | -       |         |
+| 役職説明    | EXPLANATION | varchar(500) | N/A      | -       |         |
 
-- KINGDUMS（画像テーブル）
+- Constraints
 
-| Name           | Field | Type        | Nullable | Default | Remarks |
-| -------------- | ----- | ----------- | -------- | ------- | ------- |
-| 国コード       | id    | varchar(3)  | N/A      | -       |         |
-| 国名           | name  | varchar(20) | N/A      | -       |         |
+| Field       | Key     | Extra                                       | Description |
+| ----------- | ------- | ------------------------------------------- | ----------- |
+| ID          | PRIMARY | N/A                                         |             |
+| KINGDUMS_ID | FOREIGN | REFERENCES KINGDUMS (ID) ON DELETE SET NULL | 外部キー        |
+| WARLOADS_ID | FOREIGN | REFERENCES WARLOADS (ID) ON DELETE SET NULL | 外部キー        |
+| PERIODS_ID  | FOREIGN | REFERENCES PERIODS (ID) ON DELETE SET NULL  | 外部キー        |
 
-- KINGDUMS（戦テーブル）
+- TERRITORIES（領地テーブル）
 
-| Name           | Field | Type        | Nullable | Default | Remarks |
-| -------------- | ----- | ----------- | -------- | ------- | ------- |
-| 国コード       | id    | varchar(3)  | N/A      | -       |         |
-| 国名           | name  | varchar(20) | N/A      | -       |         |
+| Name  | Field       | Type        | Nullable | Default | Remarks |
+| ----- | ----------- | ----------- | -------- | ------- | ------- |
+| 領地コード | id          | varchar(5)  | N/A      | -       |         |
+| 武将コード | WARLOADS_ID | varchar(20) | N/A      | -       |         |
+| 国コード  | KINGDUMS_ID | varchar(3)  | N/A      | -       |         |
+| 領地名   | name        | varchar(20) | N/A      | -       |         |
 
-- KINGDUMS（名言エピソードテーブル）
+- Constraints
 
-| Name           | Field | Type        | Nullable | Default | Remarks |
-| -------------- | ----- | ----------- | -------- | ------- | ------- |
-| 国コード       | id    | varchar(3)  | N/A      | -       |         |
-| 国名           | name  | varchar(20) | N/A      | -       |         |
+| Field       | Key     | Extra                                       | Description |
+| ----------- | ------- | ------------------------------------------- | ----------- |
+| ID          | PRIMARY | N/A                                         |             |
+| KINGDUMS_ID | FOREIGN | REFERENCES KINGDUMS (ID) ON DELETE SET NULL | 外部キー        |
+| WARLOADS_ID | FOREIGN | REFERENCES WARLOADS (ID) ON DELETE SET NULL | 外部キー        |
+
+- ARMS（武器兵馬テーブル）
+
+| Name    | Field       | Type         | Nullable | Default | Remarks |
+| ------- | ----------- | ------------ | -------- | ------- | ------- |
+| 武器兵馬コード | ID          | varchar(5)   | N/A      | -       |         |
+| 武将コード   | WARLOADS_ID | varchar(20)  | N/A      | -       |         |
+| 武器兵馬名   | name        | varchar(100) | N/A      | -       |         |
+
+- Constraints
+
+| Field       | Key     | Extra                                       | Description |
+| ----------- | ------- | ------------------------------------------- | ----------- |
+| ID          | PRIMARY | N/A                                         |             |
+| WARLOADS_ID | FOREIGN | REFERENCES WARLOADS (ID) ON DELETE SET NULL | 外部キー        |
+
+- IMAGES（画像テーブル）
+
+| Name  | Field       | Type        | Nullable | Default | Remarks |
+| ----- | ----------- | ----------- | -------- | ------- | ------- |
+| 画像コード | id          | varchar(3)  | N/A      | -       |         |
+| 武将コード | WARLOADS_ID | varchar(20) | N/A      | -       |         |
+| 画像パス  | name        | varchar(20) | N/A      | -       |         |
+
+- Constraints
+
+| Field       | Key     | Extra                                       | Description |
+| ----------- | ------- | ------------------------------------------- | ----------- |
+| ID          | PRIMARY | N/A                                         |             |
+| WARLOADS_ID | FOREIGN | REFERENCES WARLOADS (ID) ON DELETE SET NULL | 外部キー        |
+
+- BATTLES（戦テーブル）
+
+| Name    | Field      | Type        | Nullable | Default | Remarks |
+| ------- | ---------- | ----------- | -------- | ------- | ------- |
+| 戦コード    | id         | varchar(5)  | N/A      | -       |         |
+| 領地コード   | id         | varchar(5)  | N/A      | -       |         |
+| 時代区分コード | PERIODS_ID | varchar(5)  | N/A      | -       |         |
+| 戦名      | name       | varchar(20) | N/A      | -       |         |
+| 概要      | name       | varchar(20) | N/A      | -       |         |
+
+- Constraints
+
+| Field       | Key     | Extra                                       | Description |
+| ----------- | ------- | ------------------------------------------- | ----------- |
+| ID          | PRIMARY | N/A                                         |             |
+| KINGDUMS_ID | FOREIGN | REFERENCES KINGDUMS (ID) ON DELETE SET NULL | 外部キー        |
+| PERIODS_ID  | FOREIGN | REFERENCES PERIODS (ID) ON DELETE SET NULL  | 外部キー        |
+
+- WITTICISMS（名言エピソードテーブル）
+
+| Name       | Field       | Type          | Nullable | Default | Remarks |
+| ---------- | ----------- | ------------- | -------- | ------- | ------- |
+| 名言エピソードコード | id          | varchar(3)    | N/A      | -       |         |
+| 戦コード       | id          | varchar(5)    | N/A      | -       |         |
+| 武将コード      | WARLOADS_ID | varchar(20)   | N/A      | -       |         |
+| タイトル       | TITLE       | varchar(100)  | N/A      | -       |         |
+| エピソード      | EPISODE     | varchar(1000) | N/A      | -       |         |
+
+- Constraints
+
+| Field       | Key     | Extra                                       | Description |
+| ----------- | ------- | ------------------------------------------- | ----------- |
+| ID          | PRIMARY | N/A                                         |             |
+| BATTLES_ID  | PRIMARY | N/A                                         |             |
+| WARLOADS_ID | FOREIGN | REFERENCES WARLOADS (ID) ON DELETE SET NULL | 外部キー        |
 
