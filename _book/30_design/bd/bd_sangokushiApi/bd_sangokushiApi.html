@@ -477,11 +477,11 @@
 （画像とかでやるのがいいかも？）</p>
 <h3 id="概念のパズル化">概念のパズル化</h3>
 <ul>
-<li>AのB（所有） ex) 私（A）のパソコン（B）</li>
-<li>AのB（属性） ex) ティッシュ（A）の香り（B）</li>
-<li>AがBする（主述） ex) タクシー（A）が止まる（B）</li>
-<li>BをAする（動詞-目的語） ex) 客（B）を乗せる（A）</li>
-<li>AがあるからBがある（存在理由） ex) 猫（A）がいるから鳴き声（B）がある</li>
+<li>A の B（所有） ex) 私（A）のパソコン（B）</li>
+<li>A の B（属性） ex) ティッシュ（A）の香り（B）</li>
+<li>A が B する（主述） ex) タクシー（A）が止まる（B）</li>
+<li>B を A する（動詞-目的語） ex) 客（B）を乗せる（A）</li>
+<li>A があるから B がある（存在理由） ex) 猫（A）がいるから鳴き声（B）がある</li>
 </ul>
 <p>この場合はすべて以下のような箱に入る形に</p>
 <pre><code class="lang-uml">@startuml
@@ -492,22 +492,23 @@ rectangle A {
 @enduml
 </code></pre>
 <ul>
-<li>パズルに当てはめられない場合は、何か概念（実体entity）足りないことを意味する。</li>
+<li>パズルに当てはめられない場合は、何か概念（実体 entity）足りないことを意味する。</li>
 <li>具体的に登場する場面をイメージしながら概念のパズルは全て実体で考えていく</li>
 <li>サロゲートキーについては、<code>今回は</code>下記の観点から入れるようにする。<ul>
 <li>誰が見ても主キーとわかる</li>
 <li>主キー周りの仕様変更に強い</li>
-<li>最近のフレームワークを使った開発はデフォルト主キーがIDになっている。</li>
+<li>最近のフレームワークを使った開発はデフォルト主キーが ID になっている。</li>
 </ul>
 </li>
 <li>各エンティティはリソースとイベントに分類できる</li>
 </ul>
-<h3 id="概念スキーマを元に作成したer図">概念スキーマを元に作成したER図</h3>
+<h3 id="概念スキーマを元に作成した-er-図">概念スキーマを元に作成した ER 図</h3>
 <pre><code class="lang-uml">@startuml
 title ER図の例
 
 entity 時代区分{
   * 時代区分コード
+  * 国コード&lt;&lt;FK&gt;&gt;
   --
   * 時代区分名
   * 年代
@@ -515,7 +516,6 @@ entity 時代区分{
 
 entity 国{
   * 国コード
-  * 時代区分コード&lt;&lt;FK&gt;&gt;
   --
   * 国名
 }
@@ -597,6 +597,296 @@ entity 名言エピソード{
 武将 ||..|{ 名言エピソード
 @enduml
 </code></pre>
+<h3 id="概念スキーマを元に作成した-er-図">概念スキーマを元に作成した ER 図</h3>
+<p>テーブル定義</p>
+<ul>
+<li>KINGDUMS（国テーブル）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Field</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Default</th>
+<th>Remarks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>国コード</td>
+<td>id</td>
+<td>varchar(3)</td>
+<td>N/A</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>国名</td>
+<td>name</td>
+<td>varchar(20)</td>
+<td>N/A</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>WARLOADS（武将テーブル）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Field</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Default</th>
+<th>Remarks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>国コード</td>
+<td>id</td>
+<td>varchar(3)</td>
+<td>N/A</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>国名</td>
+<td>name</td>
+<td>varchar(20)</td>
+<td>N/A</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>KINGDUMS（時代区分テーブル）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Field</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Default</th>
+<th>Remarks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>国コード</td>
+<td>id</td>
+<td>varchar(3)</td>
+<td>N/A</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>国名</td>
+<td>name</td>
+<td>varchar(20)</td>
+<td>N/A</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>KINGDUMS（役職テーブル）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Field</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Default</th>
+<th>Remarks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>国コード</td>
+<td>id</td>
+<td>varchar(3)</td>
+<td>N/A</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>国名</td>
+<td>name</td>
+<td>varchar(20)</td>
+<td>N/A</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>KINGDUMS（領地テーブル）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Field</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Default</th>
+<th>Remarks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>国コード</td>
+<td>id</td>
+<td>varchar(3)</td>
+<td>N/A</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>国名</td>
+<td>name</td>
+<td>varchar(20)</td>
+<td>N/A</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>KINGDUMS（武器兵馬テーブル）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Field</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Default</th>
+<th>Remarks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>国コード</td>
+<td>id</td>
+<td>varchar(3)</td>
+<td>N/A</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>国名</td>
+<td>name</td>
+<td>varchar(20)</td>
+<td>N/A</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>KINGDUMS（画像テーブル）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Field</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Default</th>
+<th>Remarks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>国コード</td>
+<td>id</td>
+<td>varchar(3)</td>
+<td>N/A</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>国名</td>
+<td>name</td>
+<td>varchar(20)</td>
+<td>N/A</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>KINGDUMS（戦テーブル）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Field</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Default</th>
+<th>Remarks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>国コード</td>
+<td>id</td>
+<td>varchar(3)</td>
+<td>N/A</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>国名</td>
+<td>name</td>
+<td>varchar(20)</td>
+<td>N/A</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>KINGDUMS（名言エピソードテーブル）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Field</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Default</th>
+<th>Remarks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>国コード</td>
+<td>id</td>
+<td>varchar(3)</td>
+<td>N/A</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>国名</td>
+<td>name</td>
+<td>varchar(20)</td>
+<td>N/A</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
 
                                 
                                 </section>
