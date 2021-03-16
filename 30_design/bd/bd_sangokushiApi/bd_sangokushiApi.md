@@ -181,8 +181,8 @@ entity 名言エピソード{
 | 国コード  | KINGDUMS_ID | varchar(5)    | N/A      | -       |         |
 | 武将名   | NAME        | varchar(20)   | N/A      | -       |         |
 | 字名    | AZANA       | varchar(20)   | N/A      | -       |         |
-| 人物像   | personality | varchar(1000) | N/A      | -       |         |
-| 趣味    | interest    | varchar(500)  | N/A      | -       |         |
+| 人物像   | PERSONALITY | varchar(1000) | N/A      | -       |         |
+| 趣味    | INTEREST    | varchar(500)  | N/A      | -       |         |
 
 - Constraints
 
@@ -234,7 +234,7 @@ entity 名言エピソード{
 | 領地コード | ID          | varchar(10)  | N/A      | -       |         |
 | 武将コード | WARLOADS_ID | varchar(20) | N/A      | -       |         |
 | 国コード  | KINGDUMS_ID | varchar(5)  | N/A      | -       |         |
-| 領地名   | name        | varchar(20) | N/A      | -       |         |
+| 領地名   | NAME        | varchar(20) | N/A      | -       |         |
 
 - Constraints
 
@@ -250,7 +250,7 @@ entity 名言エピソード{
 | ------- | ----------- | ------------ | -------- | ------- | ------- |
 | 武器兵馬コード | ID          | varchar(10)   | N/A      | -       |         |
 | 武将コード   | WARLOADS_ID | varchar(20)  | N/A      | -       |         |
-| 武器兵馬名   | name        | varchar(100) | N/A      | -       |         |
+| 武器兵馬名   | NAME        | varchar(100) | N/A      | -       |         |
 
 - Constraints
 
@@ -296,8 +296,8 @@ entity 名言エピソード{
 
 | Name       | Field       | Type          | Nullable | Default | Remarks |
 | ---------- | ----------- | ------------- | -------- | ------- | ------- |
-| 名言エピソードコード | id          | varchar(5)    | N/A      | -       |         |
-| 戦コード       | id          | varchar(10)    | N/A      | -       |         |
+| 名言エピソードコード | ID          | varchar(5)    | N/A      | -       |         |
+| 戦コード       | ID          | varchar(10)    | N/A      | -       |         |
 | 武将コード      | WARLOADS_ID | varchar(20)   | N/A      | -       |         |
 | タイトル       | TITLE       | varchar(100)  | N/A      | -       |         |
 | エピソード      | EPISODE     | varchar(1000) | N/A      | -       |         |
