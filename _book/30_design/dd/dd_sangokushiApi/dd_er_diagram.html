@@ -146,12 +146,64 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.3" data-path="../../../10_requirement/studying/ERdiagram/erDiagram.html">
+        <li class="chapter " data-level="2.1.3" data-path="../../../10_requirement/studying/logicalDesignAndNormalization/badKnowHowPattern.html">
             
-                <a href="../../../10_requirement/studying/ERdiagram/erDiagram.html">
+                <a href="../../../10_requirement/studying/logicalDesignAndNormalization/badKnowHowPattern.html">
+            
+                    
+                    バッドノウハウ
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4" data-path="../../../10_requirement/studying/logicalDesignAndNormalization/materializedView.html">
+            
+                <a href="../../../10_requirement/studying/logicalDesignAndNormalization/materializedView.html">
+            
+                    
+                    マテリアライズドビュー
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5" data-path="../../../10_requirement/studying/erDiagram/erDiagram.html">
+            
+                <a href="../../../10_requirement/studying/erDiagram/erDiagram.html">
             
                     
                     ER図
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.6" data-path="../../../10_requirement/studying/dddCleanArchitecture/dddCleanArchitecture.html">
+            
+                <a href="../../../10_requirement/studying/dddCleanArchitecture/dddCleanArchitecture.html">
+            
+                    
+                    DDD
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.7" data-path="../../../10_requirement/studying/apiDesign/apiDesign.html">
+            
+                <a href="../../../10_requirement/studying/apiDesign/apiDesign.html">
+            
+                    
+                    API設計
             
                 </a>
             
@@ -198,9 +250,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="3.1.1" data-path="../../../10_requirement/studying/logicalDesignAndNormalization/locialDesign.html">
+        <li class="chapter " data-level="3.1.1" data-path="../../../10_requirement/studying/logicalDesignAndNormalization/locialDesign.md">
             
-                <a href="../../../10_requirement/studying/logicalDesignAndNormalization/locialDesign.html">
+                <span>
             
                     
                     logial design
@@ -391,7 +443,115 @@
     
                                 <section class="normal markdown-section">
                                 
-                                
+                                <!-- TOC -->
+<ul>
+<li><a href="#概念スキーマを元に作成したER図">概念スキーマを元に作成した ER 図</a></li>
+</ul>
+<!-- /TOC -->
+<h3 id="概念スキーマを元に作成したer図">概念スキーマを元に作成したER図</h3>
+<pre><code class="lang-uml">@startuml
+title ER図
+
+entity 時代区分{
+  * 時代区分コード
+  * 国コード&lt;&lt;FK&gt;&gt;
+  --
+  * 時代区分名
+  * 年代
+}
+
+entity 国{
+  * 国コード
+  --
+  * 国名
+  * 説明
+}
+
+entity 武将{
+  * 武将コード
+  * 国コード&lt;&lt;FK&gt;&gt;
+  --
+  * 武将名
+  * 字
+  * 人物像
+  * 趣味
+  * 行年・没年
+}
+
+entity 役職{
+  * 役職コード
+  --
+  * 役職名
+  * 役職説明
+}
+
+entity 任命{
+  * 任命コード
+  * 役職コード&lt;&lt;FK&gt;&gt;
+  * 武将コード&lt;&lt;FK&gt;&gt;
+  * 国コード&lt;&lt;FK&gt;&gt;
+  * 時代区分コード&lt;&lt;FK&gt;&gt;
+  --
+}
+
+entity 画像{
+  * 画像コード
+  * 武将コード&lt;&lt;FK&gt;&gt;
+  --
+  * 商品コード
+}
+
+entity 武器兵馬{
+  * 武器兵馬コード
+  * 武将コード&lt;&lt;FK&gt;&gt;
+  --
+  * 武器兵馬名
+  * 武器兵馬説明
+}
+
+entity 領地{
+  * 領地コード
+  * 国コード&lt;&lt;FK&gt;&gt;
+  * 武将コード&lt;&lt;FK&gt;&gt;
+  --
+  * 領地名
+  * 領地説明
+}
+
+entity 戦{
+  * 戦コード
+  * 領地コード&lt;&lt;FK&gt;&gt;
+  * 時代区分コード&lt;&lt;FK&gt;&gt;
+  --
+  * 戦
+  * 概要
+}
+
+entity 名言エピソード{
+  * 名言エピソードコード
+  * 戦コード&lt;&lt;FK&gt;&gt;
+  * 武将コード&lt;&lt;FK&gt;&gt;
+  --
+  * タイトル
+  * エピソード
+}
+
+国 ||..|{ 任命
+国 ||..|{ 領地
+国 ||..|{ 武将
+国 ||..|{ 時代区分
+時代区分 ||..|| 任命
+武将 ||..|{ 任命
+任命 ||..|| 役職
+武将 ||..o{ 武器兵馬
+武将 ||..o{ 領地
+武将 ||..|| 画像
+時代区分 ||..|{ 戦
+戦 ||..|{ 名言エピソード
+武将 ||..|{ 名言エピソード
+@enduml
+</code></pre>
+
                                 
                                 </section>
                             
@@ -430,7 +590,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"E-R図","level":"5.2.2","depth":2,"previous":{"title":"三国志API-RESTful API Design","level":"5.2.1","depth":2,"path":"30_design/dd/dd_sangokushiApi/dd_restapi.md","ref":"30_design/dd/dd_sangokushiApi/dd_restapi.md","articles":[]},"dir":"neutral"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"30_design/dd/dd_sangokushiApi/dd_er_diagram.md","mtime":"2021-02-20T14:38:26.498Z","type":"markdown"},"gitbook":{"version":"3.6.17","time":"2021-02-23T11:59:17.464Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"E-R図","level":"5.2.2","depth":2,"previous":{"title":"三国志API-RESTful API Design","level":"5.2.1","depth":2,"path":"30_design/dd/dd_sangokushiApi/dd_restapi.md","ref":"30_design/dd/dd_sangokushiApi/dd_restapi.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"30_design/dd/dd_sangokushiApi/dd_er_diagram.md","mtime":"2021-03-17T14:17:01.237Z","type":"markdown"},"gitbook":{"version":"3.6.17","time":"2021-03-17T14:42:17.186Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
