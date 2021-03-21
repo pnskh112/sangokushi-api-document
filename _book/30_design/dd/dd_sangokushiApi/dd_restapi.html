@@ -148,12 +148,64 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.3" data-path="../../../10_requirement/studying/ERdiagram/erDiagram.html">
+        <li class="chapter " data-level="2.1.3" data-path="../../../10_requirement/studying/logicalDesignAndNormalization/badKnowHowPattern.html">
             
-                <a href="../../../10_requirement/studying/ERdiagram/erDiagram.html">
+                <a href="../../../10_requirement/studying/logicalDesignAndNormalization/badKnowHowPattern.html">
+            
+                    
+                    バッドノウハウ
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4" data-path="../../../10_requirement/studying/logicalDesignAndNormalization/materializedView.html">
+            
+                <a href="../../../10_requirement/studying/logicalDesignAndNormalization/materializedView.html">
+            
+                    
+                    マテリアライズドビュー
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5" data-path="../../../10_requirement/studying/erDiagram/erDiagram.html">
+            
+                <a href="../../../10_requirement/studying/erDiagram/erDiagram.html">
             
                     
                     ER図
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.6" data-path="../../../10_requirement/studying/dddCleanArchitecture/dddCleanArchitecture.html">
+            
+                <a href="../../../10_requirement/studying/dddCleanArchitecture/dddCleanArchitecture.html">
+            
+                    
+                    DDD
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.7" data-path="../../../10_requirement/studying/apiDesign/apiDesign.html">
+            
+                <a href="../../../10_requirement/studying/apiDesign/apiDesign.html">
+            
+                    
+                    API設計
             
                 </a>
             
@@ -200,9 +252,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="3.1.1" data-path="../../../10_requirement/studying/logicalDesignAndNormalization/locialDesign.html">
+        <li class="chapter " data-level="3.1.1" data-path="../../../10_requirement/studying/logicalDesignAndNormalization/locialDesign.md">
             
-                <a href="../../../10_requirement/studying/logicalDesignAndNormalization/locialDesign.html">
+                <span>
             
                     
                     logial design
@@ -393,7 +445,551 @@
     
                                 <section class="normal markdown-section">
                                 
-                                
+                                <!-- TOC -->
+<ul>
+<li><a href="#apiDesign">API設計</a><ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#referring-link">Referring link</a></li>
+<li><a href="#url">URL</a></li>
+<li><a href="#header">Header</a><ul>
+<li><a href="#json-pattern">JSON pattern</a></li>
+<li><a href="#post-sample">POST Sample</a></li>
+<li><a href="#multi-part-pattern">Multi part pattern</a></li>
+</ul>
+</li>
+<li><a href="#error-message">Error Message</a><ul>
+<li><a href="#error-message-layout">Error Message Layout</a></li>
+</ul>
+</li>
+<li><a href="#parameter-explanation">Parameter Explanation</a><ul>
+<li><a href="#how-to-sort">How to sort</a></li>
+<li><a href="#how-to-read-parameter-table">How to read Parameter table</a></li>
+</ul>
+</li>
+<li><a href="#treatment-plan">Treatment Plan</a><ul>
+<li><a href="#post-patientsdaily-treatment-plan">POST /patients/daily-treatment-plan</a></li>
+<li><a href="#get-patientsdaily-treatment-plan">GET /patients/daily-treatment-plan</a></li>
+<li><a href="#get-patientsmonthly-treatment-plan">GET /patients/monthly-treatment-plan</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<h3 id="apidesign">apiDesign</h3>
+<h4 id="overview">Overview</h4>
+<ul>
+<li>本ドキュメントでは、API インターフェースの仕様書に関して記載する。</li>
+</ul>
+<h2 id="referring-link">Referring link</h2>
+<ul>
+<li><a href="http://www2.airnet.ne.jp/sardine/docs/NOTE-datetime-19980827.html" target="_blank">日時形式</a></li>
+<li><a href="https://docs.google.com/presentation/d/1Y_oaBuRwniHzDpBqgOze6nU380-bF5CBfYf4MWIRl4Y/edit?usp=sharing" target="_blank">認証形式</a></li>
+</ul>
+<h2 id="url">URL</h2>
+<ul>
+<li><code>https://{FQDN}/api/v1/</code> がAPI のURLになるようにする。</li>
+</ul>
+<h2 id="header">Header</h2>
+<ul>
+<li>HTTP ヘッダ情報は下記の通りとなる。</li>
+</ul>
+<h3 id="json-pattern">JSON pattern</h3>
+<ul>
+<li>R が利用する共通鍵ハッシュ値には、 `` でのハッシュ値をヘッダーに渡す。</li>
+<li>タブレットが利用する <code>GET /tablets/registration</code> には<code>X-TabletId</code>は不必要</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">key</th>
+<th style="text-align:left">description</th>
+<th style="text-align:left">mandatory</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Accept</td>
+<td style="text-align:left">application/json</td>
+<td style="text-align:left">yes</td>
+</tr>
+<tr>
+<td style="text-align:left">Content-Type</td>
+<td style="text-align:left">application/json;charset=UTF-8</td>
+<td style="text-align:left">yes</td>
+</tr>
+<tr>
+<td style="text-align:left">Timezone</td>
+<td style="text-align:left">+09:00 or Asia/Tokyo</td>
+<td style="text-align:left">no</td>
+</tr>
+</tbody>
+</table>
+<h3 id="post-sample">POST Sample</h3>
+<pre><code class="lang-sh">chcp 65001
+curl -v -X POST \
+    -H <span class="hljs-string">&quot;Accept: application/json&quot;</span>  \
+    -H <span class="hljs-string">&quot;Content-Type: application/json;charset=UTF-8&quot;</span>  \
+    -d <span class="hljs-string">&apos;{
+          &quot;xxxx&quot;: &quot;xxx&quot;
+    }&apos;</span> \
+    https://{fqdn}/api/
+</code></pre>
+<h3 id="multi-part-pattern">Multi part pattern</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">key</th>
+<th style="text-align:left">description</th>
+<th style="text-align:left">mandatory</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Content-Type</td>
+<td style="text-align:left">multipart/form-data</td>
+<td style="text-align:left">yes</td>
+</tr>
+</tbody>
+</table>
+<h2 id="error-message">Error Message</h2>
+<ul>
+<li>エラーメッセージに関する説明を記載する。</li>
+</ul>
+<h3 id="error-message-layout">Error Message Layout</h3>
+<p><strong>JSON:</strong>  </p>
+<pre><code class="lang-json">{
+    <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-string">&quot;400-001&quot;</span>,
+    <span class="hljs-string">&quot;title&quot;</span> : <span class="hljs-string">&quot;BadRequestException&quot;</span>,
+    <span class="hljs-string">&quot;message&quot;</span> : <span class="hljs-string">&quot;Given parameter ({field name} : {value}) was invalid format.&quot;</span>
+}
+</code></pre>
+<p><strong>Message list:</strong>  </p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">HTTP Status</th>
+<th style="text-align:left">Code</th>
+<th style="text-align:left">Title</th>
+<th style="text-align:left">Message</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">400</td>
+<td style="text-align:left">400-001</td>
+<td style="text-align:left">BadRequestException</td>
+<td style="text-align:left">Given parameter ({field name} : {value}) was invalid format.</td>
+</tr>
+<tr>
+<td style="text-align:left">403</td>
+<td style="text-align:left">403-001</td>
+<td style="text-align:left">ForbiddenException</td>
+<td style="text-align:left">Invalid authorization value in HTTP header.</td>
+</tr>
+<tr>
+<td style="text-align:left">404</td>
+<td style="text-align:left">404-001</td>
+<td style="text-align:left">NotFoundException</td>
+<td style="text-align:left">Given parameter ({field name} : {value}) was not found.</td>
+</tr>
+<tr>
+<td style="text-align:left">405</td>
+<td style="text-align:left">405-001</td>
+<td style="text-align:left">MethodNotAllowedException</td>
+<td style="text-align:left">Attempted to use an unauthorized method.For example, if a URI that is not allowed to use the POST method is accessed by POSTÎ</td>
+</tr>
+<tr>
+<td style="text-align:left">409</td>
+<td style="text-align:left">409-001</td>
+<td style="text-align:left">AlreadyExistsException</td>
+<td style="text-align:left">The api could not store, since the same data relevant to given parameter already existed in database.</td>
+</tr>
+<tr>
+<td style="text-align:left">409</td>
+<td style="text-align:left">409-002</td>
+<td style="text-align:left">AlreadyDeletedException</td>
+<td style="text-align:left">The relevant data is already deleted.</td>
+</tr>
+<tr>
+<td style="text-align:left">413</td>
+<td style="text-align:left">413-001</td>
+<td style="text-align:left">PayloadTooLargeException</td>
+<td style="text-align:left">The payload is too large.</td>
+</tr>
+<tr>
+<td style="text-align:left">415</td>
+<td style="text-align:left">415-001</td>
+<td style="text-align:left">UnsupportedContentTypeException</td>
+<td style="text-align:left">The Content-Type in http hearder is not supported.</td>
+</tr>
+<tr>
+<td style="text-align:left">500</td>
+<td style="text-align:left">500-001</td>
+<td style="text-align:left">InternalServerErrorException</td>
+<td style="text-align:left">The api can not return http response because an internal server error occurred.</td>
+</tr>
+<tr>
+<td style="text-align:left">501</td>
+<td style="text-align:left">501-001</td>
+<td style="text-align:left">NotImplementedException</td>
+<td style="text-align:left">The requested method is not implemented on this server.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="parameter-explanation">Parameter Explanation</h2>
+<ul>
+<li>各種パラメータの関する説明を記載する。</li>
+</ul>
+<h3 id="how-to-sort">How to sort</h3>
+<ul>
+<li>ソート条件の指定方法は、カンマ区切りで複数指定可能とする。</li>
+</ul>
+<pre><code>https://{FQDN}/api/page?sort=sort=modified,-patientid,tabletname,serialnumber
+</code></pre><ul>
+<li>URLが上記の場合、SQL は以下のようになる。</li>
+</ul>
+<pre><code class="lang-SQL"><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> modified <span class="hljs-keyword">ASC</span> ,patientid <span class="hljs-keyword">DESC</span>, tabletname <span class="hljs-keyword">ASC</span>, serialnumber <span class="hljs-keyword">ASC</span>
+</code></pre>
+<h3 id="how-to-read-parameter-table">How to read Parameter table</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Parameter</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Size</th>
+<th style="text-align:left">Mandatory</th>
+<th style="text-align:left">Search</th>
+<th style="text-align:left">Default</th>
+<th style="text-align:left">Remarks</th>
+<th style="text-align:left">Format</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Key の名前</td>
+<td style="text-align:left">値の型</td>
+<td style="text-align:left">値の長さ</td>
+<td style="text-align:left">値の指定が必須か</td>
+<td style="text-align:left">検索可能か</td>
+<td style="text-align:left">値を指定しなかった場合に格納される値</td>
+<td style="text-align:left">別名</td>
+<td style="text-align:left">値の詳細な形指定</td>
+</tr>
+</tbody>
+</table>
+<h4 id="example">Example</h4>
+<p>Ref: <a href="https://docs.microsoft.com/ja-jp/azure/architecture/best-practices/api-design" target="_blank">https://docs.microsoft.com/ja-jp/azure/architecture/best-practices/api-design</a></p>
+<h2 id="warload">Warload</h2>
+<ul>
+<li>治療計画に関する API 群</li>
+</ul>
+<h3 id="post-warload">POST //Warload</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Method</th>
+<th style="text-align:left">Content-Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">患者情報登録依頼</td>
+<td style="text-align:left">POST</td>
+<td style="text-align:left">application/json;charset=UTF-8</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Process:</strong>  </p>
+<ol>
+<li>指定された<strong>karteNumber</strong>と<strong>x-clinic-id</strong>, <strong>x-organization-id</strong>で他の治療計画情報が存在していないかを確認する。</li>
+<li>同日のデータが存在した場合はデータを上書き更新する。<ol>
+<li>最新のデータを確認し、 <code>IS_REQUIRED_SIGN</code> をAPI側で判定して更新する。<ol>
+<li><code>D_INJURIES.RESULT_STATUS</code> が、前回と異なる場合、サインが必要になる。</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>治療計画情報を<strong>MONTHLY_TREATMENT_P</strong>テーブルと<strong>DAILY_TREATMENT_P</strong>に登録する。</li>
+<li>初診の際は必ずサインが必要になる。</li>
+</ol>
+<p><strong>Path parameters:</strong>  </p>
+<ul>
+<li>N/A</li>
+</ul>
+<p><strong>Querystring:</strong>  </p>
+<ul>
+<li>N/A</li>
+</ul>
+<p><strong>Request body:</strong>  </p>
+<pre><code class="lang-json">{
+    <span class="hljs-string">&quot;karteNumber&quot;</span> : <span class="hljs-string">&quot;123&quot;</span>,
+    <span class="hljs-string">&quot;modifiedByCrmStaffId&quot;</span>: <span class="hljs-string">&quot;1&quot;</span>,
+    <span class="hljs-string">&quot;insuranceType&quot;</span> : <span class="hljs-string">&quot;健康保険&quot;</span>,
+    <span class="hljs-string">&quot;created&quot;</span> : <span class="hljs-string">&quot;2020-10-02T11:11:11+09:00&quot;</span>,
+    <span class="hljs-string">&quot;modified&quot;</span> : <span class="hljs-string">&quot;2020-10-02T11:11:11+09:00&quot;</span>,
+    <span class="hljs-string">&quot;injuries&quot;</span>: [
+        {
+            <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-string">&quot;e61a7c5a-3b71-4205-b0d7-dc0b127g2a20&quot;</span>,
+            <span class="hljs-string">&quot;resultStatus&quot;</span> : <span class="hljs-string">&quot;continuous&quot;</span>,
+            <span class="hljs-string">&quot;resultDate&quot;</span> : <span class="hljs-string">&quot;2020-10-02T11:11:11+09:00&quot;</span>,
+            <span class="hljs-string">&quot;firstCheckUpDate&quot;</span> : <span class="hljs-string">&quot;2020-10-02T11:11:11+09:00&quot;</span>,
+            <span class="hljs-string">&quot;injuredDate&quot;</span> : <span class="hljs-string">&quot;2020-09-01T11:11:11+09:00&quot;</span>,
+            <span class="hljs-string">&quot;injuryType&quot;</span> : <span class="hljs-string">&quot;打&quot;</span>,
+            <span class="hljs-string">&quot;injuryPart&quot;</span> : <span class="hljs-string">&quot;頭&quot;</span>,
+            <span class="hljs-string">&quot;injuryPartDetail&quot;</span> : <span class="hljs-string">&quot;頭&quot;</span>,
+            <span class="hljs-string">&quot;injuryPartCode&quot;</span> : <span class="hljs-string">&quot;1004&quot;</span>,
+            <span class="hljs-string">&quot;injuryPartRefCode&quot;</span> : <span class="hljs-string">&quot;103&quot;</span>,
+            <span class="hljs-string">&quot;injuryCause&quot;</span> : <span class="hljs-string">&quot;home got hit by a suitcase around a month ago&quot;</span>,
+        }
+    ],
+}
+</code></pre>
+<ul>
+<li>説明</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Parameter</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Size</th>
+<th style="text-align:left">Mandatory</th>
+<th style="text-align:left">Search</th>
+<th style="text-align:left">Default</th>
+<th style="text-align:left">Remarks</th>
+<th style="text-align:left">Format</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">karteNumber</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">yes</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">PATIENTS.KARTE_NUMBER</td>
+<td style="text-align:left">半角数値</td>
+</tr>
+<tr>
+<td style="text-align:left">modifiedByCrmStaffId</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">250</td>
+<td style="text-align:left">yes</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">編集者のID</td>
+<td style="text-align:left">文字列</td>
+</tr>
+<tr>
+<td style="text-align:left">insuranceType</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">10</td>
+<td style="text-align:left">no</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">保険種類</td>
+<td style="text-align:left">固定値（健康保険, 自賠責, 労災）</td>
+</tr>
+<tr>
+<td style="text-align:left">created</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">no</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">now()</td>
+<td style="text-align:left">作成日時</td>
+<td style="text-align:left">YYYY-MM-DDThh:mmTZD<br>(例 1997-07-16T19:20:00+09:00)<br>(UTC+09:00)</td>
+</tr>
+<tr>
+<td style="text-align:left">modified</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">no</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">now()</td>
+<td style="text-align:left">最終更新日時</td>
+<td style="text-align:left">YYYY-MM-DDThh:mmTZD<br>(例 1997-07-16T19:20:00+09:00)<br>(UTC+09:00)</td>
+</tr>
+<tr>
+<td style="text-align:left">injuries[].resultStatus</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">20</td>
+<td style="text-align:left">yes</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">転帰（内容）</td>
+<td style="text-align:left">continuous:継続,done:治癒,stop:中止,switched:転医</td>
+</tr>
+<tr>
+<td style="text-align:left">injuries[].resultDate</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">no</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">終了日時</td>
+<td style="text-align:left">YYYY-MM-DDThh:mmTZD<br>(例 1997-07-16T19:20:00+09:00)<br>(UTC+09:00)</td>
+</tr>
+<tr>
+<td style="text-align:left">injuries[].firstCheckUpDate</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">yes</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">初検日</td>
+<td style="text-align:left">YYYY-MM-DDThh:mmTZD<br>(例 1997-07-16T19:20:00+09:00)<br>(UTC+09:00)</td>
+</tr>
+<tr>
+<td style="text-align:left">injuries[].injuredDate</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">yes</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">負傷日</td>
+<td style="text-align:left">YYYY-MM-DDThh:mmTZD<br>(例 1997-07-16T19:20:00+09:00)<br>(UTC+09:00)</td>
+</tr>
+<tr>
+<td style="text-align:left">injuries[].injuryType</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">yes</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">部位分類</td>
+<td style="text-align:left">全角文字</td>
+</tr>
+<tr>
+<td style="text-align:left">injuries[].injuryPart</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">yes</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">部位名</td>
+<td style="text-align:left">全角文字</td>
+</tr>
+<tr>
+<td style="text-align:left">injuries[].injuryPartDetail</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">yes</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">部位詳細</td>
+<td style="text-align:left">全角文字</td>
+</tr>
+<tr>
+<td style="text-align:left">injuries[].injuryPartCode</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">yes</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">部位コード</td>
+<td style="text-align:left">半角数字</td>
+</tr>
+<tr>
+<td style="text-align:left">injuries[].injuryPartRefCode</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">yes</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">参照用コード</td>
+<td style="text-align:left">半角数字</td>
+</tr>
+<tr>
+<td style="text-align:left">injuries[].injuryCause</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">no</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">負傷原因</td>
+<td style="text-align:left">全角文字</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response success:</strong>  </p>
+<ul>
+<li>サンプルオブジェクト  </li>
+</ul>
+<pre><code class="lang-JSON">{
+    <span class="hljs-string">&quot;id&quot;</span> :  <span class="hljs-string">&quot;a1c2bc5a-2a77-4205-b0d7-cc0b227f2e19&quot;</span>
+}
+</code></pre>
+<ul>
+<li>説明</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">JSON Key</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Size</th>
+<th style="text-align:left">Mandatory</th>
+<th style="text-align:left">Sort</th>
+<th style="text-align:left">Note</th>
+<th style="text-align:left">Format</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">id</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">yes</td>
+<td style="text-align:left">no</td>
+<td style="text-align:left">TREATMENT_PLANS.ID</td>
+<td style="text-align:left">UUIDv4</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response failure:</strong>  </p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">HTTP Status</th>
+<th style="text-align:left">Title</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">400</td>
+<td style="text-align:left">BadRequestException</td>
+</tr>
+<tr>
+<td style="text-align:left">404</td>
+<td style="text-align:left">NotFoundException</td>
+</tr>
+<tr>
+<td style="text-align:left">405</td>
+<td style="text-align:left">MethodNotAllowedException</td>
+</tr>
+<tr>
+<td style="text-align:left">413</td>
+<td style="text-align:left">PayloadTooLargeException</td>
+</tr>
+<tr>
+<td style="text-align:left">415</td>
+<td style="text-align:left">UnsupportedContentTypeException</td>
+</tr>
+<tr>
+<td style="text-align:left">500</td>
+<td style="text-align:left">InternalServerErrorException</td>
+</tr>
+<tr>
+<td style="text-align:left">501</td>
+<td style="text-align:left">NotImplementedException</td>
+</tr>
+</tbody>
+</table>
+
                                 
                                 </section>
                             
@@ -436,7 +1032,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"三国志API-RESTful API Design","level":"5.2.1","depth":2,"next":{"title":"E-R図","level":"5.2.2","depth":2,"path":"30_design/dd/dd_sangokushiApi/dd_er_diagram.md","ref":"30_design/dd/dd_sangokushiApi/dd_er_diagram.md","articles":[]},"previous":{"title":"三国志API設計","level":"5.2","depth":1,"path":"30_design/dd/dd_sangokushiApi/index.md","ref":"30_design/dd/dd_sangokushiApi/index.md","articles":[{"title":"三国志API-RESTful API Design","level":"5.2.1","depth":2,"path":"30_design/dd/dd_sangokushiApi/dd_restapi.md","ref":"30_design/dd/dd_sangokushiApi/dd_restapi.md","articles":[]},{"title":"E-R図","level":"5.2.2","depth":2,"path":"30_design/dd/dd_sangokushiApi/dd_er_diagram.md","ref":"30_design/dd/dd_sangokushiApi/dd_er_diagram.md","articles":[]}]},"dir":"neutral"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"30_design/dd/dd_sangokushiApi/dd_restapi.md","mtime":"2021-02-20T14:38:26.498Z","type":"markdown"},"gitbook":{"version":"3.6.17","time":"2021-02-23T11:59:17.464Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"三国志API-RESTful API Design","level":"5.2.1","depth":2,"next":{"title":"E-R図","level":"5.2.2","depth":2,"path":"30_design/dd/dd_sangokushiApi/dd_er_diagram.md","ref":"30_design/dd/dd_sangokushiApi/dd_er_diagram.md","articles":[]},"previous":{"title":"三国志API設計","level":"5.2","depth":1,"path":"30_design/dd/dd_sangokushiApi/index.md","ref":"30_design/dd/dd_sangokushiApi/index.md","articles":[{"title":"三国志API-RESTful API Design","level":"5.2.1","depth":2,"path":"30_design/dd/dd_sangokushiApi/dd_restapi.md","ref":"30_design/dd/dd_sangokushiApi/dd_restapi.md","articles":[]},{"title":"E-R図","level":"5.2.2","depth":2,"path":"30_design/dd/dd_sangokushiApi/dd_er_diagram.md","ref":"30_design/dd/dd_sangokushiApi/dd_er_diagram.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"30_design/dd/dd_sangokushiApi/dd_restapi.md","mtime":"2021-03-17T14:08:11.063Z","type":"markdown"},"gitbook":{"version":"3.6.17","time":"2021-03-17T14:42:17.186Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

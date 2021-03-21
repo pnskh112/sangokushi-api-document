@@ -8,13 +8,13 @@
 ### テーブル定義
 
 
-- KINGDUMS（国テーブル）
+- KINGDOMS（国テーブル）
 
 | Name | Field | Type        | Nullable | Default | Remarks |
 | ---- | ----- | ----------- | -------- | ------- | ------- |
 | 国コード | ID    | varchar(5)  | N/A      | -       |         |
 | 国名   | NAME  | varchar(20) | N/A      | -       |         |
-| 説明   | NAME  | varchar(250) | N/A      | -       |         |
+| 説明   | TEXT  | varchar(250) | N/A      | -       |         |
 
 - Constraints
 
@@ -27,7 +27,7 @@
 | Name  | Field       | Type          | Nullable | Default | Remarks |
 | ----- | ----------- | ------------- | -------- | ------- | ------- |
 | 武将コード | ID          | varchar(10)    | N/A      | -       |         |
-| 国コード  | KINGDUMS_ID | varchar(5)    | N/A      | -       |         |
+| 国コード  | KINGDOMS_ID | varchar(5)    | N/A      | -       |         |
 | 武将名   | NAME        | varchar(20)   | N/A      | -       |         |
 | 字名    | AZANA       | varchar(20)   | N/A      | -       |         |
 | 人物像   | PERSONALITY | varchar(1000) | N/A      | -       |         |
@@ -38,14 +38,14 @@
 | Field       | Key     | Extra                                       | Description |
 | ----------- | ------- | ------------------------------------------- | ----------- |
 | ID          | PRIMARY | N/A                                         |             |
-| KINGDUMS_ID | FOREIGN | REFERENCES KINGDUMS (ID) ON DELETE SET NULL | 外部キー        |
+| KINGDOMS_ID | FOREIGN | REFERENCES KINGDOMS (ID) ON DELETE SET NULL | 外部キー        |
 
 - PERIODS（時代区分テーブル）
 
 | Name    | Field       | Type        | Nullable | Default | Remarks |
 | ------- | ----------- | ----------- | -------- | ------- | ------- |
 | 時代区分コード | ID          | varchar(10)  | N/A      | -       |         |
-| 国コード    | KINGDUMS_ID | varchar(5)  | N/A      | -       |         |
+| 国コード    | KINGDOMS_ID | varchar(5)  | N/A      | -       |         |
 | 時代区分名   | NAME        | varchar(50) | N/A      | -       |         |
 | 年代      | AGE         | VARCHAR(20) | N/A      | -       |         |
 
@@ -54,7 +54,7 @@
 | Field       | Key     | Extra                                       | Description |
 | ----------- | ------- | ------------------------------------------- | ----------- |
 | ID          | PRIMARY | N/A                                         |             |
-| KINGDUMS_ID | FOREIGN | REFERENCES KINGDUMS (ID) ON DELETE SET NULL | 外部キー        |
+| KINGDOMS_ID | FOREIGN | REFERENCES KINGDOMS (ID) ON DELETE SET NULL | 外部キー        |
 
 - POSITIONS（役職テーブル）
 
@@ -62,7 +62,7 @@
 | ------- | ----------- | ------------ | -------- | ------- | ------- |
 | 役職コード   | ID          | varchar(5)   | N/A      | -       |         |
 | 武将コード   | WARLOADS_ID | varchar(10)  | N/A      | -       |         |
-| 国コード    | KINGDUMS_ID | varchar(5)   | N/A      | -       |         |
+| 国コード    | KINGDOMS_ID | varchar(5)   | N/A      | -       |         |
 | 時代区分コード | PERIODS_ID  | varchar(10)   | N/A      | -       |         |
 | 役職名     | NAME        | varchar(20)  | N/A      | -       |         |
 | 役職説明    | EXPLANATION | varchar(500) | N/A      | -       |         |
@@ -72,7 +72,7 @@
 | Field       | Key     | Extra                                       | Description |
 | ----------- | ------- | ------------------------------------------- | ----------- |
 | ID          | PRIMARY | N/A                                         |             |
-| KINGDUMS_ID | FOREIGN | REFERENCES KINGDUMS (ID) ON DELETE SET NULL | 外部キー        |
+| KINGDOMS_ID | FOREIGN | REFERENCES KINGDOMS (ID) ON DELETE SET NULL | 外部キー        |
 | WARLOADS_ID | FOREIGN | REFERENCES WARLOADS (ID) ON DELETE SET NULL | 外部キー        |
 | PERIODS_ID  | FOREIGN | REFERENCES PERIODS (ID) ON DELETE SET NULL  | 外部キー        |
 
@@ -82,7 +82,7 @@
 | ----- | ----------- | ----------- | -------- | ------- | ------- |
 | 領地コード | ID          | varchar(10)  | N/A      | -       |         |
 | 武将コード | WARLOADS_ID | varchar(20) | N/A      | -       |         |
-| 国コード  | KINGDUMS_ID | varchar(5)  | N/A      | -       |         |
+| 国コード  | KINGDOMS_ID | varchar(5)  | N/A      | -       |         |
 | 領地名   | NAME        | varchar(20) | N/A      | -       |         |
 
 - Constraints
@@ -90,7 +90,7 @@
 | Field       | Key     | Extra                                       | Description |
 | ----------- | ------- | ------------------------------------------- | ----------- |
 | ID          | PRIMARY | N/A                                         |             |
-| KINGDUMS_ID | FOREIGN | REFERENCES KINGDUMS (ID) ON DELETE SET NULL | 外部キー        |
+| KINGDOMS_ID | FOREIGN | REFERENCES KINGDOMS (ID) ON DELETE SET NULL | 外部キー        |
 | WARLOADS_ID | FOREIGN | REFERENCES WARLOADS (ID) ON DELETE SET NULL | 外部キー        |
 
 - ARMS（武器兵馬テーブル）
@@ -138,7 +138,7 @@
 | Field       | Key     | Extra                                       | Description |
 | ----------- | ------- | ------------------------------------------- | ----------- |
 | ID          | PRIMARY | N/A                                         |             |
-| KINGDUMS_ID | FOREIGN | REFERENCES KINGDUMS (ID) ON DELETE SET NULL | 外部キー        |
+| KINGDOMS_ID | FOREIGN | REFERENCES KINGDOMS (ID) ON DELETE SET NULL | 外部キー        |
 | PERIODS_ID  | FOREIGN | REFERENCES PERIODS (ID) ON DELETE SET NULL  | 外部キー        |
 
 - WITTICISMS（名言エピソードテーブル）
