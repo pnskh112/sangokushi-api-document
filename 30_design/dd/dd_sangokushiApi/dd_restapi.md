@@ -11,7 +11,20 @@
         - [How to sort](#how-to-sort)
         - [How to read Parameter table](#how-to-read-parameter-table)
     - [Treatment Plan](#treatment-plan)
-        - [POST /kingdoms/:id/warloads](#post-kingdoms-warloads)
+        - [POST /kingdoms](#post-kingdoms)
+        - [POST /kingdoms/:kingdoms_id/warloads](#post-kingdoms-warloads)
+        - [PUT /warloads/:warloads_id/arms/:arms_id](#patch-warloads-arms)
+        - [DELETE /warloads/:warloads_id/arms/:arms_id](#patch-warloads-arms)
+        - [PUT /warloads/:warloads_id/images/:images_id](#patch-warloads-arms)
+        - [DELETE /warloads/:warloads_id/images/:images_id](#patch-warloads-arms)
+        - [POST /warloads/:warloads_id/episodes/:episodes_id/wars](#patch-warloads-arms)
+        - [PUT /warloads/:warloads_id/episodes/:episodes_id/wars/:wars_id](#patch-warloads-arms)
+        - [DELETE /warloads/:warloads_id/episodes/:episodes_id/wars/:wars_id](#patch-warloads-arms)
+        - [PUT /warloads/:warloads_id/positions/:positions_id](#patch-warloads-arms)
+        - [PUT /eras/:eras_id/positions/:positions_id/](#patch-eras-arms)
+        - [DELETE /eras/:eras_id/positions/:positions_id/](#patch-eras-arms)
+        - [PUT /territories/:territories_id/wars/:wars_id/](#patch-territories-arms)
+        - [DELETE /territories/:territories_id/wars/:wars_id/](#patch-territories-arms)
 
 <!-- /TOC -->
 
@@ -47,6 +60,7 @@ URL中に埋め込まれるパラメータ
 - 一意なリソースを表すのに必要かどうか　パスパラメータを利用
 - 省略可能かどうか　クエリパラメータを利用
 例）検索条件（絞り込み条件）はパスに含めない
+　　複数考えられるのでパスには含めず、クエリパラメータで持たせる
 
 ## Referring link
 - [日時形式](http://www2.airnet.ne.jp/sardine/docs/NOTE-datetime-19980827.html)
@@ -126,6 +140,12 @@ Ref: https://docs.microsoft.com/ja-jp/azure/architecture/best-practices/api-desi
             "warloadsId" : "1",
             "name" : "雌雄一対の剣",
             "text" : "劉備（玄徳）愛用の剣。雌雄一対の剣は、桃園の誓いで劉備（玄徳）、関羽、張飛が義兄弟の契りを交わした後、黄巾賊討伐の為に先祖から伝わる剣に似せた二振りの剣。三国志の中では劉備（玄徳）が戦う場面はほとんどないので、雌雄一対の剣を二刀流のように使用したかは定かではない。"
+        }
+    ],
+    "images" : [
+        {
+            "id" : "1",
+            "path" : "/home/work/20210401/aiueo.png",
         }
     ]
 }
