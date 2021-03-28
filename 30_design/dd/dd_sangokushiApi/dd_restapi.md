@@ -1,6 +1,7 @@
 <!-- TOC -->
 
 - [API設計](#apiDesign)
+    - [Prerequisites](#prerequisites)
     - [Overview](#overview)
     - [Referring link](#referring-link)
     - [URL](#url)
@@ -13,12 +14,12 @@
     - [Treatment Plan](#treatment-plan)
         - [kingdoms](#kingdoms)
             - [POST /kingdoms](#post-kingdoms)
-            - [POST /kingdoms/:kingdoms_id/warloads](#post-kingdoms-warloads)
             - [PUT /kingdoms/:kingdoms_id/eras/:eras_id/](#put-kingdoms-eras)
             - [DELETE /kingdoms/:kingdoms_id/eras/:eras_id/](#delete-kingdoms-eras)
             - [PUT /kingdoms/:kingdoms_id/territories/:territories_id/](#put-kingdoms-territories)
             - [DELETE /kingdoms/:kingdoms_id/territories/:territories_id/](#delete-kingdoms-territories)
-        - [warloads](#kingdoms)
+        - [warloads](#warloads)
+            - [POST /kingdoms/:kingdoms_id/warloads](#post-kingdoms-warloads)
             - [POST /warloads/:warloads_id/episodes/:episodes_id/wars](#post-warloads-wars)
             - [PUT /warloads/:warloads_id/episodes/:episodes_id/wars/:wars_id](#put-warloads-arms)
             - [DELETE /warloads/:warloads_id/episodes/:episodes_id/wars/:wars_id](#delete-warloads-arms)
@@ -32,9 +33,10 @@
 
 <!-- /TOC -->
 
-
-
 ### apiDesign
+
+### prerequisites
+最低限のminimumな範囲で実装を終え、必要であれば都度機能を追加するようにすること。
 
 #### Overview
 - 本ドキュメントでは、API インターフェースの仕様書に関して記載する。
@@ -71,7 +73,7 @@ URL中に埋め込まれるパラメータ
 - [認証形式](https://docs.google.com/presentation/d/1Y_oaBuRwniHzDpBqgOze6nU380-bF5CBfYf4MWIRl4Y/edit?usp=sharing)
 
 ## URL
-- `https://{FQDN}` がAPI のURLになるようにする。
+- `https://{FQDN}/api/v1/` がAPI のURLになるようにする。
 
 ## Header
 - HTTP ヘッダ情報は下記の通りとなる。
@@ -201,3 +203,33 @@ Ref: https://docs.microsoft.com/ja-jp/azure/architecture/best-practices/api-desi
 | 500         | InternalServerErrorException    |
 | 501         | NotImplementedException         |
 
+
+
+### post-kingdoms
+
+| Name             | Method | Content-Type                   |
+|:-----------------|:-------|:-------------------------------|
+| 国家登録 | POST   | application/json;charset=UTF-8 |
+
+**Process:**  
+1.国情報を**KINGDOMS**テーブルに登録する。このAPIではここまで。
+
+**Path parameters.**  
+- N/A
+
+**Querystring:**  
+- N/A
+
+**Request body:**  
+
+```json
+
+```
+
+**Response success:**  
+
+- サンプルオブジェクト  
+
+```JSON
+
+```
