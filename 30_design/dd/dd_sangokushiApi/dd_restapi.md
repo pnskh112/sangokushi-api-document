@@ -13,16 +13,16 @@
         - [How to read Parameter table](#how-to-read-parameter-table)
     - [Treatment Plan](#treatment-plan)
         - [kingdoms](#kingdoms)
-            - [POST /kingdoms](#post-kingdoms)
+            - [POST /kingdoms](#post-kingdoms) 済
             - [PUT /kingdoms/:kingdoms_id/eras/:eras_id/](#put-kingdoms-eras)
             - [DELETE /kingdoms/:kingdoms_id/eras/:eras_id/](#delete-kingdoms-eras)
             - [PUT /kingdoms/:kingdoms_id/territories/:territories_id/](#put-kingdoms-territories)
             - [DELETE /kingdoms/:kingdoms_id/territories/:territories_id/](#delete-kingdoms-territories)
         - [warloads](#warloads)
-            - [POST /kingdoms/:kingdoms_id/warloads](#post-kingdoms-warloads)
-            - [POST /warloads/:warloads_id/episodes/:episodes_id/wars](#post-warloads-wars)
-            - [PUT /warloads/:warloads_id/episodes/:episodes_id/wars/:wars_id](#put-warloads-arms)
-            - [DELETE /warloads/:warloads_id/episodes/:episodes_id/wars/:wars_id](#delete-warloads-arms)
+            - [POST /kingdoms/:kingdoms_id/warloads](#post-kingdoms-warloads) 済
+            - [POST /warloads/:warloads_id/episodes/](#post-warloads-wars) 途中
+            - [PUT /warloads/:warloads_id/episodes/:episodes_id/](#put-warloads-arms)
+            - [DELETE /warloads/:warloads_id/episodes/:episodes_id/](#delete-warloads-arms)
             - [PUT /warloads/:warloads_id/arms/:arms_id](#put-warloads-arms)
             - [DELETE /warloads/:warloads_id/arms/:arms_id](#delete-warloads-arms)
             - [PUT /warloads/:warloads_id/images/:images_id](#put-warloads-images)
@@ -30,6 +30,10 @@
             - [PUT /warloads/:warloads_id/positions/:positions_id](#put-warloads-positions)
             - [DELETE /warloads/:warloads_id/positions/:positions_id](#delete-warloads-positions)
             - [PUT /warloads/:warloads_id/inaugurations/:inaugurations_id](#put-warloads-inaugurations)
+        - [wars](#wars)
+            - [POST /episodes/:episodes_id/wars](#post-episodes-wars)
+            - [PUT /episodes/:episodes_id/wars/:wars_id](#put-episodes-arms)
+            - [DELETE /episodes/:episodes_id/wars/:wars_id](#delete-episodes-arms)
 
 <!-- /TOC -->
 
@@ -210,6 +214,78 @@ Ref: https://docs.microsoft.com/ja-jp/azure/architecture/best-practices/api-desi
 | Name             | Method | Content-Type                   |
 |:-----------------|:-------|:-------------------------------|
 | 国家登録 | POST   | application/json;charset=UTF-8 |
+
+### URI-endpoint
+/kingdoms
+
+
+**Process:**  
+1.国情報を**KINGDOMS**テーブルに登録する。このAPIではここまで。
+
+**Path parameters.**  
+- N/A
+
+**Querystring:**  
+- N/A
+
+**Request body:**  
+
+```json
+
+```
+
+**Response success:**  
+
+- サンプルオブジェクト  
+
+```JSON
+
+```
+
+
+### put-kingdoms-eras
+
+| Name             | Method | Content-Type                   |
+|:-----------------|:-------|:-------------------------------|
+| 国家登録 | POST   | application/json;charset=UTF-8 |
+
+### URI-endpoint
+/kingdoms
+
+
+**Process:**  
+1.国情報を**KINGDOMS**テーブルに登録する。このAPIではここまで。
+
+**Path parameters.**  
+- N/A
+
+**Querystring:**  
+- N/A
+
+**Request body:**  
+
+```json
+
+```
+
+**Response success:**  
+
+- サンプルオブジェクト  
+
+```JSON
+
+```
+
+
+### put-kingdoms-territories
+
+| Name             | Method | Content-Type                   |
+|:-----------------|:-------|:-------------------------------|
+| 国家登録 | POST   | application/json;charset=UTF-8 |
+
+### URI-endpoint
+/kingdoms
+
 
 **Process:**  
 1.国情報を**KINGDOMS**テーブルに登録する。このAPIではここまで。
