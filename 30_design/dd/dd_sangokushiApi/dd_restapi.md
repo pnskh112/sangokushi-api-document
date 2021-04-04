@@ -20,9 +20,9 @@
             - [DELETE /kingdoms/:kingdoms_id/territories/:territories_id/](#delete-kingdoms-territories)
         - [warloads](#warloads)
             - [POST /kingdoms/:kingdoms_id/warloads](#post-kingdoms-warloads) 済
-            - [POST /warloads/:warloads_id/episodes/](#post-warloads-wars)
-            - [PUT /warloads/:warloads_id/episodes/:episodes_id/](#put-warloads-arms) 途中
-            - [DELETE /warloads/:warloads_id/episodes/:episodes_id/wars/:wars_id](#delete-warloads-arms)
+            - [POST /warloads/:warloads_id/episodes/](#post-warloads-wars) 途中
+            - [PUT /warloads/:warloads_id/episodes/:episodes_id/](#put-warloads-arms)
+            - [DELETE /warloads/:warloads_id/episodes/:episodes_id/](#delete-warloads-arms)
             - [PUT /warloads/:warloads_id/arms/:arms_id](#put-warloads-arms)
             - [DELETE /warloads/:warloads_id/arms/:arms_id](#delete-warloads-arms)
             - [PUT /warloads/:warloads_id/images/:images_id](#put-warloads-images)
