@@ -14,7 +14,7 @@
     - [Treatment Plan](#treatment-plan)
         - [kingdoms](#kingdoms)
             - [POST /kingdoms](#post-kingdoms) 済
-            - [POST /kingdoms/:kingdoms_id/eras/](#post-kingdoms-eras)
+            - [POST /kingdoms/:kingdoms_id/eras/](#post-kingdoms-eras) 途中
             - [PUT /kingdoms/:kingdoms_id/eras/:eras_id/](#put-kingdoms-eras)
             - [DELETE /kingdoms/:kingdoms_id/eras/:eras_id/](#delete-kingdoms-eras)
             - [PUT /kingdoms/:kingdoms_id/territories/:territories_id/](#put-kingdoms-territories)
@@ -31,7 +31,7 @@
             - [DELETE /warloads/:warloads_id/positions/:positions_id](#delete-warloads-positions)
             - [PUT /warloads/:warloads_id/inaugurations/:inaugurations_id](#put-warloads-inaugurations)
         - [arms](#arms)
-            - [POST /warloads/:warloads_id/arms/:arms_id](#post-warloads-arms)
+            - [POST /warloads/:warloads_id/arms/:arms_id](#post-warloads-arms) 途中
             - [PUT /warloads/:warloads_id/arms/:arms_id](#put-warloads-arms)
             - [DELETE /warloads/:warloads_id/arms/:arms_id](#delete-warloads-arms)
         - [wars](#wars)
