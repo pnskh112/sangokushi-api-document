@@ -14,22 +14,26 @@
     - [Treatment Plan](#treatment-plan)
         - [kingdoms](#kingdoms)
             - [POST /kingdoms](#post-kingdoms) 済
+            - [POST /kingdoms/:kingdoms_id/eras/](#post-kingdoms-eras) 途中
             - [PUT /kingdoms/:kingdoms_id/eras/:eras_id/](#put-kingdoms-eras)
             - [DELETE /kingdoms/:kingdoms_id/eras/:eras_id/](#delete-kingdoms-eras)
             - [PUT /kingdoms/:kingdoms_id/territories/:territories_id/](#put-kingdoms-territories)
             - [DELETE /kingdoms/:kingdoms_id/territories/:territories_id/](#delete-kingdoms-territories)
         - [warloads](#warloads)
             - [POST /kingdoms/:kingdoms_id/warloads](#post-kingdoms-warloads) 済
+        - [episodes](#episodes)
             - [POST /warloads/:warloads_id/episodes/](#post-warloads-wars) 途中
             - [PUT /warloads/:warloads_id/episodes/:episodes_id/](#put-warloads-arms)
             - [DELETE /warloads/:warloads_id/episodes/:episodes_id/](#delete-warloads-arms)
-            - [PUT /warloads/:warloads_id/arms/:arms_id](#put-warloads-arms)
-            - [DELETE /warloads/:warloads_id/arms/:arms_id](#delete-warloads-arms)
             - [PUT /warloads/:warloads_id/images/:images_id](#put-warloads-images)
             - [DELETE /warloads/:warloads_id/images/:images_id](#delete-warloads-images)
             - [PUT /warloads/:warloads_id/positions/:positions_id](#put-warloads-positions)
             - [DELETE /warloads/:warloads_id/positions/:positions_id](#delete-warloads-positions)
             - [PUT /warloads/:warloads_id/inaugurations/:inaugurations_id](#put-warloads-inaugurations)
+        - [arms](#arms)
+            - [POST /warloads/:warloads_id/arms/:arms_id](#post-warloads-arms) 途中
+            - [PUT /warloads/:warloads_id/arms/:arms_id](#put-warloads-arms)
+            - [DELETE /warloads/:warloads_id/arms/:arms_id](#delete-warloads-arms)
         - [wars](#wars)
             - [POST /episodes/:episodes_id/wars](#post-episodes-wars)
             - [PUT /episodes/:episodes_id/wars/:wars_id](#put-episodes-arms)

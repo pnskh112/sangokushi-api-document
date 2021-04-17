@@ -40,14 +40,16 @@
 | ID          | PRIMARY | N/A                                         |             |
 | KINGDOMS_ID | FOREIGN | REFERENCES KINGDOMS (ID) ON DELETE SET NULL | 外部キー        |
 
-- PERIODS（時代区分テーブル）
+- ERAS（時代区分テーブル）
 
 | Name    | Field       | Type        | Nullable | Default | Remarks |
 | ------- | ----------- | ----------- | -------- | ------- | ------- |
-| 時代区分コード | ID          | varchar(10)  | N/A      | -       |         |
+| 時代区分コード | ID          | varchar(10) | N/A      | -       |         |
 | 国コード    | KINGDOMS_ID | varchar(5)  | N/A      | -       |         |
 | 時代区分名   | NAME        | varchar(50) | N/A      | -       |         |
-| 年代      | AGE         | VARCHAR(20) | N/A      | -       |         |
+| 開始年度    | START_YEAR  | number      | N/A      | -       |         |
+| 終了年度    | END_YEAR    | number      | N/A      | -       |         |
+
 
 - Constraints
 
@@ -141,13 +143,13 @@
 | KINGDOMS_ID | FOREIGN | REFERENCES KINGDOMS (ID) ON DELETE SET NULL | 外部キー        |
 | PERIODS_ID  | FOREIGN | REFERENCES PERIODS (ID) ON DELETE SET NULL  | 外部キー        |
 
-- WITTICISMS（名言エピソードテーブル）
+- EPISODES（名言エピソードテーブル）
 
 | Name       | Field       | Type          | Nullable | Default | Remarks |
 | ---------- | ----------- | ------------- | -------- | ------- | ------- |
 | 名言エピソードコード | ID          | varchar(5)    | N/A      | -       |         |
 | 戦コード       | ID          | varchar(10)    | N/A      | -       |         |
-| 武将コード      | WARLOADS_ID | varchar(20)   | N/A      | -       |         |
+| 武将コード      | EPISODES_ID | varchar(20)   | N/A      | -       |         |
 | タイトル       | TITLE       | varchar(100)  | N/A      | -       |         |
 | エピソード      | EPISODE     | varchar(1000) | N/A      | -       |         |
 
