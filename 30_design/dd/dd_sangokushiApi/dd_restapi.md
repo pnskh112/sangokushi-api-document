@@ -21,6 +21,7 @@
             - [DELETE /kingdoms/:kingdoms_id/territories/:territories_id/](#delete-kingdoms-territories)
         - [warloads](#warloads)
             - [POST /kingdoms/:kingdoms_id/warloads](#post-kingdoms-warloads) 済
+            - [GET /kingdoms/:kingdoms_id/warloads](#get-kingdoms-warloads) 途中
         - [episodes](#episodes)
             - [POST /warloads/:warloads_id/episodes/](#post-warloads-wars) 途中
             - [PUT /warloads/:warloads_id/episodes/:episodes_id/](#put-warloads-arms)
@@ -210,6 +211,98 @@ Ref: https://docs.microsoft.com/ja-jp/azure/architecture/best-practices/api-desi
 | 415         | UnsupportedContentTypeException |
 | 500         | InternalServerErrorException    |
 | 501         | NotImplementedException         |
+
+### get-kingdoms-warloads
+
+| Name             | Method | Content-Type                   |
+|:-----------------|:-------|:-------------------------------|
+| 武将情報参照処理 | GET   | application/json;charset=UTF-8 |
+
+
+**Path parameters:**  
+- N/A
+
+**Querystring:**  
+- N/A
+
+**Request body:**  
+
+```json
+{
+    "found" : 1,
+    "currentPage" : 1,
+    "lastPage": 2,
+    "data" : [
+        {
+            "name" : "劉備",
+            "azana" : "玄徳",
+            "statue" : "『三国志演義』の中心人物。黄巾の乱の鎮圧で功績を挙げ、その後は各地を転戦した。諸葛亮の天下三分の計に基づいて益州の地を得て勢力を築き、後漢の滅亡を受けて皇帝に即位して、蜀漢を建国した。その後の、魏・呉・蜀漢による三国鼎立の時代を生じさせた。中庸を心情とする。",
+            "hobby" : "狗馬や音楽、見栄えがある衣服を着ることを好んでいた。",
+            "fromTo" : "延熹4年（161年） - 章武3年4月24日（223年6月10日）",
+            "arms" : [
+                {
+                    "warloadsId" : "1",
+                    "name" : "雌雄一対の剣",
+                    "text" : "劉備（玄徳）愛用の剣。雌雄一対の剣は、桃園の誓いで劉備（玄徳）、関羽、張飛が義兄弟の契りを交わした後、黄巾賊討伐の為に先祖から伝わる剣に似せた二振りの剣。三国志の中では劉備（玄徳）が戦う場面はほとんどないので、雌雄一対の剣を二刀流のように使用したかは定かではない。"
+                }
+            ],
+            "images" : [
+                {
+                    "id" : "1",
+                    "path" : "/home/work/20210401/aiueo.png",
+                }
+            ]
+        }
+    ]
+}
+```
+
+- 説明
+
+| Parameter                    | Type   | Size | Mandatory | Search | Default | Remarks               | Format                                                               |
+|:-----------------------------|:-------|:-----|:----------|:-------|:--------|:----------------------|:---------------------------------------------------------------------|
+| name                  | string | N/A  | yes       | N/A    | N/A     | PATIENTS.KARTE_NUMBER | 半角数値                                                             |
+| azana         | string | 250  | yes       | N/A    | N/A     | 編集者のID            | 文字列                                                               |
+| statue                | string | 10   | no        | N/A    | N/A     | 保険種類              | 固定値（健康保険, 自賠責, 労災）                                     |
+| hobby                      | string | N/A  | no        | N/A    | now()   | 作成日時              |  |
+| fromTo                     | string | N/A  | no        | N/A    | now()   | 最終更新日時          |  |
+| arms[].warloadsId      | string | 20   | yes       | N/A    | N/A     | 転帰（内容）          |  |
+| arms[].name        | string | N/A  | no        | N/A    | N/A     | 終了日時              | |
+| arms[].text  | string | N/A  | yes       | N/A    | N/A     | 初検日                |  |
+
+**Response success:**  
+
+- サンプルオブジェクト  
+
+```JSON
+{
+    "id": 7,
+    "name": "劉備",
+    "azana": "玄徳",
+    "statue": "『三国志演義』の中心人物。黄巾の乱の鎮圧で功績を挙げ、その後は各地を転戦した。諸葛亮の天下三分の計に基づいて益州の地を得て勢力を築き、後漢の滅亡を受けて皇帝に即位して、蜀漢を建国した。その後の、魏・呉・蜀漢による三国鼎立の時代を生じさせた。中庸を心情とする。",
+    "hobby": "狗馬や音楽、見栄えがある衣服を着ることを好んでいた。",
+    "newrecord": "延熹4年（161年） - 章武3年4月24日（223年6月10日）"
+}
+```
+
+- 説明
+
+| JSON Key | Type   | Size | Mandatory | Sort | Note               | Format |
+|:---------|:-------|:-----|:----------|:-----|:-------------------|:-------|
+| id       | string | N/A  | yes       | no   | TREATMENT_PLANS.ID | UUIDv4 |
+
+**Response failure:**  
+
+| HTTP Status | Title                           |
+|:------------|:--------------------------------|
+| 400         | BadRequestException             |
+| 404         | NotFoundException               |
+| 405         | MethodNotAllowedException       |
+| 413         | PayloadTooLargeException        |
+| 415         | UnsupportedContentTypeException |
+| 500         | InternalServerErrorException    |
+| 501         | NotImplementedException         |
+
 
 
 
