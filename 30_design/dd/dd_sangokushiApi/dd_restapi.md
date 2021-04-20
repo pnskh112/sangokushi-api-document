@@ -168,16 +168,16 @@ Ref: https://docs.microsoft.com/ja-jp/azure/architecture/best-practices/api-desi
 
 - 説明
 
-| Parameter                    | Type   | Size | Mandatory | Search | Default | Remarks               | Format                                                               |
-|:-----------------------------|:-------|:-----|:----------|:-------|:--------|:----------------------|:---------------------------------------------------------------------|
-| name                  | string | N/A  | yes       | N/A    | N/A     | PATIENTS.KARTE_NUMBER | 半角数値                                                             |
-| azana         | string | 250  | yes       | N/A    | N/A     | 編集者のID            | 文字列                                                               |
-| statue                | string | 10   | no        | N/A    | N/A     | 保険種類              | 固定値（健康保険, 自賠責, 労災）                                     |
-| hobby                      | string | N/A  | no        | N/A    | now()   | 作成日時              |  |
-| fromTo                     | string | N/A  | no        | N/A    | now()   | 最終更新日時          |  |
-| arms[].warloadsId      | string | 20   | yes       | N/A    | N/A     | 転帰（内容）          |  |
-| arms[].name        | string | N/A  | no        | N/A    | N/A     | 終了日時              | |
-| arms[].text  | string | N/A  | yes       | N/A    | N/A     | 初検日                |  |
+| Parameter         | Type   | Size | Mandatory | Search | Default | Remarks               | Format             |
+| ----------------- | ------ | ---- | --------- | ------ | ------- | --------------------- | ------------------ |
+| name              | string | N/A  | yes       | N/A    | N/A     | PATIENTS.KARTE_NUMBER | 半角数値               |
+| azana             | string | 250  | yes       | N/A    | N/A     | 編集者のID                | 文字列                |
+| statue            | string | 10   | no        | N/A    | N/A     | 保険種類                  | 固定値（健康保険, 自賠責, 労災） |
+| hobby             | string | N/A  | no        | N/A    | now()   | 作成日時                  |                    |
+| fromTo            | string | N/A  | no        | N/A    | now()   | 最終更新日時                |                    |
+| arms[].warloadsId | string | 20   | yes       | N/A    | N/A     | 転帰（内容）                |                    |
+| arms[].name       | string | N/A  | no        | N/A    | N/A     | 終了日時                  |                    |
+| arms[].text       | string | N/A  | yes       | N/A    | N/A     | 初検日                   |                    |
 
 **Response success:**  
 
@@ -259,16 +259,19 @@ Ref: https://docs.microsoft.com/ja-jp/azure/architecture/best-practices/api-desi
 
 - 説明
 
-| Parameter                    | Type   | Size | Mandatory | Search | Default | Remarks               | Format                                                               |
-|:-----------------------------|:-------|:-----|:----------|:-------|:--------|:----------------------|:---------------------------------------------------------------------|
-| name                  | string | N/A  | yes       | N/A    | N/A     | PATIENTS.KARTE_NUMBER | 半角数値                                                             |
-| azana         | string | 250  | yes       | N/A    | N/A     | 編集者のID            | 文字列                                                               |
-| statue                | string | 10   | no        | N/A    | N/A     | 保険種類              | 固定値（健康保険, 自賠責, 労災）                                     |
-| hobby                      | string | N/A  | no        | N/A    | now()   | 作成日時              |  |
-| fromTo                     | string | N/A  | no        | N/A    | now()   | 最終更新日時          |  |
-| arms[].warloadsId      | string | 20   | yes       | N/A    | N/A     | 転帰（内容）          |  |
-| arms[].name        | string | N/A  | no        | N/A    | N/A     | 終了日時              | |
-| arms[].text  | string | N/A  | yes       | N/A    | N/A     | 初検日                |  |
+| Parameter         | Type   | Size | Mandatory | Search | Default | Remarks               | Format             |
+| ----------------- | ------ | ---- | --------- | ------ | ------- | --------------------- | ------------------ |
+| found             | number | N/A  | yes       | N/A    | 総件数     | 半角数値                  |                    |
+| currentpage       | number | N/A  | yes       | N/A    | 現在の頁番号  | 半角数値                  |                    |
+| lastPage          | number | N/A  | yes       | N/A    | 最後の頁番号  | 半角数値                  |                    |
+| name              | string | N/A  | yes       | N/A    | N/A     | PATIENTS.KARTE_NUMBER | 半角数値               |
+| azana             | string | 250  | yes       | N/A    | N/A     | 編集者のID                | 文字列                |
+| statue            | string | 10   | no        | N/A    | N/A     | 保険種類                  | 固定値（健康保険, 自賠責, 労災） |
+| hobby             | string | N/A  | no        | N/A    | now()   | 作成日時                  |                    |
+| fromTo            | string | N/A  | no        | N/A    | now()   | 最終更新日時                |                    |
+| arms[].warloadsId | string | 20   | yes       | N/A    | N/A     | 転帰（内容）                |                    |
+| arms[].name       | string | N/A  | no        | N/A    | N/A     | 終了日時                  |                    |
+| arms[].text       | string | N/A  | yes       | N/A    | N/A     | 初検日                   |                    |
 
 **Response success:**  
 
