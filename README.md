@@ -10,3 +10,5 @@ document
 
 `$ npx honkit serve`
 
+# deployedURL
+https://pnskh112.github.io/sangokushi-api-document/
