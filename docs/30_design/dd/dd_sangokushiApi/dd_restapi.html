@@ -1,0 +1,1313 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <title>三国志API-RESTful API Design · HonKit</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 3.6.17">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="dd_er_diagram.html" />
+    
+    
+    <link rel="prev" href="index.md" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../../">
+            
+                <a href="../../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Requirement</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../../../10_requirement/">
+            
+                <a href="../../../10_requirement/">
+            
+                    
+                    前提要求仕様
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="../../../10_requirement/studying/toStudy.html">
+            
+                <a href="../../../10_requirement/studying/toStudy.html">
+            
+                    
+                    主に取り決めること
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="../../../10_requirement/studying/logicalDesignAndNormalization/normalization.html">
+            
+                <a href="../../../10_requirement/studying/logicalDesignAndNormalization/normalization.html">
+            
+                    
+                    正規化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" data-path="../../../10_requirement/studying/logicalDesignAndNormalization/badKnowHowPattern.html">
+            
+                <a href="../../../10_requirement/studying/logicalDesignAndNormalization/badKnowHowPattern.html">
+            
+                    
+                    バッドノウハウ
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4" data-path="../../../10_requirement/studying/logicalDesignAndNormalization/materializedView.html">
+            
+                <a href="../../../10_requirement/studying/logicalDesignAndNormalization/materializedView.html">
+            
+                    
+                    マテリアライズドビュー
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5" data-path="../../../10_requirement/studying/erDiagram/erDiagram.html">
+            
+                <a href="../../../10_requirement/studying/erDiagram/erDiagram.html">
+            
+                    
+                    ER図
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.6" data-path="../../../10_requirement/studying/dddCleanArchitecture/dddCleanArchitecture.html">
+            
+                <a href="../../../10_requirement/studying/dddCleanArchitecture/dddCleanArchitecture.html">
+            
+                    
+                    DDD
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.7" data-path="../../../10_requirement/studying/apiDesign/apiDesign.html">
+            
+                <a href="../../../10_requirement/studying/apiDesign/apiDesign.html">
+            
+                    
+                    API設計
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../../../10_requirement/rq_action_items.md">
+            
+                <span>
+            
+                    
+                    アクションアイテム
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Logical Design</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../../../10_requirement/studying/logicalDesignAndNormalization/">
+            
+                <a href="../../../10_requirement/studying/logicalDesignAndNormalization/">
+            
+                    
+                    logial design and normalization
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.1" data-path="../../../10_requirement/studying/logicalDesignAndNormalization/locialDesign.md">
+            
+                <span>
+            
+                    
+                    logial design
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2" data-path="../../../10_requirement/studying/logicalDesignAndNormalization/normalization.html">
+            
+                <a href="../../../10_requirement/studying/logicalDesignAndNormalization/normalization.html">
+            
+                    
+                    normalization
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Basic Design</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    designProcedure
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="../../bd/bd_sangokushiApi/bd_sangokushiApi.html">
+            
+                <a href="../../bd/bd_sangokushiApi/bd_sangokushiApi.html">
+            
+                    
+                    ConceptDesign
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Detail Design</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="index.md">
+            
+                <span>
+            
+                    
+                    三国志APIサーバ
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1.1" data-path="dd_entity_layout.html">
+            
+                <a href="dd_entity_layout.html">
+            
+                    
+                    三国志APIサーバ-データベースレイアウト
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="index.md">
+            
+                <span>
+            
+                    
+                    三国志API設計
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="5.2.1" data-path="dd_restapi.html">
+            
+                <a href="dd_restapi.html">
+            
+                    
+                    三国志API-RESTful API Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2.2" data-path="dd_er_diagram.html">
+            
+                <a href="dd_er_diagram.html">
+            
+                    
+                    E-R図
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Published with HonKit
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../.." >三国志API-RESTful API Design</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <!-- TOC -->
+<ul>
+<li><a href="#apiDesign">API設計</a><ul>
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#referring-link">Referring link</a></li>
+<li><a href="#url">URL</a></li>
+<li><a href="#header">Header</a><ul>
+<li><a href="#json-pattern">JSON pattern</a></li>
+<li><a href="#post-sample">POST Sample</a></li>
+</ul>
+</li>
+<li><a href="#parameter-explanation">Parameter Explanation</a><ul>
+<li><a href="#how-to-sort">How to sort</a></li>
+<li><a href="#how-to-read-parameter-table">How to read Parameter table</a></li>
+</ul>
+</li>
+<li><a href="#treatment-plan">Treatment Plan</a><ul>
+<li><a href="#kingdoms">kingdoms</a><ul>
+<li><a href="#post-kingdoms">POST /kingdoms</a> 済</li>
+<li><a href="#post-kingdoms-eras">POST /kingdoms/:kingdoms_id/eras/</a> 途中</li>
+<li><a href="#put-kingdoms-eras">PUT /kingdoms/:kingdoms_id/eras/:eras_id/</a></li>
+<li><a href="#delete-kingdoms-eras">DELETE /kingdoms/:kingdoms_id/eras/:eras_id/</a></li>
+<li><a href="#put-kingdoms-territories">PUT /kingdoms/:kingdoms_id/territories/:territories_id/</a></li>
+<li><a href="#delete-kingdoms-territories">DELETE /kingdoms/:kingdoms_id/territories/:territories_id/</a></li>
+</ul>
+</li>
+<li><a href="#warloads">warloads</a><ul>
+<li><a href="#post-kingdoms-warloads">POST /kingdoms/:kingdoms_id/warloads</a> 済</li>
+<li><a href="#get-kingdoms-warloads">GET /kingdoms/:kingdoms_id/warloads</a> 途中</li>
+</ul>
+</li>
+<li><a href="#episodes">episodes</a><ul>
+<li><a href="#post-warloads-wars">POST /warloads/:warloads_id/episodes/</a> 途中</li>
+<li><a href="#put-warloads-arms">PUT /warloads/:warloads_id/episodes/:episodes_id/</a></li>
+<li><a href="#delete-warloads-arms">DELETE /warloads/:warloads_id/episodes/:episodes_id/</a></li>
+<li><a href="#put-warloads-images">PUT /warloads/:warloads_id/images/:images_id</a></li>
+<li><a href="#delete-warloads-images">DELETE /warloads/:warloads_id/images/:images_id</a></li>
+<li><a href="#put-warloads-positions">PUT /warloads/:warloads_id/positions/:positions_id</a></li>
+<li><a href="#delete-warloads-positions">DELETE /warloads/:warloads_id/positions/:positions_id</a></li>
+<li><a href="#put-warloads-inaugurations">PUT /warloads/:warloads_id/inaugurations/:inaugurations_id</a></li>
+</ul>
+</li>
+<li><a href="#arms">arms</a><ul>
+<li><a href="#post-warloads-arms">POST /warloads/:warloads_id/arms/:arms_id</a> 途中</li>
+<li><a href="#put-warloads-arms">PUT /warloads/:warloads_id/arms/:arms_id</a></li>
+<li><a href="#delete-warloads-arms">DELETE /warloads/:warloads_id/arms/:arms_id</a></li>
+</ul>
+</li>
+<li><a href="#wars">wars</a><ul>
+<li><a href="#post-episodes-wars">POST /episodes/:episodes_id/wars</a></li>
+<li><a href="#put-episodes-arms">PUT /episodes/:episodes_id/wars/:wars_id</a></li>
+<li><a href="#delete-episodes-arms">DELETE /episodes/:episodes_id/wars/:wars_id</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<h3 id="apidesign">apiDesign</h3>
+<h3 id="prerequisites">prerequisites</h3>
+<p>最低限のminimumな範囲で実装を終え、必要であれば都度機能を追加するようにすること。</p>
+<h4 id="overview">Overview</h4>
+<ul>
+<li>本ドキュメントでは、API インターフェースの仕様書に関して記載する。</li>
+</ul>
+<h4 id="apiprerequisites">API_Prerequisites</h4>
+<ul>
+<li>短く入力しやすい（冗長なパスを含まない）</li>
+<li>人間が読んで理解できる（省略しない）</li>
+<li>全て小文字</li>
+<li>単語はハイフンで繋げる</li>
+<li>単語は複数形を使う</li>
+<li>エンコード必要な文字を使わない</li>
+<li>サーバ側のアーキテクチャが反映されてない</li>
+<li>改造しやすい</li>
+<li><p>ルールが統一されている</p>
+</li>
+<li><p>クエリパラメータ</p>
+</li>
+</ul>
+<p>URLの末尾にあるパラメータ
+<code>GET http://api.example.com/users?page=3</code></p>
+<ul>
+<li>パスパラメータ</li>
+</ul>
+<p>URL中に埋め込まれるパラメータ
+<code>GET http://api.example.com/users/123</code></p>
+<ul>
+<li>クエリパラメータとするかどうかの判断基準</li>
+<li>一意なリソースを表すのに必要かどうか　パスパラメータを利用</li>
+<li>省略可能かどうか　クエリパラメータを利用
+例）検索条件（絞り込み条件）はパスに含めない
+　　複数考えられるのでパスには含めず、クエリパラメータで持たせる</li>
+</ul>
+<h2 id="referring-link">Referring link</h2>
+<ul>
+<li><a href="http://www2.airnet.ne.jp/sardine/docs/NOTE-datetime-19980827.html" target="_blank">日時形式</a></li>
+<li><a href="https://docs.google.com/presentation/d/1Y_oaBuRwniHzDpBqgOze6nU380-bF5CBfYf4MWIRl4Y/edit?usp=sharing" target="_blank">認証形式</a></li>
+</ul>
+<h2 id="url">URL</h2>
+<ul>
+<li><code>https://{FQDN}/api/v1/</code> がAPI のURLになるようにする。</li>
+</ul>
+<h2 id="header">Header</h2>
+<ul>
+<li>HTTP ヘッダ情報は下記の通りとなる。</li>
+</ul>
+<p>TBD</p>
+<h3 id="post-sample">POST Sample</h3>
+<pre><code class="lang-sh">curl -v -X POST \
+    -H <span class="hljs-string">&quot;Accept: application/json&quot;</span>  \
+    -H <span class="hljs-string">&quot;Content-Type: application/json;charset=UTF-8&quot;</span>  \
+    -d <span class="hljs-string">&apos;{
+          &quot;xxxx&quot;: &quot;xxx&quot;
+    }&apos;</span> \
+    https://{fqdn}/api/
+</code></pre>
+<h2 id="error-message">Error Message</h2>
+<ul>
+<li>エラーメッセージに関する説明を記載する。</li>
+</ul>
+<h2 id="parameter-explanation">Parameter Explanation</h2>
+<ul>
+<li>各種パラメータの関する説明を記載する。</li>
+</ul>
+<h3 id="how-to-sort">How to sort</h3>
+<ul>
+<li>ソート条件の指定方法は、カンマ区切りで複数指定可能とする。</li>
+</ul>
+<pre><code>https://{FQDN}/api/page?sort=sort=modified,-patientid,tabletname,serialnumber
+</code></pre><ul>
+<li>URLが上記の場合、SQL は以下のようになる。</li>
+</ul>
+<pre><code class="lang-SQL"><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> modified <span class="hljs-keyword">ASC</span> ,patientid <span class="hljs-keyword">DESC</span>, tabletname <span class="hljs-keyword">ASC</span>, serialnumber <span class="hljs-keyword">ASC</span>
+</code></pre>
+<h4 id="example">Example</h4>
+<p>Ref: <a href="https://docs.microsoft.com/ja-jp/azure/architecture/best-practices/api-design" target="_blank">https://docs.microsoft.com/ja-jp/azure/architecture/best-practices/api-design</a></p>
+<h2 id="warload">Warload</h2>
+<ul>
+<li>治療計画に関する API 群</li>
+</ul>
+<h3 id="post-kingdoms-warloads">post-kingdoms-warloads</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Method</th>
+<th style="text-align:left">Content-Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">武将情報登録処理</td>
+<td style="text-align:left">POST</td>
+<td style="text-align:left">application/json;charset=UTF-8</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Path parameters:</strong>  </p>
+<ul>
+<li>N/A</li>
+</ul>
+<p><strong>Querystring:</strong>  </p>
+<ul>
+<li>N/A</li>
+</ul>
+<p><strong>Request body:</strong>  </p>
+<pre><code class="lang-json">{
+    <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;劉備&quot;</span>,
+    <span class="hljs-string">&quot;azana&quot;</span> : <span class="hljs-string">&quot;玄徳&quot;</span>,
+    <span class="hljs-string">&quot;statue&quot;</span> : <span class="hljs-string">&quot;『三国志演義』の中心人物。黄巾の乱の鎮圧で功績を挙げ、その後は各地を転戦した。諸葛亮の天下三分の計に基づいて益州の地を得て勢力を築き、後漢の滅亡を受けて皇帝に即位して、蜀漢を建国した。その後の、魏・呉・蜀漢による三国鼎立の時代を生じさせた。中庸を心情とする。&quot;</span>,
+    <span class="hljs-string">&quot;hobby&quot;</span> : <span class="hljs-string">&quot;狗馬や音楽、見栄えがある衣服を着ることを好んでいた。&quot;</span>,
+    <span class="hljs-string">&quot;fromTo&quot;</span> : <span class="hljs-string">&quot;延熹4年（161年） - 章武3年4月24日（223年6月10日）&quot;</span>,
+    <span class="hljs-string">&quot;arms&quot;</span> : [
+        {
+            <span class="hljs-string">&quot;warloadsId&quot;</span> : <span class="hljs-string">&quot;1&quot;</span>,
+            <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;雌雄一対の剣&quot;</span>,
+            <span class="hljs-string">&quot;text&quot;</span> : <span class="hljs-string">&quot;劉備（玄徳）愛用の剣。雌雄一対の剣は、桃園の誓いで劉備（玄徳）、関羽、張飛が義兄弟の契りを交わした後、黄巾賊討伐の為に先祖から伝わる剣に似せた二振りの剣。三国志の中では劉備（玄徳）が戦う場面はほとんどないので、雌雄一対の剣を二刀流のように使用したかは定かではない。&quot;</span>
+        }
+    ],
+    <span class="hljs-string">&quot;images&quot;</span> : [
+        {
+            <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-string">&quot;1&quot;</span>,
+            <span class="hljs-string">&quot;path&quot;</span> : <span class="hljs-string">&quot;/home/work/20210401/aiueo.png&quot;</span>,
+        }
+    ]
+}
+</code></pre>
+<ul>
+<li>説明</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Size</th>
+<th>Mandatory</th>
+<th>Search</th>
+<th>Default</th>
+<th>Remarks</th>
+<th>Format</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>N/A</td>
+<td>yes</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>PATIENTS.KARTE_NUMBER</td>
+<td>半角数値</td>
+</tr>
+<tr>
+<td>azana</td>
+<td>string</td>
+<td>250</td>
+<td>yes</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>編集者のID</td>
+<td>文字列</td>
+</tr>
+<tr>
+<td>statue</td>
+<td>string</td>
+<td>10</td>
+<td>no</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>保険種類</td>
+<td>固定値（健康保険, 自賠責, 労災）</td>
+</tr>
+<tr>
+<td>hobby</td>
+<td>string</td>
+<td>N/A</td>
+<td>no</td>
+<td>N/A</td>
+<td>now()</td>
+<td>作成日時</td>
+<td></td>
+</tr>
+<tr>
+<td>fromTo</td>
+<td>string</td>
+<td>N/A</td>
+<td>no</td>
+<td>N/A</td>
+<td>now()</td>
+<td>最終更新日時</td>
+<td></td>
+</tr>
+<tr>
+<td>arms[].warloadsId</td>
+<td>string</td>
+<td>20</td>
+<td>yes</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>転帰（内容）</td>
+<td></td>
+</tr>
+<tr>
+<td>arms[].name</td>
+<td>string</td>
+<td>N/A</td>
+<td>no</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>終了日時</td>
+<td></td>
+</tr>
+<tr>
+<td>arms[].text</td>
+<td>string</td>
+<td>N/A</td>
+<td>yes</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>初検日</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response success:</strong>  </p>
+<ul>
+<li>サンプルオブジェクト  </li>
+</ul>
+<pre><code class="lang-JSON">{
+    <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-number">7</span>,
+    <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;劉備&quot;</span>,
+    <span class="hljs-string">&quot;azana&quot;</span>: <span class="hljs-string">&quot;玄徳&quot;</span>,
+    <span class="hljs-string">&quot;statue&quot;</span>: <span class="hljs-string">&quot;『三国志演義』の中心人物。黄巾の乱の鎮圧で功績を挙げ、その後は各地を転戦した。諸葛亮の天下三分の計に基づいて益州の地を得て勢力を築き、後漢の滅亡を受けて皇帝に即位して、蜀漢を建国した。その後の、魏・呉・蜀漢による三国鼎立の時代を生じさせた。中庸を心情とする。&quot;</span>,
+    <span class="hljs-string">&quot;hobby&quot;</span>: <span class="hljs-string">&quot;狗馬や音楽、見栄えがある衣服を着ることを好んでいた。&quot;</span>,
+    <span class="hljs-string">&quot;newrecord&quot;</span>: <span class="hljs-string">&quot;延熹4年（161年） - 章武3年4月24日（223年6月10日）&quot;</span>
+}
+</code></pre>
+<ul>
+<li>説明</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">JSON Key</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Size</th>
+<th style="text-align:left">Mandatory</th>
+<th style="text-align:left">Sort</th>
+<th style="text-align:left">Note</th>
+<th style="text-align:left">Format</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">id</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">yes</td>
+<td style="text-align:left">no</td>
+<td style="text-align:left">TREATMENT_PLANS.ID</td>
+<td style="text-align:left">UUIDv4</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response failure:</strong>  </p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">HTTP Status</th>
+<th style="text-align:left">Title</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">400</td>
+<td style="text-align:left">BadRequestException</td>
+</tr>
+<tr>
+<td style="text-align:left">404</td>
+<td style="text-align:left">NotFoundException</td>
+</tr>
+<tr>
+<td style="text-align:left">405</td>
+<td style="text-align:left">MethodNotAllowedException</td>
+</tr>
+<tr>
+<td style="text-align:left">413</td>
+<td style="text-align:left">PayloadTooLargeException</td>
+</tr>
+<tr>
+<td style="text-align:left">415</td>
+<td style="text-align:left">UnsupportedContentTypeException</td>
+</tr>
+<tr>
+<td style="text-align:left">500</td>
+<td style="text-align:left">InternalServerErrorException</td>
+</tr>
+<tr>
+<td style="text-align:left">501</td>
+<td style="text-align:left">NotImplementedException</td>
+</tr>
+</tbody>
+</table>
+<h3 id="get-kingdoms-warloads">get-kingdoms-warloads</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Method</th>
+<th style="text-align:left">Content-Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">武将情報参照処理</td>
+<td style="text-align:left">GET</td>
+<td style="text-align:left">application/json;charset=UTF-8</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Path parameters:</strong>  </p>
+<ul>
+<li>N/A</li>
+</ul>
+<p><strong>Querystring:</strong>  </p>
+<ul>
+<li>N/A</li>
+</ul>
+<p><strong>Request body:</strong>  </p>
+<pre><code class="lang-json">{
+    <span class="hljs-string">&quot;found&quot;</span> : <span class="hljs-number">1</span>,
+    <span class="hljs-string">&quot;currentPage&quot;</span> : <span class="hljs-number">1</span>,
+    <span class="hljs-string">&quot;lastPage&quot;</span>: <span class="hljs-number">2</span>,
+    <span class="hljs-string">&quot;data&quot;</span> : [
+        {
+            <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;劉備&quot;</span>,
+            <span class="hljs-string">&quot;azana&quot;</span> : <span class="hljs-string">&quot;玄徳&quot;</span>,
+            <span class="hljs-string">&quot;statue&quot;</span> : <span class="hljs-string">&quot;『三国志演義』の中心人物。黄巾の乱の鎮圧で功績を挙げ、その後は各地を転戦した。諸葛亮の天下三分の計に基づいて益州の地を得て勢力を築き、後漢の滅亡を受けて皇帝に即位して、蜀漢を建国した。その後の、魏・呉・蜀漢による三国鼎立の時代を生じさせた。中庸を心情とする。&quot;</span>,
+            <span class="hljs-string">&quot;hobby&quot;</span> : <span class="hljs-string">&quot;狗馬や音楽、見栄えがある衣服を着ることを好んでいた。&quot;</span>,
+            <span class="hljs-string">&quot;fromTo&quot;</span> : <span class="hljs-string">&quot;延熹4年（161年） - 章武3年4月24日（223年6月10日）&quot;</span>,
+            <span class="hljs-string">&quot;arms&quot;</span> : [
+                {
+                    <span class="hljs-string">&quot;warloadsId&quot;</span> : <span class="hljs-string">&quot;1&quot;</span>,
+                    <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;雌雄一対の剣&quot;</span>,
+                    <span class="hljs-string">&quot;text&quot;</span> : <span class="hljs-string">&quot;劉備（玄徳）愛用の剣。雌雄一対の剣は、桃園の誓いで劉備（玄徳）、関羽、張飛が義兄弟の契りを交わした後、黄巾賊討伐の為に先祖から伝わる剣に似せた二振りの剣。三国志の中では劉備（玄徳）が戦う場面はほとんどないので、雌雄一対の剣を二刀流のように使用したかは定かではない。&quot;</span>
+                }
+            ],
+            <span class="hljs-string">&quot;images&quot;</span> : [
+                {
+                    <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-string">&quot;1&quot;</span>,
+                    <span class="hljs-string">&quot;path&quot;</span> : <span class="hljs-string">&quot;/home/work/20210401/aiueo.png&quot;</span>,
+                }
+            ]
+        }
+    ]
+}
+</code></pre>
+<ul>
+<li>説明</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Size</th>
+<th>Mandatory</th>
+<th>Search</th>
+<th>Default</th>
+<th>Remarks</th>
+<th>Format</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>found</td>
+<td>number</td>
+<td>N/A</td>
+<td>yes</td>
+<td>N/A</td>
+<td>総件数</td>
+<td>半角数値</td>
+<td></td>
+</tr>
+<tr>
+<td>currentpage</td>
+<td>number</td>
+<td>N/A</td>
+<td>yes</td>
+<td>N/A</td>
+<td>現在の頁番号</td>
+<td>半角数値</td>
+<td></td>
+</tr>
+<tr>
+<td>lastPage</td>
+<td>number</td>
+<td>N/A</td>
+<td>yes</td>
+<td>N/A</td>
+<td>最後の頁番号</td>
+<td>半角数値</td>
+<td></td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>N/A</td>
+<td>yes</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>PATIENTS.KARTE_NUMBER</td>
+<td>半角数値</td>
+</tr>
+<tr>
+<td>azana</td>
+<td>string</td>
+<td>250</td>
+<td>yes</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>編集者のID</td>
+<td>文字列</td>
+</tr>
+<tr>
+<td>statue</td>
+<td>string</td>
+<td>10</td>
+<td>no</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>保険種類</td>
+<td>固定値（健康保険, 自賠責, 労災）</td>
+</tr>
+<tr>
+<td>hobby</td>
+<td>string</td>
+<td>N/A</td>
+<td>no</td>
+<td>N/A</td>
+<td>now()</td>
+<td>作成日時</td>
+<td></td>
+</tr>
+<tr>
+<td>fromTo</td>
+<td>string</td>
+<td>N/A</td>
+<td>no</td>
+<td>N/A</td>
+<td>now()</td>
+<td>最終更新日時</td>
+<td></td>
+</tr>
+<tr>
+<td>arms[].warloadsId</td>
+<td>string</td>
+<td>20</td>
+<td>yes</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>転帰（内容）</td>
+<td></td>
+</tr>
+<tr>
+<td>arms[].name</td>
+<td>string</td>
+<td>N/A</td>
+<td>no</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>終了日時</td>
+<td></td>
+</tr>
+<tr>
+<td>arms[].text</td>
+<td>string</td>
+<td>N/A</td>
+<td>yes</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>初検日</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response success:</strong>  </p>
+<ul>
+<li>サンプルオブジェクト  </li>
+</ul>
+<pre><code class="lang-JSON">{
+    <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-number">7</span>,
+    <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;劉備&quot;</span>,
+    <span class="hljs-string">&quot;azana&quot;</span>: <span class="hljs-string">&quot;玄徳&quot;</span>,
+    <span class="hljs-string">&quot;statue&quot;</span>: <span class="hljs-string">&quot;『三国志演義』の中心人物。黄巾の乱の鎮圧で功績を挙げ、その後は各地を転戦した。諸葛亮の天下三分の計に基づいて益州の地を得て勢力を築き、後漢の滅亡を受けて皇帝に即位して、蜀漢を建国した。その後の、魏・呉・蜀漢による三国鼎立の時代を生じさせた。中庸を心情とする。&quot;</span>,
+    <span class="hljs-string">&quot;hobby&quot;</span>: <span class="hljs-string">&quot;狗馬や音楽、見栄えがある衣服を着ることを好んでいた。&quot;</span>,
+    <span class="hljs-string">&quot;newrecord&quot;</span>: <span class="hljs-string">&quot;延熹4年（161年） - 章武3年4月24日（223年6月10日）&quot;</span>
+}
+</code></pre>
+<ul>
+<li>説明</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">JSON Key</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Size</th>
+<th style="text-align:left">Mandatory</th>
+<th style="text-align:left">Sort</th>
+<th style="text-align:left">Note</th>
+<th style="text-align:left">Format</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">id</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">yes</td>
+<td style="text-align:left">no</td>
+<td style="text-align:left">TREATMENT_PLANS.ID</td>
+<td style="text-align:left">UUIDv4</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response failure:</strong>  </p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">HTTP Status</th>
+<th style="text-align:left">Title</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">400</td>
+<td style="text-align:left">BadRequestException</td>
+</tr>
+<tr>
+<td style="text-align:left">404</td>
+<td style="text-align:left">NotFoundException</td>
+</tr>
+<tr>
+<td style="text-align:left">405</td>
+<td style="text-align:left">MethodNotAllowedException</td>
+</tr>
+<tr>
+<td style="text-align:left">413</td>
+<td style="text-align:left">PayloadTooLargeException</td>
+</tr>
+<tr>
+<td style="text-align:left">415</td>
+<td style="text-align:left">UnsupportedContentTypeException</td>
+</tr>
+<tr>
+<td style="text-align:left">500</td>
+<td style="text-align:left">InternalServerErrorException</td>
+</tr>
+<tr>
+<td style="text-align:left">501</td>
+<td style="text-align:left">NotImplementedException</td>
+</tr>
+</tbody>
+</table>
+<h3 id="post-kingdoms">post-kingdoms</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Method</th>
+<th style="text-align:left">Content-Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">国家登録</td>
+<td style="text-align:left">POST</td>
+<td style="text-align:left">application/json;charset=UTF-8</td>
+</tr>
+</tbody>
+</table>
+<h3 id="uri-endpoint">URI-endpoint</h3>
+<p>/kingdoms</p>
+<p><strong>Process:</strong><br>1.国情報を<strong>KINGDOMS</strong>テーブルに登録する。このAPIではここまで。</p>
+<p><strong>Path parameters.</strong>  </p>
+<ul>
+<li>N/A</li>
+</ul>
+<p><strong>Querystring:</strong>  </p>
+<ul>
+<li>N/A</li>
+</ul>
+<p><strong>Request body:</strong>  </p>
+<pre><code class="lang-json">
+
+</code></pre>
+<p><strong>Response success:</strong>  </p>
+<ul>
+<li>サンプルオブジェクト  </li>
+</ul>
+<pre><code class="lang-JSON">
+
+</code></pre>
+<h3 id="put-kingdoms-eras">put-kingdoms-eras</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Method</th>
+<th style="text-align:left">Content-Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">国家登録</td>
+<td style="text-align:left">POST</td>
+<td style="text-align:left">application/json;charset=UTF-8</td>
+</tr>
+</tbody>
+</table>
+<h3 id="uri-endpoint">URI-endpoint</h3>
+<p>/kingdoms</p>
+<p><strong>Process:</strong><br>1.国情報を<strong>KINGDOMS</strong>テーブルに登録する。このAPIではここまで。</p>
+<p><strong>Path parameters.</strong>  </p>
+<ul>
+<li>N/A</li>
+</ul>
+<p><strong>Querystring:</strong>  </p>
+<ul>
+<li>N/A</li>
+</ul>
+<p><strong>Request body:</strong>  </p>
+<pre><code class="lang-json">
+
+</code></pre>
+<p><strong>Response success:</strong>  </p>
+<ul>
+<li>サンプルオブジェクト  </li>
+</ul>
+<pre><code class="lang-JSON">
+
+</code></pre>
+<h3 id="put-kingdoms-territories">put-kingdoms-territories</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Method</th>
+<th style="text-align:left">Content-Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">国家登録</td>
+<td style="text-align:left">POST</td>
+<td style="text-align:left">application/json;charset=UTF-8</td>
+</tr>
+</tbody>
+</table>
+<h3 id="uri-endpoint">URI-endpoint</h3>
+<p>/kingdoms</p>
+<p><strong>Process:</strong><br>1.国情報を<strong>KINGDOMS</strong>テーブルに登録する。このAPIではここまで。</p>
+<p><strong>Path parameters.</strong>  </p>
+<ul>
+<li>N/A</li>
+</ul>
+<p><strong>Querystring:</strong>  </p>
+<ul>
+<li>N/A</li>
+</ul>
+<p><strong>Request body:</strong>  </p>
+<pre><code class="lang-json">
+
+</code></pre>
+<p><strong>Response success:</strong>  </p>
+<ul>
+<li>サンプルオブジェクト  </li>
+</ul>
+<pre><code class="lang-JSON">
+
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="index.md" class="navigation navigation-prev " aria-label="Previous page: 三国志API設計">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="dd_er_diagram.html" class="navigation navigation-next " aria-label="Next page: E-R図">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"三国志API-RESTful API Design","level":"5.2.1","depth":2,"next":{"title":"E-R図","level":"5.2.2","depth":2,"path":"30_design/dd/dd_sangokushiApi/dd_er_diagram.md","ref":"30_design/dd/dd_sangokushiApi/dd_er_diagram.md","articles":[]},"previous":{"title":"三国志API設計","level":"5.2","depth":1,"path":"30_design/dd/dd_sangokushiApi/index.md","ref":"30_design/dd/dd_sangokushiApi/index.md","articles":[{"title":"三国志API-RESTful API Design","level":"5.2.1","depth":2,"path":"30_design/dd/dd_sangokushiApi/dd_restapi.md","ref":"30_design/dd/dd_sangokushiApi/dd_restapi.md","articles":[]},{"title":"E-R図","level":"5.2.2","depth":2,"path":"30_design/dd/dd_sangokushiApi/dd_er_diagram.md","ref":"30_design/dd/dd_sangokushiApi/dd_er_diagram.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"30_design/dd/dd_sangokushiApi/dd_restapi.md","mtime":"2021-04-25T06:46:10.809Z","type":"markdown"},"gitbook":{"version":"3.6.17","time":"2021-05-10T12:08:23.112Z"},"basePath":"../../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../../../gitbook/gitbook.js"></script>
+    <script src="../../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

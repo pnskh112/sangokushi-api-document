@@ -487,17 +487,58 @@
 </ul>
 <h5 id="単一編集テーブル">単一編集テーブル</h5>
 <p>雑多なコード体系の寄せ集め</p>
-<p>例）単一参照テーブルの例
-| コードタイプ | コード値 | コード内容 |
-|---------|-------|-------|
-| comp_cd | c0001 | A 商事 |
-| comp_cd | c0001 | B 化学 |
-| comp_cd | c0001 | C 建設 |
-| pref_cd | 01 | 北海道 |
-| pref_cd | 02 | 青森 |
-| pref_cd | 47 | 沖縄 |
-| sex_cd | 1 | 男 |
-| sex_cd | 2 | 女 |</p>
+<p>例）単一参照テーブルの例</p>
+<table>
+<thead>
+<tr>
+<th>コードタイプ</th>
+<th>コード値</th>
+<th>コード内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>comp_cd</td>
+<td>c0001</td>
+<td>A 商事</td>
+</tr>
+<tr>
+<td>comp_cd</td>
+<td>c0001</td>
+<td>B 化学</td>
+</tr>
+<tr>
+<td>comp_cd</td>
+<td>c0001</td>
+<td>C 建設</td>
+</tr>
+<tr>
+<td>pref_cd</td>
+<td>01</td>
+<td>北海道</td>
+</tr>
+<tr>
+<td>pref_cd</td>
+<td>02</td>
+<td>青森</td>
+</tr>
+<tr>
+<td>pref_cd</td>
+<td>47</td>
+<td>沖縄</td>
+</tr>
+<tr>
+<td>sex_cd</td>
+<td>1</td>
+<td>男</td>
+</tr>
+<tr>
+<td>sex_cd</td>
+<td>2</td>
+<td>女</td>
+</tr>
+</tbody>
+</table>
 <p>あらゆるタイプのマスタテーブルを、一つのテーブルに放り込んでごった煮にしたもの
 なんのコード体系であるかを識別するためにコードの名称が必要になる。
 が、「コード内容」という一般化した列名にせざるをえない。</p>
@@ -520,23 +561,85 @@
 <h6 id="水平分割">水平分割</h6>
 <p>レコード単位にテーブルを分割すること。
 売上テーブルを水平分割した例</p>
-<p>売上テーブル
-| 年度 | 会社コード | 売上（億円） |
-| ---- | ----- | ------ |
-| 2001 | c001 | 44 |
-| 2001 | c002 | 43 |
-| 2001 | c004 | 46 |
-| 2002 | c001 | 52 |
-| 2002 | c002 | 55 |
-| 2003 | c001 | 46 |
-| 2003 | c002 | 32 |
-| 2003 | c003 | 56 |</p>
-<p>年度売上テーブル(2001)
-| 年度 | 会社コード | 売上（億円） |
-| ---- | ----- | ------ |
-| 2001 | c001 | 44 |
-| 2001 | c002 | 43 |
-| 2001 | c004 | 46 |</p>
+<p>売上テーブル</p>
+<table>
+<thead>
+<tr>
+<th>年度</th>
+<th>会社コード</th>
+<th>売上（億円）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2001</td>
+<td>c001</td>
+<td>44</td>
+</tr>
+<tr>
+<td>2001</td>
+<td>c002</td>
+<td>43</td>
+</tr>
+<tr>
+<td>2001</td>
+<td>c004</td>
+<td>46</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>c001</td>
+<td>52</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>c002</td>
+<td>55</td>
+</tr>
+<tr>
+<td>2003</td>
+<td>c001</td>
+<td>46</td>
+</tr>
+<tr>
+<td>2003</td>
+<td>c002</td>
+<td>32</td>
+</tr>
+<tr>
+<td>2003</td>
+<td>c003</td>
+<td>56</td>
+</tr>
+</tbody>
+</table>
+<p>年度売上テーブル(2001)</p>
+<table>
+<thead>
+<tr>
+<th>年度</th>
+<th>会社コード</th>
+<th>売上（億円）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2001</td>
+<td>c001</td>
+<td>44</td>
+</tr>
+<tr>
+<td>2001</td>
+<td>c002</td>
+<td>43</td>
+</tr>
+<tr>
+<td>2001</td>
+<td>c004</td>
+<td>46</td>
+</tr>
+</tbody>
+</table>
 <p>欠点：</p>
 <ul>
 <li>分割する意味的な理由がない
@@ -554,30 +657,135 @@
 </ul>
 <h6 id="垂直分割">垂直分割</h6>
 <p>列単位にテーブルを分割すること。
-社員
-| 会社コード | 社員 ID | 社員名 | 年齢 | 部署コード |
-|-------|-------|------|----|-------|
-| c001  | 000a  | 加藤  | 40 | d01   |
-| c002  | 000b  | 藤本  | 32 | d02   |
-| c002  | 001f  | 三島  | 50 | d03   |
-| c002  | 009f  | 斉藤  | 47 | d01   |
-| c002  | 010a  | 田島  | 25 | d04   |</p>
-<p>社員１
-| 会社コード | 社員 ID | 年齢 |
-|-------|-------|----|
-| c001  | 000a  | 40 |
-| c002  | 000b  | 32 |
-| c002  | 001f  | 50 |
-| c002  | 009f  | 47 |
-| c002  | 010a  | 25 |</p>
-<p>社員２
-| 会社コード | 社員 ID | 社員名 | 部署コード |
-|-------|-------|------|-------|
-| c001  | 000a  | 加藤  | d01   |
-| c002  | 000b  | 藤本  | d02   |
-| c002  | 001f  | 三島  | d03   |
-| c002  | 009f  | 斉藤  | d01   |
-| c002  | 010a  | 田島  | d04   |</p>
+社員</p>
+<table>
+<thead>
+<tr>
+<th>会社コード</th>
+<th>社員 ID</th>
+<th>社員名</th>
+<th>年齢</th>
+<th>部署コード</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>c001</td>
+<td>000a</td>
+<td>加藤</td>
+<td>40</td>
+<td>d01</td>
+</tr>
+<tr>
+<td>c002</td>
+<td>000b</td>
+<td>藤本</td>
+<td>32</td>
+<td>d02</td>
+</tr>
+<tr>
+<td>c002</td>
+<td>001f</td>
+<td>三島</td>
+<td>50</td>
+<td>d03</td>
+</tr>
+<tr>
+<td>c002</td>
+<td>009f</td>
+<td>斉藤</td>
+<td>47</td>
+<td>d01</td>
+</tr>
+<tr>
+<td>c002</td>
+<td>010a</td>
+<td>田島</td>
+<td>25</td>
+<td>d04</td>
+</tr>
+</tbody>
+</table>
+<p>社員１</p>
+<table>
+<thead>
+<tr>
+<th>会社コード</th>
+<th>社員 ID</th>
+<th>年齢</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>c001</td>
+<td>000a</td>
+<td>40</td>
+</tr>
+<tr>
+<td>c002</td>
+<td>000b</td>
+<td>32</td>
+</tr>
+<tr>
+<td>c002</td>
+<td>001f</td>
+<td>50</td>
+</tr>
+<tr>
+<td>c002</td>
+<td>009f</td>
+<td>47</td>
+</tr>
+<tr>
+<td>c002</td>
+<td>010a</td>
+<td>25</td>
+</tr>
+</tbody>
+</table>
+<p>社員２</p>
+<table>
+<thead>
+<tr>
+<th>会社コード</th>
+<th>社員 ID</th>
+<th>社員名</th>
+<th>部署コード</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>c001</td>
+<td>000a</td>
+<td>加藤</td>
+<td>d01</td>
+</tr>
+<tr>
+<td>c002</td>
+<td>000b</td>
+<td>藤本</td>
+<td>d02</td>
+</tr>
+<tr>
+<td>c002</td>
+<td>001f</td>
+<td>三島</td>
+<td>d03</td>
+</tr>
+<tr>
+<td>c002</td>
+<td>009f</td>
+<td>斉藤</td>
+<td>d01</td>
+</tr>
+<tr>
+<td>c002</td>
+<td>010a</td>
+<td>田島</td>
+<td>d04</td>
+</tr>
+</tbody>
+</table>
 <p>この分割は正規化でこそないものの、無損失分解ではあるので、
 結合によって元の「社員」テーブルを復元することもできる。
 この垂直分割にも、分割することが論理的な意味を持たないと言う水平分割と同様の
@@ -706,7 +914,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"バッドノウハウ","level":"2.1.3","depth":2,"next":{"title":"マテリアライズドビュー","level":"2.1.4","depth":2,"path":"10_requirement/studying/logicalDesignAndNormalization/materializedView.md","ref":"10_requirement/studying/logicalDesignAndNormalization/materializedView.md","articles":[]},"previous":{"title":"正規化","level":"2.1.2","depth":2,"path":"10_requirement/studying/logicalDesignAndNormalization/normalization.md","ref":"10_requirement/studying/logicalDesignAndNormalization/normalization.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"10_requirement/studying/logicalDesignAndNormalization/badKnowHowPattern.md","mtime":"2021-03-08T17:43:18.733Z","type":"markdown"},"gitbook":{"version":"3.6.17","time":"2021-03-17T14:42:17.186Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"バッドノウハウ","level":"2.1.3","depth":2,"next":{"title":"マテリアライズドビュー","level":"2.1.4","depth":2,"path":"10_requirement/studying/logicalDesignAndNormalization/materializedView.md","ref":"10_requirement/studying/logicalDesignAndNormalization/materializedView.md","articles":[]},"previous":{"title":"正規化","level":"2.1.2","depth":2,"path":"10_requirement/studying/logicalDesignAndNormalization/normalization.md","ref":"10_requirement/studying/logicalDesignAndNormalization/normalization.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"10_requirement/studying/logicalDesignAndNormalization/badKnowHowPattern.md","mtime":"2021-05-08T07:09:54.794Z","type":"markdown"},"gitbook":{"version":"3.6.17","time":"2021-05-10T12:09:55.097Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

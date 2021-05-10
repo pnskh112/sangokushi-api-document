@@ -603,7 +603,7 @@
 </tbody>
 </table>
 <ul>
-<li>PERIODS（時代区分テーブル）</li>
+<li>ERAS（時代区分テーブル）</li>
 </ul>
 <table>
 <thead>
@@ -642,9 +642,17 @@
 <td></td>
 </tr>
 <tr>
-<td>年代</td>
-<td>AGE</td>
-<td>VARCHAR(20)</td>
+<td>開始年度</td>
+<td>START_YEAR</td>
+<td>number</td>
+<td>N/A</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>終了年度</td>
+<td>END_YEAR</td>
+<td>number</td>
 <td>N/A</td>
 <td>-</td>
 </tr>
@@ -1085,7 +1093,7 @@
 </tbody>
 </table>
 <ul>
-<li>WITTICISMS（名言エピソードテーブル）</li>
+<li>EPISODES（名言エピソードテーブル）</li>
 </ul>
 <table>
 <thead>
@@ -1117,7 +1125,7 @@
 </tr>
 <tr>
 <td>武将コード</td>
-<td>WARLOADS_ID</td>
+<td>EPISODES_ID</td>
 <td>varchar(20)</td>
 <td>N/A</td>
 <td>-</td>
@@ -1216,7 +1224,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"三国志APIサーバ-データベースレイアウト","level":"5.1.1","depth":2,"next":{"title":"三国志API設計","level":"5.2","depth":1,"path":"30_design/dd/dd_sangokushiApi/index.md","ref":"30_design/dd/dd_sangokushiApi/index.md","articles":[{"title":"三国志API-RESTful API Design","level":"5.2.1","depth":2,"path":"30_design/dd/dd_sangokushiApi/dd_restapi.md","ref":"30_design/dd/dd_sangokushiApi/dd_restapi.md","articles":[]},{"title":"E-R図","level":"5.2.2","depth":2,"path":"30_design/dd/dd_sangokushiApi/dd_er_diagram.md","ref":"30_design/dd/dd_sangokushiApi/dd_er_diagram.md","articles":[]}]},"previous":{"title":"三国志APIサーバ","level":"5.1","depth":1,"path":"30_design/dd/dd_sangokushiApi/index.md","ref":"30_design/dd/dd_sangokushiApi/index.md","articles":[{"title":"三国志APIサーバ-データベースレイアウト","level":"5.1.1","depth":2,"path":"30_design/dd/dd_sangokushiApi/dd_entity_layout.md","ref":"30_design/dd/dd_sangokushiApi/dd_entity_layout.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"30_design/dd/dd_sangokushiApi/dd_entity_layout.md","mtime":"2021-03-17T14:12:14.393Z","type":"markdown"},"gitbook":{"version":"3.6.17","time":"2021-03-17T14:42:17.186Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"三国志APIサーバ-データベースレイアウト","level":"5.1.1","depth":2,"next":{"title":"三国志API設計","level":"5.2","depth":1,"path":"30_design/dd/dd_sangokushiApi/index.md","ref":"30_design/dd/dd_sangokushiApi/index.md","articles":[{"title":"三国志API-RESTful API Design","level":"5.2.1","depth":2,"path":"30_design/dd/dd_sangokushiApi/dd_restapi.md","ref":"30_design/dd/dd_sangokushiApi/dd_restapi.md","articles":[]},{"title":"E-R図","level":"5.2.2","depth":2,"path":"30_design/dd/dd_sangokushiApi/dd_er_diagram.md","ref":"30_design/dd/dd_sangokushiApi/dd_er_diagram.md","articles":[]}]},"previous":{"title":"三国志APIサーバ","level":"5.1","depth":1,"path":"30_design/dd/dd_sangokushiApi/index.md","ref":"30_design/dd/dd_sangokushiApi/index.md","articles":[{"title":"三国志APIサーバ-データベースレイアウト","level":"5.1.1","depth":2,"path":"30_design/dd/dd_sangokushiApi/dd_entity_layout.md","ref":"30_design/dd/dd_sangokushiApi/dd_entity_layout.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"30_design/dd/dd_sangokushiApi/dd_entity_layout.md","mtime":"2021-04-17T12:06:46.209Z","type":"markdown"},"gitbook":{"version":"3.6.17","time":"2021-05-10T12:09:55.097Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

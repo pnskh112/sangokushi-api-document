@@ -448,17 +448,13 @@
                                 <!-- TOC -->
 <ul>
 <li><a href="#apiDesign">API設計</a><ul>
+<li><a href="#prerequisites">Prerequisites</a></li>
 <li><a href="#overview">Overview</a></li>
 <li><a href="#referring-link">Referring link</a></li>
 <li><a href="#url">URL</a></li>
 <li><a href="#header">Header</a><ul>
 <li><a href="#json-pattern">JSON pattern</a></li>
 <li><a href="#post-sample">POST Sample</a></li>
-<li><a href="#multi-part-pattern">Multi part pattern</a></li>
-</ul>
-</li>
-<li><a href="#error-message">Error Message</a><ul>
-<li><a href="#error-message-layout">Error Message Layout</a></li>
 </ul>
 </li>
 <li><a href="#parameter-explanation">Parameter Explanation</a><ul>
@@ -467,9 +463,43 @@
 </ul>
 </li>
 <li><a href="#treatment-plan">Treatment Plan</a><ul>
-<li><a href="#post-patientsdaily-treatment-plan">POST /patients/daily-treatment-plan</a></li>
-<li><a href="#get-patientsdaily-treatment-plan">GET /patients/daily-treatment-plan</a></li>
-<li><a href="#get-patientsmonthly-treatment-plan">GET /patients/monthly-treatment-plan</a></li>
+<li><a href="#kingdoms">kingdoms</a><ul>
+<li><a href="#post-kingdoms">POST /kingdoms</a> 済</li>
+<li><a href="#post-kingdoms-eras">POST /kingdoms/:kingdoms_id/eras/</a> 途中</li>
+<li><a href="#put-kingdoms-eras">PUT /kingdoms/:kingdoms_id/eras/:eras_id/</a></li>
+<li><a href="#delete-kingdoms-eras">DELETE /kingdoms/:kingdoms_id/eras/:eras_id/</a></li>
+<li><a href="#put-kingdoms-territories">PUT /kingdoms/:kingdoms_id/territories/:territories_id/</a></li>
+<li><a href="#delete-kingdoms-territories">DELETE /kingdoms/:kingdoms_id/territories/:territories_id/</a></li>
+</ul>
+</li>
+<li><a href="#warloads">warloads</a><ul>
+<li><a href="#post-kingdoms-warloads">POST /kingdoms/:kingdoms_id/warloads</a> 済</li>
+<li><a href="#get-kingdoms-warloads">GET /kingdoms/:kingdoms_id/warloads</a> 途中</li>
+</ul>
+</li>
+<li><a href="#episodes">episodes</a><ul>
+<li><a href="#post-warloads-wars">POST /warloads/:warloads_id/episodes/</a> 途中</li>
+<li><a href="#put-warloads-arms">PUT /warloads/:warloads_id/episodes/:episodes_id/</a></li>
+<li><a href="#delete-warloads-arms">DELETE /warloads/:warloads_id/episodes/:episodes_id/</a></li>
+<li><a href="#put-warloads-images">PUT /warloads/:warloads_id/images/:images_id</a></li>
+<li><a href="#delete-warloads-images">DELETE /warloads/:warloads_id/images/:images_id</a></li>
+<li><a href="#put-warloads-positions">PUT /warloads/:warloads_id/positions/:positions_id</a></li>
+<li><a href="#delete-warloads-positions">DELETE /warloads/:warloads_id/positions/:positions_id</a></li>
+<li><a href="#put-warloads-inaugurations">PUT /warloads/:warloads_id/inaugurations/:inaugurations_id</a></li>
+</ul>
+</li>
+<li><a href="#arms">arms</a><ul>
+<li><a href="#post-warloads-arms">POST /warloads/:warloads_id/arms/:arms_id</a> 途中</li>
+<li><a href="#put-warloads-arms">PUT /warloads/:warloads_id/arms/:arms_id</a></li>
+<li><a href="#delete-warloads-arms">DELETE /warloads/:warloads_id/arms/:arms_id</a></li>
+</ul>
+</li>
+<li><a href="#wars">wars</a><ul>
+<li><a href="#post-episodes-wars">POST /episodes/:episodes_id/wars</a></li>
+<li><a href="#put-episodes-arms">PUT /episodes/:episodes_id/wars/:wars_id</a></li>
+<li><a href="#delete-episodes-arms">DELETE /episodes/:episodes_id/wars/:wars_id</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -477,9 +507,40 @@
 </ul>
 <!-- /TOC -->
 <h3 id="apidesign">apiDesign</h3>
+<h3 id="prerequisites">prerequisites</h3>
+<p>最低限のminimumな範囲で実装を終え、必要であれば都度機能を追加するようにすること。</p>
 <h4 id="overview">Overview</h4>
 <ul>
 <li>本ドキュメントでは、API インターフェースの仕様書に関して記載する。</li>
+</ul>
+<h4 id="apiprerequisites">API_Prerequisites</h4>
+<ul>
+<li>短く入力しやすい（冗長なパスを含まない）</li>
+<li>人間が読んで理解できる（省略しない）</li>
+<li>全て小文字</li>
+<li>単語はハイフンで繋げる</li>
+<li>単語は複数形を使う</li>
+<li>エンコード必要な文字を使わない</li>
+<li>サーバ側のアーキテクチャが反映されてない</li>
+<li>改造しやすい</li>
+<li><p>ルールが統一されている</p>
+</li>
+<li><p>クエリパラメータ</p>
+</li>
+</ul>
+<p>URLの末尾にあるパラメータ
+<code>GET http://api.example.com/users?page=3</code></p>
+<ul>
+<li>パスパラメータ</li>
+</ul>
+<p>URL中に埋め込まれるパラメータ
+<code>GET http://api.example.com/users/123</code></p>
+<ul>
+<li>クエリパラメータとするかどうかの判断基準</li>
+<li>一意なリソースを表すのに必要かどうか　パスパラメータを利用</li>
+<li>省略可能かどうか　クエリパラメータを利用
+例）検索条件（絞り込み条件）はパスに含めない
+　　複数考えられるのでパスには含めず、クエリパラメータで持たせる</li>
 </ul>
 <h2 id="referring-link">Referring link</h2>
 <ul>
@@ -494,40 +555,9 @@
 <ul>
 <li>HTTP ヘッダ情報は下記の通りとなる。</li>
 </ul>
-<h3 id="json-pattern">JSON pattern</h3>
-<ul>
-<li>R が利用する共通鍵ハッシュ値には、 `` でのハッシュ値をヘッダーに渡す。</li>
-<li>タブレットが利用する <code>GET /tablets/registration</code> には<code>X-TabletId</code>は不必要</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">key</th>
-<th style="text-align:left">description</th>
-<th style="text-align:left">mandatory</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">Accept</td>
-<td style="text-align:left">application/json</td>
-<td style="text-align:left">yes</td>
-</tr>
-<tr>
-<td style="text-align:left">Content-Type</td>
-<td style="text-align:left">application/json;charset=UTF-8</td>
-<td style="text-align:left">yes</td>
-</tr>
-<tr>
-<td style="text-align:left">Timezone</td>
-<td style="text-align:left">+09:00 or Asia/Tokyo</td>
-<td style="text-align:left">no</td>
-</tr>
-</tbody>
-</table>
+<p>TBD</p>
 <h3 id="post-sample">POST Sample</h3>
-<pre><code class="lang-sh">chcp 65001
-curl -v -X POST \
+<pre><code class="lang-sh">curl -v -X POST \
     -H <span class="hljs-string">&quot;Accept: application/json&quot;</span>  \
     -H <span class="hljs-string">&quot;Content-Type: application/json;charset=UTF-8&quot;</span>  \
     -d <span class="hljs-string">&apos;{
@@ -535,108 +565,10 @@ curl -v -X POST \
     }&apos;</span> \
     https://{fqdn}/api/
 </code></pre>
-<h3 id="multi-part-pattern">Multi part pattern</h3>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">key</th>
-<th style="text-align:left">description</th>
-<th style="text-align:left">mandatory</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">Content-Type</td>
-<td style="text-align:left">multipart/form-data</td>
-<td style="text-align:left">yes</td>
-</tr>
-</tbody>
-</table>
 <h2 id="error-message">Error Message</h2>
 <ul>
 <li>エラーメッセージに関する説明を記載する。</li>
 </ul>
-<h3 id="error-message-layout">Error Message Layout</h3>
-<p><strong>JSON:</strong>  </p>
-<pre><code class="lang-json">{
-    <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-string">&quot;400-001&quot;</span>,
-    <span class="hljs-string">&quot;title&quot;</span> : <span class="hljs-string">&quot;BadRequestException&quot;</span>,
-    <span class="hljs-string">&quot;message&quot;</span> : <span class="hljs-string">&quot;Given parameter ({field name} : {value}) was invalid format.&quot;</span>
-}
-</code></pre>
-<p><strong>Message list:</strong>  </p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">HTTP Status</th>
-<th style="text-align:left">Code</th>
-<th style="text-align:left">Title</th>
-<th style="text-align:left">Message</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">400</td>
-<td style="text-align:left">400-001</td>
-<td style="text-align:left">BadRequestException</td>
-<td style="text-align:left">Given parameter ({field name} : {value}) was invalid format.</td>
-</tr>
-<tr>
-<td style="text-align:left">403</td>
-<td style="text-align:left">403-001</td>
-<td style="text-align:left">ForbiddenException</td>
-<td style="text-align:left">Invalid authorization value in HTTP header.</td>
-</tr>
-<tr>
-<td style="text-align:left">404</td>
-<td style="text-align:left">404-001</td>
-<td style="text-align:left">NotFoundException</td>
-<td style="text-align:left">Given parameter ({field name} : {value}) was not found.</td>
-</tr>
-<tr>
-<td style="text-align:left">405</td>
-<td style="text-align:left">405-001</td>
-<td style="text-align:left">MethodNotAllowedException</td>
-<td style="text-align:left">Attempted to use an unauthorized method.For example, if a URI that is not allowed to use the POST method is accessed by POSTÎ</td>
-</tr>
-<tr>
-<td style="text-align:left">409</td>
-<td style="text-align:left">409-001</td>
-<td style="text-align:left">AlreadyExistsException</td>
-<td style="text-align:left">The api could not store, since the same data relevant to given parameter already existed in database.</td>
-</tr>
-<tr>
-<td style="text-align:left">409</td>
-<td style="text-align:left">409-002</td>
-<td style="text-align:left">AlreadyDeletedException</td>
-<td style="text-align:left">The relevant data is already deleted.</td>
-</tr>
-<tr>
-<td style="text-align:left">413</td>
-<td style="text-align:left">413-001</td>
-<td style="text-align:left">PayloadTooLargeException</td>
-<td style="text-align:left">The payload is too large.</td>
-</tr>
-<tr>
-<td style="text-align:left">415</td>
-<td style="text-align:left">415-001</td>
-<td style="text-align:left">UnsupportedContentTypeException</td>
-<td style="text-align:left">The Content-Type in http hearder is not supported.</td>
-</tr>
-<tr>
-<td style="text-align:left">500</td>
-<td style="text-align:left">500-001</td>
-<td style="text-align:left">InternalServerErrorException</td>
-<td style="text-align:left">The api can not return http response because an internal server error occurred.</td>
-</tr>
-<tr>
-<td style="text-align:left">501</td>
-<td style="text-align:left">501-001</td>
-<td style="text-align:left">NotImplementedException</td>
-<td style="text-align:left">The requested method is not implemented on this server.</td>
-</tr>
-</tbody>
-</table>
 <h2 id="parameter-explanation">Parameter Explanation</h2>
 <ul>
 <li>各種パラメータの関する説明を記載する。</li>
@@ -651,40 +583,13 @@ curl -v -X POST \
 </ul>
 <pre><code class="lang-SQL"><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> modified <span class="hljs-keyword">ASC</span> ,patientid <span class="hljs-keyword">DESC</span>, tabletname <span class="hljs-keyword">ASC</span>, serialnumber <span class="hljs-keyword">ASC</span>
 </code></pre>
-<h3 id="how-to-read-parameter-table">How to read Parameter table</h3>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Parameter</th>
-<th style="text-align:left">Type</th>
-<th style="text-align:left">Size</th>
-<th style="text-align:left">Mandatory</th>
-<th style="text-align:left">Search</th>
-<th style="text-align:left">Default</th>
-<th style="text-align:left">Remarks</th>
-<th style="text-align:left">Format</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">Key の名前</td>
-<td style="text-align:left">値の型</td>
-<td style="text-align:left">値の長さ</td>
-<td style="text-align:left">値の指定が必須か</td>
-<td style="text-align:left">検索可能か</td>
-<td style="text-align:left">値を指定しなかった場合に格納される値</td>
-<td style="text-align:left">別名</td>
-<td style="text-align:left">値の詳細な形指定</td>
-</tr>
-</tbody>
-</table>
 <h4 id="example">Example</h4>
 <p>Ref: <a href="https://docs.microsoft.com/ja-jp/azure/architecture/best-practices/api-design" target="_blank">https://docs.microsoft.com/ja-jp/azure/architecture/best-practices/api-design</a></p>
 <h2 id="warload">Warload</h2>
 <ul>
 <li>治療計画に関する API 群</li>
 </ul>
-<h3 id="post-warload">POST //Warload</h3>
+<h3 id="post-kingdoms-warloads">post-kingdoms-warloads</h3>
 <table>
 <thead>
 <tr>
@@ -695,25 +600,12 @@ curl -v -X POST \
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">患者情報登録依頼</td>
+<td style="text-align:left">武将情報登録処理</td>
 <td style="text-align:left">POST</td>
 <td style="text-align:left">application/json;charset=UTF-8</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Process:</strong>  </p>
-<ol>
-<li>指定された<strong>karteNumber</strong>と<strong>x-clinic-id</strong>, <strong>x-organization-id</strong>で他の治療計画情報が存在していないかを確認する。</li>
-<li>同日のデータが存在した場合はデータを上書き更新する。<ol>
-<li>最新のデータを確認し、 <code>IS_REQUIRED_SIGN</code> をAPI側で判定して更新する。<ol>
-<li><code>D_INJURIES.RESULT_STATUS</code> が、前回と異なる場合、サインが必要になる。</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>治療計画情報を<strong>MONTHLY_TREATMENT_P</strong>テーブルと<strong>DAILY_TREATMENT_P</strong>に登録する。</li>
-<li>初診の際は必ずサインが必要になる。</li>
-</ol>
 <p><strong>Path parameters:</strong>  </p>
 <ul>
 <li>N/A</li>
@@ -724,26 +616,24 @@ curl -v -X POST \
 </ul>
 <p><strong>Request body:</strong>  </p>
 <pre><code class="lang-json">{
-    <span class="hljs-string">&quot;karteNumber&quot;</span> : <span class="hljs-string">&quot;123&quot;</span>,
-    <span class="hljs-string">&quot;modifiedByCrmStaffId&quot;</span>: <span class="hljs-string">&quot;1&quot;</span>,
-    <span class="hljs-string">&quot;insuranceType&quot;</span> : <span class="hljs-string">&quot;健康保険&quot;</span>,
-    <span class="hljs-string">&quot;created&quot;</span> : <span class="hljs-string">&quot;2020-10-02T11:11:11+09:00&quot;</span>,
-    <span class="hljs-string">&quot;modified&quot;</span> : <span class="hljs-string">&quot;2020-10-02T11:11:11+09:00&quot;</span>,
-    <span class="hljs-string">&quot;injuries&quot;</span>: [
+    <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;劉備&quot;</span>,
+    <span class="hljs-string">&quot;azana&quot;</span> : <span class="hljs-string">&quot;玄徳&quot;</span>,
+    <span class="hljs-string">&quot;statue&quot;</span> : <span class="hljs-string">&quot;『三国志演義』の中心人物。黄巾の乱の鎮圧で功績を挙げ、その後は各地を転戦した。諸葛亮の天下三分の計に基づいて益州の地を得て勢力を築き、後漢の滅亡を受けて皇帝に即位して、蜀漢を建国した。その後の、魏・呉・蜀漢による三国鼎立の時代を生じさせた。中庸を心情とする。&quot;</span>,
+    <span class="hljs-string">&quot;hobby&quot;</span> : <span class="hljs-string">&quot;狗馬や音楽、見栄えがある衣服を着ることを好んでいた。&quot;</span>,
+    <span class="hljs-string">&quot;fromTo&quot;</span> : <span class="hljs-string">&quot;延熹4年（161年） - 章武3年4月24日（223年6月10日）&quot;</span>,
+    <span class="hljs-string">&quot;arms&quot;</span> : [
         {
-            <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-string">&quot;e61a7c5a-3b71-4205-b0d7-dc0b127g2a20&quot;</span>,
-            <span class="hljs-string">&quot;resultStatus&quot;</span> : <span class="hljs-string">&quot;continuous&quot;</span>,
-            <span class="hljs-string">&quot;resultDate&quot;</span> : <span class="hljs-string">&quot;2020-10-02T11:11:11+09:00&quot;</span>,
-            <span class="hljs-string">&quot;firstCheckUpDate&quot;</span> : <span class="hljs-string">&quot;2020-10-02T11:11:11+09:00&quot;</span>,
-            <span class="hljs-string">&quot;injuredDate&quot;</span> : <span class="hljs-string">&quot;2020-09-01T11:11:11+09:00&quot;</span>,
-            <span class="hljs-string">&quot;injuryType&quot;</span> : <span class="hljs-string">&quot;打&quot;</span>,
-            <span class="hljs-string">&quot;injuryPart&quot;</span> : <span class="hljs-string">&quot;頭&quot;</span>,
-            <span class="hljs-string">&quot;injuryPartDetail&quot;</span> : <span class="hljs-string">&quot;頭&quot;</span>,
-            <span class="hljs-string">&quot;injuryPartCode&quot;</span> : <span class="hljs-string">&quot;1004&quot;</span>,
-            <span class="hljs-string">&quot;injuryPartRefCode&quot;</span> : <span class="hljs-string">&quot;103&quot;</span>,
-            <span class="hljs-string">&quot;injuryCause&quot;</span> : <span class="hljs-string">&quot;home got hit by a suitcase around a month ago&quot;</span>,
+            <span class="hljs-string">&quot;warloadsId&quot;</span> : <span class="hljs-string">&quot;1&quot;</span>,
+            <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;雌雄一対の剣&quot;</span>,
+            <span class="hljs-string">&quot;text&quot;</span> : <span class="hljs-string">&quot;劉備（玄徳）愛用の剣。雌雄一対の剣は、桃園の誓いで劉備（玄徳）、関羽、張飛が義兄弟の契りを交わした後、黄巾賊討伐の為に先祖から伝わる剣に似せた二振りの剣。三国志の中では劉備（玄徳）が戦う場面はほとんどないので、雌雄一対の剣を二刀流のように使用したかは定かではない。&quot;</span>
         }
     ],
+    <span class="hljs-string">&quot;images&quot;</span> : [
+        {
+            <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-string">&quot;1&quot;</span>,
+            <span class="hljs-string">&quot;path&quot;</span> : <span class="hljs-string">&quot;/home/work/20210401/aiueo.png&quot;</span>,
+        }
+    ]
 }
 </code></pre>
 <ul>
@@ -752,166 +642,95 @@ curl -v -X POST \
 <table>
 <thead>
 <tr>
-<th style="text-align:left">Parameter</th>
-<th style="text-align:left">Type</th>
-<th style="text-align:left">Size</th>
-<th style="text-align:left">Mandatory</th>
-<th style="text-align:left">Search</th>
-<th style="text-align:left">Default</th>
-<th style="text-align:left">Remarks</th>
-<th style="text-align:left">Format</th>
+<th>Parameter</th>
+<th>Type</th>
+<th>Size</th>
+<th>Mandatory</th>
+<th>Search</th>
+<th>Default</th>
+<th>Remarks</th>
+<th>Format</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">karteNumber</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">N/A</td>
-<td style="text-align:left">yes</td>
-<td style="text-align:left">N/A</td>
-<td style="text-align:left">N/A</td>
-<td style="text-align:left">PATIENTS.KARTE_NUMBER</td>
-<td style="text-align:left">半角数値</td>
+<td>name</td>
+<td>string</td>
+<td>N/A</td>
+<td>yes</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>PATIENTS.KARTE_NUMBER</td>
+<td>半角数値</td>
 </tr>
 <tr>
-<td style="text-align:left">modifiedByCrmStaffId</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">250</td>
-<td style="text-align:left">yes</td>
-<td style="text-align:left">N/A</td>
-<td style="text-align:left">N/A</td>
-<td style="text-align:left">編集者のID</td>
-<td style="text-align:left">文字列</td>
+<td>azana</td>
+<td>string</td>
+<td>250</td>
+<td>yes</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>編集者のID</td>
+<td>文字列</td>
 </tr>
 <tr>
-<td style="text-align:left">insuranceType</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">10</td>
-<td style="text-align:left">no</td>
-<td style="text-align:left">N/A</td>
-<td style="text-align:left">N/A</td>
-<td style="text-align:left">保険種類</td>
-<td style="text-align:left">固定値（健康保険, 自賠責, 労災）</td>
+<td>statue</td>
+<td>string</td>
+<td>10</td>
+<td>no</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>保険種類</td>
+<td>固定値（健康保険, 自賠責, 労災）</td>
 </tr>
 <tr>
-<td style="text-align:left">created</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">N/A</td>
-<td style="text-align:left">no</td>
-<td style="text-align:left">N/A</td>
-<td style="text-align:left">now()</td>
-<td style="text-align:left">作成日時</td>
-<td style="text-align:left">YYYY-MM-DDThh:mmTZD<br>(例 1997-07-16T19:20:00+09:00)<br>(UTC+09:00)</td>
+<td>hobby</td>
+<td>string</td>
+<td>N/A</td>
+<td>no</td>
+<td>N/A</td>
+<td>now()</td>
+<td>作成日時</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align:left">modified</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">N/A</td>
-<td style="text-align:left">no</td>
-<td style="text-align:left">N/A</td>
-<td style="text-align:left">now()</td>
-<td style="text-align:left">最終更新日時</td>
-<td style="text-align:left">YYYY-MM-DDThh:mmTZD<br>(例 1997-07-16T19:20:00+09:00)<br>(UTC+09:00)</td>
+<td>fromTo</td>
+<td>string</td>
+<td>N/A</td>
+<td>no</td>
+<td>N/A</td>
+<td>now()</td>
+<td>最終更新日時</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align:left">injuries[].resultStatus</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">20</td>
-<td style="text-align:left">yes</td>
-<td style="text-align:left">N/A</td>
-<td style="text-align:left">N/A</td>
-<td style="text-align:left">転帰（内容）</td>
-<td style="text-align:left">continuous:継続,done:治癒,stop:中止,switched:転医</td>
+<td>arms[].warloadsId</td>
+<td>string</td>
+<td>20</td>
+<td>yes</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>転帰（内容）</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align:left">injuries[].resultDate</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">N/A</td>
-<td style="text-align:left">no</td>
-<td style="text-align:left">N/A</td>
-<td style="text-align:left">N/A</td>
-<td style="text-align:left">終了日時</td>
-<td style="text-align:left">YYYY-MM-DDThh:mmTZD<br>(例 1997-07-16T19:20:00+09:00)<br>(UTC+09:00)</td>
+<td>arms[].name</td>
+<td>string</td>
+<td>N/A</td>
+<td>no</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>終了日時</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align:left">injuries[].firstCheckUpDate</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">N/A</td>
-<td style="text-align:left">yes</td>
-<td style="text-align:left">N/A</td>
-<td style="text-align:left">N/A</td>
-<td style="text-align:left">初検日</td>
-<td style="text-align:left">YYYY-MM-DDThh:mmTZD<br>(例 1997-07-16T19:20:00+09:00)<br>(UTC+09:00)</td>
-</tr>
-<tr>
-<td style="text-align:left">injuries[].injuredDate</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">N/A</td>
-<td style="text-align:left">yes</td>
-<td style="text-align:left">N/A</td>
-<td style="text-align:left">N/A</td>
-<td style="text-align:left">負傷日</td>
-<td style="text-align:left">YYYY-MM-DDThh:mmTZD<br>(例 1997-07-16T19:20:00+09:00)<br>(UTC+09:00)</td>
-</tr>
-<tr>
-<td style="text-align:left">injuries[].injuryType</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">N/A</td>
-<td style="text-align:left">yes</td>
-<td style="text-align:left">N/A</td>
-<td style="text-align:left">N/A</td>
-<td style="text-align:left">部位分類</td>
-<td style="text-align:left">全角文字</td>
-</tr>
-<tr>
-<td style="text-align:left">injuries[].injuryPart</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">N/A</td>
-<td style="text-align:left">yes</td>
-<td style="text-align:left">N/A</td>
-<td style="text-align:left">N/A</td>
-<td style="text-align:left">部位名</td>
-<td style="text-align:left">全角文字</td>
-</tr>
-<tr>
-<td style="text-align:left">injuries[].injuryPartDetail</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">N/A</td>
-<td style="text-align:left">yes</td>
-<td style="text-align:left">N/A</td>
-<td style="text-align:left">N/A</td>
-<td style="text-align:left">部位詳細</td>
-<td style="text-align:left">全角文字</td>
-</tr>
-<tr>
-<td style="text-align:left">injuries[].injuryPartCode</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">N/A</td>
-<td style="text-align:left">yes</td>
-<td style="text-align:left">N/A</td>
-<td style="text-align:left">N/A</td>
-<td style="text-align:left">部位コード</td>
-<td style="text-align:left">半角数字</td>
-</tr>
-<tr>
-<td style="text-align:left">injuries[].injuryPartRefCode</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">N/A</td>
-<td style="text-align:left">yes</td>
-<td style="text-align:left">N/A</td>
-<td style="text-align:left">N/A</td>
-<td style="text-align:left">参照用コード</td>
-<td style="text-align:left">半角数字</td>
-</tr>
-<tr>
-<td style="text-align:left">injuries[].injuryCause</td>
-<td style="text-align:left">string</td>
-<td style="text-align:left">N/A</td>
-<td style="text-align:left">no</td>
-<td style="text-align:left">N/A</td>
-<td style="text-align:left">N/A</td>
-<td style="text-align:left">負傷原因</td>
-<td style="text-align:left">全角文字</td>
+<td>arms[].text</td>
+<td>string</td>
+<td>N/A</td>
+<td>yes</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>初検日</td>
 </tr>
 </tbody>
 </table>
@@ -920,7 +739,12 @@ curl -v -X POST \
 <li>サンプルオブジェクト  </li>
 </ul>
 <pre><code class="lang-JSON">{
-    <span class="hljs-string">&quot;id&quot;</span> :  <span class="hljs-string">&quot;a1c2bc5a-2a77-4205-b0d7-cc0b227f2e19&quot;</span>
+    <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-number">7</span>,
+    <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;劉備&quot;</span>,
+    <span class="hljs-string">&quot;azana&quot;</span>: <span class="hljs-string">&quot;玄徳&quot;</span>,
+    <span class="hljs-string">&quot;statue&quot;</span>: <span class="hljs-string">&quot;『三国志演義』の中心人物。黄巾の乱の鎮圧で功績を挙げ、その後は各地を転戦した。諸葛亮の天下三分の計に基づいて益州の地を得て勢力を築き、後漢の滅亡を受けて皇帝に即位して、蜀漢を建国した。その後の、魏・呉・蜀漢による三国鼎立の時代を生じさせた。中庸を心情とする。&quot;</span>,
+    <span class="hljs-string">&quot;hobby&quot;</span>: <span class="hljs-string">&quot;狗馬や音楽、見栄えがある衣服を着ることを好んでいた。&quot;</span>,
+    <span class="hljs-string">&quot;newrecord&quot;</span>: <span class="hljs-string">&quot;延熹4年（161年） - 章武3年4月24日（223年6月10日）&quot;</span>
 }
 </code></pre>
 <ul>
@@ -989,6 +813,384 @@ curl -v -X POST \
 </tr>
 </tbody>
 </table>
+<h3 id="get-kingdoms-warloads">get-kingdoms-warloads</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Method</th>
+<th style="text-align:left">Content-Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">武将情報参照処理</td>
+<td style="text-align:left">GET</td>
+<td style="text-align:left">application/json;charset=UTF-8</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Path parameters:</strong>  </p>
+<ul>
+<li>N/A</li>
+</ul>
+<p><strong>Querystring:</strong>  </p>
+<ul>
+<li>N/A</li>
+</ul>
+<p><strong>Request body:</strong>  </p>
+<pre><code class="lang-json">{
+    <span class="hljs-string">&quot;found&quot;</span> : <span class="hljs-number">1</span>,
+    <span class="hljs-string">&quot;currentPage&quot;</span> : <span class="hljs-number">1</span>,
+    <span class="hljs-string">&quot;lastPage&quot;</span>: <span class="hljs-number">2</span>,
+    <span class="hljs-string">&quot;data&quot;</span> : [
+        {
+            <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;劉備&quot;</span>,
+            <span class="hljs-string">&quot;azana&quot;</span> : <span class="hljs-string">&quot;玄徳&quot;</span>,
+            <span class="hljs-string">&quot;statue&quot;</span> : <span class="hljs-string">&quot;『三国志演義』の中心人物。黄巾の乱の鎮圧で功績を挙げ、その後は各地を転戦した。諸葛亮の天下三分の計に基づいて益州の地を得て勢力を築き、後漢の滅亡を受けて皇帝に即位して、蜀漢を建国した。その後の、魏・呉・蜀漢による三国鼎立の時代を生じさせた。中庸を心情とする。&quot;</span>,
+            <span class="hljs-string">&quot;hobby&quot;</span> : <span class="hljs-string">&quot;狗馬や音楽、見栄えがある衣服を着ることを好んでいた。&quot;</span>,
+            <span class="hljs-string">&quot;fromTo&quot;</span> : <span class="hljs-string">&quot;延熹4年（161年） - 章武3年4月24日（223年6月10日）&quot;</span>,
+            <span class="hljs-string">&quot;arms&quot;</span> : [
+                {
+                    <span class="hljs-string">&quot;warloadsId&quot;</span> : <span class="hljs-string">&quot;1&quot;</span>,
+                    <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;雌雄一対の剣&quot;</span>,
+                    <span class="hljs-string">&quot;text&quot;</span> : <span class="hljs-string">&quot;劉備（玄徳）愛用の剣。雌雄一対の剣は、桃園の誓いで劉備（玄徳）、関羽、張飛が義兄弟の契りを交わした後、黄巾賊討伐の為に先祖から伝わる剣に似せた二振りの剣。三国志の中では劉備（玄徳）が戦う場面はほとんどないので、雌雄一対の剣を二刀流のように使用したかは定かではない。&quot;</span>
+                }
+            ],
+            <span class="hljs-string">&quot;images&quot;</span> : [
+                {
+                    <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-string">&quot;1&quot;</span>,
+                    <span class="hljs-string">&quot;path&quot;</span> : <span class="hljs-string">&quot;/home/work/20210401/aiueo.png&quot;</span>,
+                }
+            ]
+        }
+    ]
+}
+</code></pre>
+<ul>
+<li>説明</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Size</th>
+<th>Mandatory</th>
+<th>Search</th>
+<th>Default</th>
+<th>Remarks</th>
+<th>Format</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>found</td>
+<td>number</td>
+<td>N/A</td>
+<td>yes</td>
+<td>N/A</td>
+<td>総件数</td>
+<td>半角数値</td>
+<td></td>
+</tr>
+<tr>
+<td>currentpage</td>
+<td>number</td>
+<td>N/A</td>
+<td>yes</td>
+<td>N/A</td>
+<td>現在の頁番号</td>
+<td>半角数値</td>
+<td></td>
+</tr>
+<tr>
+<td>lastPage</td>
+<td>number</td>
+<td>N/A</td>
+<td>yes</td>
+<td>N/A</td>
+<td>最後の頁番号</td>
+<td>半角数値</td>
+<td></td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>N/A</td>
+<td>yes</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>PATIENTS.KARTE_NUMBER</td>
+<td>半角数値</td>
+</tr>
+<tr>
+<td>azana</td>
+<td>string</td>
+<td>250</td>
+<td>yes</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>編集者のID</td>
+<td>文字列</td>
+</tr>
+<tr>
+<td>statue</td>
+<td>string</td>
+<td>10</td>
+<td>no</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>保険種類</td>
+<td>固定値（健康保険, 自賠責, 労災）</td>
+</tr>
+<tr>
+<td>hobby</td>
+<td>string</td>
+<td>N/A</td>
+<td>no</td>
+<td>N/A</td>
+<td>now()</td>
+<td>作成日時</td>
+<td></td>
+</tr>
+<tr>
+<td>fromTo</td>
+<td>string</td>
+<td>N/A</td>
+<td>no</td>
+<td>N/A</td>
+<td>now()</td>
+<td>最終更新日時</td>
+<td></td>
+</tr>
+<tr>
+<td>arms[].warloadsId</td>
+<td>string</td>
+<td>20</td>
+<td>yes</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>転帰（内容）</td>
+<td></td>
+</tr>
+<tr>
+<td>arms[].name</td>
+<td>string</td>
+<td>N/A</td>
+<td>no</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>終了日時</td>
+<td></td>
+</tr>
+<tr>
+<td>arms[].text</td>
+<td>string</td>
+<td>N/A</td>
+<td>yes</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>初検日</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response success:</strong>  </p>
+<ul>
+<li>サンプルオブジェクト  </li>
+</ul>
+<pre><code class="lang-JSON">{
+    <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-number">7</span>,
+    <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;劉備&quot;</span>,
+    <span class="hljs-string">&quot;azana&quot;</span>: <span class="hljs-string">&quot;玄徳&quot;</span>,
+    <span class="hljs-string">&quot;statue&quot;</span>: <span class="hljs-string">&quot;『三国志演義』の中心人物。黄巾の乱の鎮圧で功績を挙げ、その後は各地を転戦した。諸葛亮の天下三分の計に基づいて益州の地を得て勢力を築き、後漢の滅亡を受けて皇帝に即位して、蜀漢を建国した。その後の、魏・呉・蜀漢による三国鼎立の時代を生じさせた。中庸を心情とする。&quot;</span>,
+    <span class="hljs-string">&quot;hobby&quot;</span>: <span class="hljs-string">&quot;狗馬や音楽、見栄えがある衣服を着ることを好んでいた。&quot;</span>,
+    <span class="hljs-string">&quot;newrecord&quot;</span>: <span class="hljs-string">&quot;延熹4年（161年） - 章武3年4月24日（223年6月10日）&quot;</span>
+}
+</code></pre>
+<ul>
+<li>説明</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">JSON Key</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Size</th>
+<th style="text-align:left">Mandatory</th>
+<th style="text-align:left">Sort</th>
+<th style="text-align:left">Note</th>
+<th style="text-align:left">Format</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">id</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">N/A</td>
+<td style="text-align:left">yes</td>
+<td style="text-align:left">no</td>
+<td style="text-align:left">TREATMENT_PLANS.ID</td>
+<td style="text-align:left">UUIDv4</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response failure:</strong>  </p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">HTTP Status</th>
+<th style="text-align:left">Title</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">400</td>
+<td style="text-align:left">BadRequestException</td>
+</tr>
+<tr>
+<td style="text-align:left">404</td>
+<td style="text-align:left">NotFoundException</td>
+</tr>
+<tr>
+<td style="text-align:left">405</td>
+<td style="text-align:left">MethodNotAllowedException</td>
+</tr>
+<tr>
+<td style="text-align:left">413</td>
+<td style="text-align:left">PayloadTooLargeException</td>
+</tr>
+<tr>
+<td style="text-align:left">415</td>
+<td style="text-align:left">UnsupportedContentTypeException</td>
+</tr>
+<tr>
+<td style="text-align:left">500</td>
+<td style="text-align:left">InternalServerErrorException</td>
+</tr>
+<tr>
+<td style="text-align:left">501</td>
+<td style="text-align:left">NotImplementedException</td>
+</tr>
+</tbody>
+</table>
+<h3 id="post-kingdoms">post-kingdoms</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Method</th>
+<th style="text-align:left">Content-Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">国家登録</td>
+<td style="text-align:left">POST</td>
+<td style="text-align:left">application/json;charset=UTF-8</td>
+</tr>
+</tbody>
+</table>
+<h3 id="uri-endpoint">URI-endpoint</h3>
+<p>/kingdoms</p>
+<p><strong>Process:</strong><br>1.国情報を<strong>KINGDOMS</strong>テーブルに登録する。このAPIではここまで。</p>
+<p><strong>Path parameters.</strong>  </p>
+<ul>
+<li>N/A</li>
+</ul>
+<p><strong>Querystring:</strong>  </p>
+<ul>
+<li>N/A</li>
+</ul>
+<p><strong>Request body:</strong>  </p>
+<pre><code class="lang-json">
+
+</code></pre>
+<p><strong>Response success:</strong>  </p>
+<ul>
+<li>サンプルオブジェクト  </li>
+</ul>
+<pre><code class="lang-JSON">
+
+</code></pre>
+<h3 id="put-kingdoms-eras">put-kingdoms-eras</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Method</th>
+<th style="text-align:left">Content-Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">国家登録</td>
+<td style="text-align:left">POST</td>
+<td style="text-align:left">application/json;charset=UTF-8</td>
+</tr>
+</tbody>
+</table>
+<h3 id="uri-endpoint">URI-endpoint</h3>
+<p>/kingdoms</p>
+<p><strong>Process:</strong><br>1.国情報を<strong>KINGDOMS</strong>テーブルに登録する。このAPIではここまで。</p>
+<p><strong>Path parameters.</strong>  </p>
+<ul>
+<li>N/A</li>
+</ul>
+<p><strong>Querystring:</strong>  </p>
+<ul>
+<li>N/A</li>
+</ul>
+<p><strong>Request body:</strong>  </p>
+<pre><code class="lang-json">
+
+</code></pre>
+<p><strong>Response success:</strong>  </p>
+<ul>
+<li>サンプルオブジェクト  </li>
+</ul>
+<pre><code class="lang-JSON">
+
+</code></pre>
+<h3 id="put-kingdoms-territories">put-kingdoms-territories</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Method</th>
+<th style="text-align:left">Content-Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">国家登録</td>
+<td style="text-align:left">POST</td>
+<td style="text-align:left">application/json;charset=UTF-8</td>
+</tr>
+</tbody>
+</table>
+<h3 id="uri-endpoint">URI-endpoint</h3>
+<p>/kingdoms</p>
+<p><strong>Process:</strong><br>1.国情報を<strong>KINGDOMS</strong>テーブルに登録する。このAPIではここまで。</p>
+<p><strong>Path parameters.</strong>  </p>
+<ul>
+<li>N/A</li>
+</ul>
+<p><strong>Querystring:</strong>  </p>
+<ul>
+<li>N/A</li>
+</ul>
+<p><strong>Request body:</strong>  </p>
+<pre><code class="lang-json">
+
+</code></pre>
+<p><strong>Response success:</strong>  </p>
+<ul>
+<li>サンプルオブジェクト  </li>
+</ul>
+<pre><code class="lang-JSON">
+
+</code></pre>
 
                                 
                                 </section>
@@ -1032,7 +1234,7 @@ curl -v -X POST \
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"三国志API-RESTful API Design","level":"5.2.1","depth":2,"next":{"title":"E-R図","level":"5.2.2","depth":2,"path":"30_design/dd/dd_sangokushiApi/dd_er_diagram.md","ref":"30_design/dd/dd_sangokushiApi/dd_er_diagram.md","articles":[]},"previous":{"title":"三国志API設計","level":"5.2","depth":1,"path":"30_design/dd/dd_sangokushiApi/index.md","ref":"30_design/dd/dd_sangokushiApi/index.md","articles":[{"title":"三国志API-RESTful API Design","level":"5.2.1","depth":2,"path":"30_design/dd/dd_sangokushiApi/dd_restapi.md","ref":"30_design/dd/dd_sangokushiApi/dd_restapi.md","articles":[]},{"title":"E-R図","level":"5.2.2","depth":2,"path":"30_design/dd/dd_sangokushiApi/dd_er_diagram.md","ref":"30_design/dd/dd_sangokushiApi/dd_er_diagram.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"30_design/dd/dd_sangokushiApi/dd_restapi.md","mtime":"2021-03-17T14:08:11.063Z","type":"markdown"},"gitbook":{"version":"3.6.17","time":"2021-03-17T14:42:17.186Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"三国志API-RESTful API Design","level":"5.2.1","depth":2,"next":{"title":"E-R図","level":"5.2.2","depth":2,"path":"30_design/dd/dd_sangokushiApi/dd_er_diagram.md","ref":"30_design/dd/dd_sangokushiApi/dd_er_diagram.md","articles":[]},"previous":{"title":"三国志API設計","level":"5.2","depth":1,"path":"30_design/dd/dd_sangokushiApi/index.md","ref":"30_design/dd/dd_sangokushiApi/index.md","articles":[{"title":"三国志API-RESTful API Design","level":"5.2.1","depth":2,"path":"30_design/dd/dd_sangokushiApi/dd_restapi.md","ref":"30_design/dd/dd_sangokushiApi/dd_restapi.md","articles":[]},{"title":"E-R図","level":"5.2.2","depth":2,"path":"30_design/dd/dd_sangokushiApi/dd_er_diagram.md","ref":"30_design/dd/dd_sangokushiApi/dd_er_diagram.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"30_design/dd/dd_sangokushiApi/dd_restapi.md","mtime":"2021-04-25T06:46:10.809Z","type":"markdown"},"gitbook":{"version":"3.6.17","time":"2021-05-10T12:09:55.097Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

@@ -6,5 +6,7 @@ document
 
 `$ npm install honkit --save-dev`
 
+`$ npx honkit build . docs`
+
 `$ npx honkit serve`
 
