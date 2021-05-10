@@ -1,0 +1,1303 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <title>三国志APIサーバ-データベースレイアウト · HonKit</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 3.6.17">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="index.md" />
+    
+    
+    <link rel="prev" href="index.md" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../../">
+            
+                <a href="../../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Requirement</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../../../10_requirement/">
+            
+                <a href="../../../10_requirement/">
+            
+                    
+                    前提要求仕様
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="../../../10_requirement/studying/toStudy.html">
+            
+                <a href="../../../10_requirement/studying/toStudy.html">
+            
+                    
+                    主に取り決めること
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="../../../10_requirement/studying/logicalDesignAndNormalization/normalization.html">
+            
+                <a href="../../../10_requirement/studying/logicalDesignAndNormalization/normalization.html">
+            
+                    
+                    正規化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" data-path="../../../10_requirement/studying/logicalDesignAndNormalization/badKnowHowPattern.html">
+            
+                <a href="../../../10_requirement/studying/logicalDesignAndNormalization/badKnowHowPattern.html">
+            
+                    
+                    バッドノウハウ
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4" data-path="../../../10_requirement/studying/logicalDesignAndNormalization/materializedView.html">
+            
+                <a href="../../../10_requirement/studying/logicalDesignAndNormalization/materializedView.html">
+            
+                    
+                    マテリアライズドビュー
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5" data-path="../../../10_requirement/studying/erDiagram/erDiagram.html">
+            
+                <a href="../../../10_requirement/studying/erDiagram/erDiagram.html">
+            
+                    
+                    ER図
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.6" data-path="../../../10_requirement/studying/dddCleanArchitecture/dddCleanArchitecture.html">
+            
+                <a href="../../../10_requirement/studying/dddCleanArchitecture/dddCleanArchitecture.html">
+            
+                    
+                    DDD
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.7" data-path="../../../10_requirement/studying/apiDesign/apiDesign.html">
+            
+                <a href="../../../10_requirement/studying/apiDesign/apiDesign.html">
+            
+                    
+                    API設計
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../../../10_requirement/rq_action_items.md">
+            
+                <span>
+            
+                    
+                    アクションアイテム
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Logical Design</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../../../10_requirement/studying/logicalDesignAndNormalization/">
+            
+                <a href="../../../10_requirement/studying/logicalDesignAndNormalization/">
+            
+                    
+                    logial design and normalization
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.1" data-path="../../../10_requirement/studying/logicalDesignAndNormalization/locialDesign.md">
+            
+                <span>
+            
+                    
+                    logial design
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2" data-path="../../../10_requirement/studying/logicalDesignAndNormalization/normalization.html">
+            
+                <a href="../../../10_requirement/studying/logicalDesignAndNormalization/normalization.html">
+            
+                    
+                    normalization
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Basic Design</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    designProcedure
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="../../bd/bd_sangokushiApi/bd_sangokushiApi.html">
+            
+                <a href="../../bd/bd_sangokushiApi/bd_sangokushiApi.html">
+            
+                    
+                    ConceptDesign
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Detail Design</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="index.md">
+            
+                <span>
+            
+                    
+                    三国志APIサーバ
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="5.1.1" data-path="dd_entity_layout.html">
+            
+                <a href="dd_entity_layout.html">
+            
+                    
+                    三国志APIサーバ-データベースレイアウト
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="index.md">
+            
+                <span>
+            
+                    
+                    三国志API設計
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.2.1" data-path="dd_restapi.html">
+            
+                <a href="dd_restapi.html">
+            
+                    
+                    三国志API-RESTful API Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2.2" data-path="dd_er_diagram.html">
+            
+                <a href="dd_er_diagram.html">
+            
+                    
+                    E-R図
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Published with HonKit
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../.." >三国志APIサーバ-データベースレイアウト</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <!-- TOC -->
+<ul>
+<li><a href="#テーブル定義">テーブル定義</a></li>
+</ul>
+<!-- /TOC -->
+<h3 id="テーブル定義">テーブル定義</h3>
+<ul>
+<li>KINGDOMS（国テーブル）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Field</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Default</th>
+<th>Remarks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>国コード</td>
+<td>ID</td>
+<td>varchar(5)</td>
+<td>N/A</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>国名</td>
+<td>NAME</td>
+<td>varchar(20)</td>
+<td>N/A</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>説明</td>
+<td>TEXT</td>
+<td>varchar(250)</td>
+<td>N/A</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Constraints</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Key</th>
+<th>Extra</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ID</td>
+<td>PRIMARY</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>WARLOADS（武将テーブル）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Field</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Default</th>
+<th>Remarks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>武将コード</td>
+<td>ID</td>
+<td>varchar(10)</td>
+<td>N/A</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>国コード</td>
+<td>KINGDOMS_ID</td>
+<td>varchar(5)</td>
+<td>N/A</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>武将名</td>
+<td>NAME</td>
+<td>varchar(20)</td>
+<td>N/A</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>字名</td>
+<td>AZANA</td>
+<td>varchar(20)</td>
+<td>N/A</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>人物像</td>
+<td>PERSONALITY</td>
+<td>varchar(1000)</td>
+<td>N/A</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>趣味</td>
+<td>INTEREST</td>
+<td>varchar(500)</td>
+<td>N/A</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Constraints</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Key</th>
+<th>Extra</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ID</td>
+<td>PRIMARY</td>
+<td>N/A</td>
+<td></td>
+</tr>
+<tr>
+<td>KINGDOMS_ID</td>
+<td>FOREIGN</td>
+<td>REFERENCES KINGDOMS (ID) ON DELETE SET NULL</td>
+<td>外部キー</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>ERAS（時代区分テーブル）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Field</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Default</th>
+<th>Remarks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>時代区分コード</td>
+<td>ID</td>
+<td>varchar(10)</td>
+<td>N/A</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>国コード</td>
+<td>KINGDOMS_ID</td>
+<td>varchar(5)</td>
+<td>N/A</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>時代区分名</td>
+<td>NAME</td>
+<td>varchar(50)</td>
+<td>N/A</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>開始年度</td>
+<td>START_YEAR</td>
+<td>number</td>
+<td>N/A</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>終了年度</td>
+<td>END_YEAR</td>
+<td>number</td>
+<td>N/A</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Constraints</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Key</th>
+<th>Extra</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ID</td>
+<td>PRIMARY</td>
+<td>N/A</td>
+<td></td>
+</tr>
+<tr>
+<td>KINGDOMS_ID</td>
+<td>FOREIGN</td>
+<td>REFERENCES KINGDOMS (ID) ON DELETE SET NULL</td>
+<td>外部キー</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>POSITIONS（役職テーブル）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Field</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Default</th>
+<th>Remarks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>役職コード</td>
+<td>ID</td>
+<td>varchar(5)</td>
+<td>N/A</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>武将コード</td>
+<td>WARLOADS_ID</td>
+<td>varchar(10)</td>
+<td>N/A</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>国コード</td>
+<td>KINGDOMS_ID</td>
+<td>varchar(5)</td>
+<td>N/A</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>時代区分コード</td>
+<td>PERIODS_ID</td>
+<td>varchar(10)</td>
+<td>N/A</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>役職名</td>
+<td>NAME</td>
+<td>varchar(20)</td>
+<td>N/A</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>役職説明</td>
+<td>EXPLANATION</td>
+<td>varchar(500)</td>
+<td>N/A</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Constraints</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Key</th>
+<th>Extra</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ID</td>
+<td>PRIMARY</td>
+<td>N/A</td>
+<td></td>
+</tr>
+<tr>
+<td>KINGDOMS_ID</td>
+<td>FOREIGN</td>
+<td>REFERENCES KINGDOMS (ID) ON DELETE SET NULL</td>
+<td>外部キー</td>
+</tr>
+<tr>
+<td>WARLOADS_ID</td>
+<td>FOREIGN</td>
+<td>REFERENCES WARLOADS (ID) ON DELETE SET NULL</td>
+<td>外部キー</td>
+</tr>
+<tr>
+<td>PERIODS_ID</td>
+<td>FOREIGN</td>
+<td>REFERENCES PERIODS (ID) ON DELETE SET NULL</td>
+<td>外部キー</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>TERRITORIES（領地テーブル）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Field</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Default</th>
+<th>Remarks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>領地コード</td>
+<td>ID</td>
+<td>varchar(10)</td>
+<td>N/A</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>武将コード</td>
+<td>WARLOADS_ID</td>
+<td>varchar(20)</td>
+<td>N/A</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>国コード</td>
+<td>KINGDOMS_ID</td>
+<td>varchar(5)</td>
+<td>N/A</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>領地名</td>
+<td>NAME</td>
+<td>varchar(20)</td>
+<td>N/A</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Constraints</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Key</th>
+<th>Extra</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ID</td>
+<td>PRIMARY</td>
+<td>N/A</td>
+<td></td>
+</tr>
+<tr>
+<td>KINGDOMS_ID</td>
+<td>FOREIGN</td>
+<td>REFERENCES KINGDOMS (ID) ON DELETE SET NULL</td>
+<td>外部キー</td>
+</tr>
+<tr>
+<td>WARLOADS_ID</td>
+<td>FOREIGN</td>
+<td>REFERENCES WARLOADS (ID) ON DELETE SET NULL</td>
+<td>外部キー</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>ARMS（武器兵馬テーブル）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Field</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Default</th>
+<th>Remarks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>武器兵馬コード</td>
+<td>ID</td>
+<td>varchar(10)</td>
+<td>N/A</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>武将コード</td>
+<td>WARLOADS_ID</td>
+<td>varchar(20)</td>
+<td>N/A</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>武器兵馬名</td>
+<td>NAME</td>
+<td>varchar(100)</td>
+<td>N/A</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Constraints</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Key</th>
+<th>Extra</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ID</td>
+<td>PRIMARY</td>
+<td>N/A</td>
+<td></td>
+</tr>
+<tr>
+<td>WARLOADS_ID</td>
+<td>FOREIGN</td>
+<td>REFERENCES WARLOADS (ID) ON DELETE SET NULL</td>
+<td>外部キー</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>IMAGES（画像テーブル）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Field</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Default</th>
+<th>Remarks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>画像コード</td>
+<td>ID</td>
+<td>varchar(5)</td>
+<td>N/A</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>武将コード</td>
+<td>WARLOADS_ID</td>
+<td>varchar(20)</td>
+<td>N/A</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>画像パス</td>
+<td>PATH</td>
+<td>varchar(100)</td>
+<td>N/A</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Constraints</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Key</th>
+<th>Extra</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ID</td>
+<td>PRIMARY</td>
+<td>N/A</td>
+<td></td>
+</tr>
+<tr>
+<td>WARLOADS_ID</td>
+<td>FOREIGN</td>
+<td>REFERENCES WARLOADS (ID) ON DELETE SET NULL</td>
+<td>外部キー</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>BATTLES（戦テーブル）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Field</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Default</th>
+<th>Remarks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>戦コード</td>
+<td>ID</td>
+<td>varchar(10)</td>
+<td>N/A</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>領地コード</td>
+<td>ID</td>
+<td>varchar(10)</td>
+<td>N/A</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>時代区分コード</td>
+<td>PERIODS_ID</td>
+<td>varchar(10)</td>
+<td>N/A</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>戦名</td>
+<td>NAME</td>
+<td>varchar(20)</td>
+<td>N/A</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>概要</td>
+<td>OVERVIEW</td>
+<td>varchar(500)</td>
+<td>N/A</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Constraints</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Key</th>
+<th>Extra</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ID</td>
+<td>PRIMARY</td>
+<td>N/A</td>
+<td></td>
+</tr>
+<tr>
+<td>KINGDOMS_ID</td>
+<td>FOREIGN</td>
+<td>REFERENCES KINGDOMS (ID) ON DELETE SET NULL</td>
+<td>外部キー</td>
+</tr>
+<tr>
+<td>PERIODS_ID</td>
+<td>FOREIGN</td>
+<td>REFERENCES PERIODS (ID) ON DELETE SET NULL</td>
+<td>外部キー</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>EPISODES（名言エピソードテーブル）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Field</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Default</th>
+<th>Remarks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>名言エピソードコード</td>
+<td>ID</td>
+<td>varchar(5)</td>
+<td>N/A</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>戦コード</td>
+<td>ID</td>
+<td>varchar(10)</td>
+<td>N/A</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>武将コード</td>
+<td>EPISODES_ID</td>
+<td>varchar(20)</td>
+<td>N/A</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>タイトル</td>
+<td>TITLE</td>
+<td>varchar(100)</td>
+<td>N/A</td>
+<td>-</td>
+<td></td>
+</tr>
+<tr>
+<td>エピソード</td>
+<td>EPISODE</td>
+<td>varchar(1000)</td>
+<td>N/A</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Constraints</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Key</th>
+<th>Extra</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ID</td>
+<td>PRIMARY</td>
+<td>N/A</td>
+<td></td>
+</tr>
+<tr>
+<td>BATTLES_ID</td>
+<td>PRIMARY</td>
+<td>N/A</td>
+<td></td>
+</tr>
+<tr>
+<td>WARLOADS_ID</td>
+<td>FOREIGN</td>
+<td>REFERENCES WARLOADS (ID) ON DELETE SET NULL</td>
+<td>外部キー</td>
+</tr>
+</tbody>
+</table>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="index.md" class="navigation navigation-prev " aria-label="Previous page: 三国志APIサーバ">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="index.md" class="navigation navigation-next " aria-label="Next page: 三国志API設計">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"三国志APIサーバ-データベースレイアウト","level":"5.1.1","depth":2,"next":{"title":"三国志API設計","level":"5.2","depth":1,"path":"30_design/dd/dd_sangokushiApi/index.md","ref":"30_design/dd/dd_sangokushiApi/index.md","articles":[{"title":"三国志API-RESTful API Design","level":"5.2.1","depth":2,"path":"30_design/dd/dd_sangokushiApi/dd_restapi.md","ref":"30_design/dd/dd_sangokushiApi/dd_restapi.md","articles":[]},{"title":"E-R図","level":"5.2.2","depth":2,"path":"30_design/dd/dd_sangokushiApi/dd_er_diagram.md","ref":"30_design/dd/dd_sangokushiApi/dd_er_diagram.md","articles":[]}]},"previous":{"title":"三国志APIサーバ","level":"5.1","depth":1,"path":"30_design/dd/dd_sangokushiApi/index.md","ref":"30_design/dd/dd_sangokushiApi/index.md","articles":[{"title":"三国志APIサーバ-データベースレイアウト","level":"5.1.1","depth":2,"path":"30_design/dd/dd_sangokushiApi/dd_entity_layout.md","ref":"30_design/dd/dd_sangokushiApi/dd_entity_layout.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"30_design/dd/dd_sangokushiApi/dd_entity_layout.md","mtime":"2021-04-17T12:06:46.209Z","type":"markdown"},"gitbook":{"version":"3.6.17","time":"2021-05-10T12:08:23.112Z"},"basePath":"../../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../../../gitbook/gitbook.js"></script>
+    <script src="../../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
